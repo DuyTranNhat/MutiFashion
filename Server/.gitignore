@@ -1,0 +1,77 @@
+# Visual Studio
+.vscode/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]ppPackages/
+[Ll]og/
+[Tt]est[Rr]esult*/
+*.Build.*
+[Bb]uild[Ll]og.*
+*.[Pp]ublish/
+PublishProfiles/
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+bin/
+obj/
+*.dll
+*.exe
+*.log
+*.sql
+*.sqlite
+
+# Rider
+.idea/
+.idea/*
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Azure Pipelines
+/.azuredevops/
+
+# Resharper
+_ReSharper*/
+
+# DotNetTool artifacts
+.nupkg/
+.nuget/
+.csproj.nuget.dgspec.json
+*.snupkg
+*.swagger
+
+# User-specific files
+*.swp
+*.sublime-workspace
+*.sublime-project
+*.tlog
+
+# Logs and crash reports
+*.log
+*.dmp
+*.stackdump
+*.pid
+*.patch
+
+# System files
+Thumbs.db
+ehthumbs.db
+*.DS_Store
+
+# Config files
+*.ps1
+*.psd1
+*.psm1
+appsettings.json
+appsettings.*.json
