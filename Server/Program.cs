@@ -34,6 +34,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(x => x
+    .WithOrigins("http://localhost:5173")
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials()
+    .SetIsOriginAllowed(origin => true));
+
+app.UseCors("AllowReactLocalhost");
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

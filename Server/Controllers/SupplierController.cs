@@ -8,6 +8,7 @@ using Server.Service.IService;
 namespace Server.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class SupplierController : Controller
     {
         private readonly ISupplierService _supplierService;
@@ -24,8 +25,7 @@ namespace Server.Controllers
             return Ok(SupplierList);
         }
 
-        [HttpPut]
-        [Route("updateStatus/{id:int}")]
+        [HttpPut("updateStatus/{id:int}")]
         public async Task<IActionResult> UpdateStatus([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -45,8 +45,7 @@ namespace Server.Controllers
             return Ok(supplierRS);
         }
 
-        [HttpGet]
-        [Route("getByID/{id:int}")]
+        [HttpGet("getByID/{id:int}")]
         public async Task<IActionResult> GetByID([FromRoute] int id)
         {
             SupplierDto? supplierExisting = await _supplierService.getByIDAsync(id);
@@ -55,8 +54,7 @@ namespace Server.Controllers
             return Ok(supplierExisting);
         }
 
-        [HttpPut]
-        [Route("update/{id:int}")]
+        [HttpPut("update/{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateSupplierDtos supplierDto)
         {
             if (!ModelState.IsValid)

@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import AdminLayout from '../layouts/AdminLayout';
-import Supplier from '../pages/admin/Product';
+import Supplier from '../pages/Supplier/Supplier';
+import InputSupplier from '../pages/Supplier/InputSupplier';
+import EditSupplier from '../pages/Supplier/EditSupplier';
 
 const Router = createBrowserRouter([
     {
@@ -9,7 +11,17 @@ const Router = createBrowserRouter([
         children: [
             {
                 path: "supplier",
-                element: <Supplier />,
+                element: 
+                    <Supplier />
+                ,
+            },
+            {
+                path: "supplier/create",
+                element: <InputSupplier />,
+            },
+            {
+                path: "supplier/edit/:id",
+                element: <EditSupplier />,
             },
         ],
     },

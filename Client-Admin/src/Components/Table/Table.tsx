@@ -26,7 +26,7 @@ const Table = ({ configs, data }: Props) => {
     });
 
     return (
-        <table className="table">
+        <table className="table table-hover bg-light">
             <thead>
                 <tr className="" >
                     {renderedHeaders}
