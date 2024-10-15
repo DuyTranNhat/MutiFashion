@@ -146,3 +146,4 @@ C:\Learn_space\FullStack\MutiFashion\Server\obj\Debug\net8.0\refint\Server.dll
 C:\Learn_space\FullStack\MutiFashion\Server\obj\Debug\net8.0\Server.pdb
 C:\Learn_space\FullStack\MutiFashion\Server\obj\Debug\net8.0\Server.genruntimeconfig.cache
 C:\Learn_space\FullStack\MutiFashion\Server\obj\Debug\net8.0\ref\Server.dll
+C:\Learn_space\FullStack\MutiFashion\Server\obj\Debug\net8.0\Server.sourcelink.json

@@ -1,3 +1,11 @@
+using Server.Repository.IRepository;
+using Server.Repository;
+using Microsoft.AspNetCore.Cors.Infrastructure;
+using Server.Service.IService;
+using Server.Service;
+using Microsoft.EntityFrameworkCore;
+using Server.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,10 +15,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<MutiFashionContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())    
 {
     app.UseSwagger();
     app.UseSwaggerUI();
