@@ -23,6 +23,7 @@ builder.Services.AddDbContext<MutiFashionContext>(options =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
+builder.Services.AddScoped<IOptionService,  OptionService>();
 
 
 var app = builder.Build();

@@ -147,6 +147,9 @@ public partial class MutiFashionContext : DbContext
             entity.ToTable("options");
 
             entity.Property(e => e.OptionId).HasColumnName("option_id");
+            entity.Property(e => e.ActiveStatus)
+                .HasDefaultValue(true)
+                .HasColumnName("activeStatus");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");

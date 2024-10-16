@@ -12,7 +12,7 @@ const AdminSidebar = () => {
                 </a>
                 <div className="d-flex align-items-center ms-4 mb-4">
                     <div className="position-relative">
-                        <img className="rounded-circle" src="img/user.jpg" alt="" style={{width: "40px", height: "40px"}}/>
+                        <img className="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADESsnqLTB7q95kJhJXXqRra6IqT3zbBhRA&s" alt="" style={{width: "40px", height: "40px"}}/>
                             <div className="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div className="ms-3">

@@ -2,6 +2,7 @@
 using Server.Data;
 using Server.Repository.IRepository;
 using Server.Service;
+using Server.Service.IService;
 
 namespace Server.Repository
 {
@@ -11,11 +12,12 @@ namespace Server.Repository
         private IDbContextTransaction _transaction;
 
         public ISupplierRepository Supplier { get; }
-
+        public IOptionRepository Option { get; }
         public UnitOfWork(MutiFashionContext db)
         {
             _db = db;
-            Supplier = new SupplierRepository(_db);
+            Supplier = new SupplierRepository(db);
+            Option = new OptionRepository(db);
         }
        
         public async Task SaveAsync()
