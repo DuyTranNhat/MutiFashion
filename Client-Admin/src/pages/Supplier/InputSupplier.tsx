@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import FormSupplier, { SupplierFormInput } from './FormSupplier'
-import { supplierPostAPI } from '~/Services/SupplierService'
+import { supplierPostAPI } from '../../Services/SupplierService'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,7 +14,7 @@ const InputSupplier = () => {
         .then(res => {
             if(res?.status == 200) {
                 toast.success("Add successfully!");
-                navigate("/admin/supplier")
+                navigate("/supplier")
             }
         }).catch(error => toast.warning(error))
     }

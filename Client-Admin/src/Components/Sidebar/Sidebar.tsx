@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const AdminSidebar = () => {
+const Sidebar = () => {
     const navigate = useNavigate()
     return (
 
@@ -30,8 +30,8 @@ const AdminSidebar = () => {
                             <a href="element.html" className="dropdown-item">Other Elements</a>
                         </div>
                     </div>
-                    <a href="widget.html" className="nav-item nav-link"><i className="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" className="nav-item nav-link"><i className="fa fa-keyboard me-2"></i>Forms</a>
+                    <a onClick={() => navigate("/supplier")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Supplier</a>
+                    <a onClick={() => navigate("/attribute")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Attribute</a>
                     <a href="table.html" className="nav-item nav-link"><i className="fa fa-table me-2"></i>Tables</a>
                     <a href="chart.html" className="nav-item nav-link"><i className="fa fa-chart-bar me-2"></i>Charts</a>
                     <div className="nav-item dropdown">
@@ -49,4 +49,4 @@ const AdminSidebar = () => {
     )
 }
 
-export default AdminSidebar
+export default Sidebar

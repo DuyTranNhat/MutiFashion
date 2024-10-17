@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import FormSupplier, { SupplierFormInput } from './FormSupplier';
-import { supplierPutAPI, supplierGetByIdAPI } from '~/Services/SupplierService';
+import { supplierPutAPI, supplierGetByIdAPI } from '../../Services/SupplierService';
 
 const EditSupplier = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const EditSupplier = () => {
       .then((res) => {
         if (res?.status === 200) {
           toast.success('Supplier updated successfully!');
-          navigate('/admin/supplier'); // Điều hướng về trang danh sách nhà cung cấp
+          navigate('/supplier'); // Điều hướng về trang danh sách nhà cung cấp
         }
       })
       .catch((error) => {

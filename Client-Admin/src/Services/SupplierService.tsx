@@ -1,7 +1,7 @@
 import axios from "axios";
-import { handleError } from "~/Helpers/ErrorHandler";
-import { SupplierGet, SupplierPost, SupplierPut } from "~/Models/Supplier";
-import { SupplierFormInput } from "~/pages/Supplier/FormSupplier";
+import { handleError } from "../Helpers/ErrorHandler";
+import { SupplierGet, SupplierPost, SupplierPut } from "../Models/Supplier";
+import { SupplierFormInput } from "../pages/Supplier/FormSupplier";
 
 const api = "https://localhost:7194/api/Supplier";
 

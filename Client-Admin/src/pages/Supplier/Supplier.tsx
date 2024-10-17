@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { FaPen } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Table from '~/Components/Table/Table';
-import { SupplierGet } from '~/Models/Supplier'
-import { supplierGetAPI, supplietUpfateStatusAPI } from '~/Services/SupplierService';
+import Table from '../../Components/Table/Table';
+import { SupplierGet } from '../../Models/Supplier'
+import { supplierGetAPI, supplietUpfateStatusAPI } from '../../Services/SupplierService';
 
 const Supplier = () => {
     const [suppliers, setSuppliers] = useState<SupplierGet[]>([]);
@@ -89,7 +89,7 @@ const Supplier = () => {
                 return <td className='d-flex' >
                     <button type="button"
                         className="btn-sm btn-success d-flex align-items-center me-2"
-                        onClick={() => navigate(`/admin/supplier/edit/${supplier.supplierId}`)}>
+                        onClick={() => navigate(`/supplier/edit/${supplier.supplierId}`)}>
                         <FaPen className='' />
                     </button>
                 </td>
@@ -106,7 +106,7 @@ const Supplier = () => {
                     <div style={{height: "100px"}} className='d-flex align-items-center' >
                         <h6 className="">Supplier List</h6>
                         <button className='ml-auto btn btn-primary ms-auto'
-                            onClick={() => { navigate("/admin/supplier/create") }}
+                            onClick={() => { navigate("/supplier/create") }}
                         >
                             Create a new supplier
 
