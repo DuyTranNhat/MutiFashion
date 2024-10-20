@@ -7,12 +7,19 @@ import Attribute from '../pages/Attribute/Attribute';
 import InputAttribute from '../pages/Attribute/InputAttribute';
 import EditAttribute from '../pages/Attribute/EditAttribute';
 import InputProduct from '../pages/Product/InputProduct';
+import Product from '../pages/Product/Product';
 
 const Router = createBrowserRouter([
     {
         path: "/",
         element: <AdminLayout />,
         children: [
+            {
+                path: "product",
+                element: 
+                    <Product />
+                ,
+            },
             {
                 path: "product/create",
                 element: 

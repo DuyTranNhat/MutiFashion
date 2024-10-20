@@ -31,7 +31,15 @@ const Sidebar = () => {
                         </div>
                     </div>
                     <a onClick={() => navigate("/supplier")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Supplier</a>
-                    <a onClick={() => navigate("/product/create")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Create Product</a>
+                    <div className="nav-item dropdown">
+                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Products</a>
+                        <div className="dropdown-menu bg-transparent border-0">
+                            <a onClick={() => navigate("/product/create")} className="dropdown-item"><i className="fa fa-th me-2"></i>Create Product</a>
+                            <a onClick={() => navigate("product")} className="dropdown-item">Product</a>
+                            <a href="typography.html" className="dropdown-item">Typography</a>
+                            <a href="element.html" className="dropdown-item">Other Elements</a>
+                        </div>
+                    </div>
                     <a onClick={() => navigate("/attribute")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Attribute</a>
                     <a href="table.html" className="nav-item nav-link"><i className="fa fa-table me-2"></i>Tables</a>
                     <a href="chart.html" className="nav-item nav-link"><i className="fa fa-chart-bar me-2"></i>Charts</a>

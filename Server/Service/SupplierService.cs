@@ -1,4 +1,5 @@
 ﻿using Server.Dtos.Supplier;
+using Server.Helper;
 using Server.Mapper;
 using Server.Models;
 using Server.Repository;
@@ -24,11 +25,12 @@ namespace Server.Service
             return supplierRS.ToSupplierDto();
         }
 
-        public async Task<List<SupplierDto>> GetAllAsync()
+        public async Task<QueryObject<SupplierDto>> GetAllAsync(int page, int limit)
         {
             var supplierList = await _unitOfWork.Supplier.GetAllAsync();
-            var supplierMapper = supplierList.Select(c => c.ToSupplierDto()).ToList();
-            return supplierMapper;
+            var querySupplierList = supplierList.Select(c => c.ToSupplierDto())
+                .ToPagination(page, limit);
+            return querySupplierList;
         }
 
         public async Task<SupplierDto?> getByIDAsync(int id)

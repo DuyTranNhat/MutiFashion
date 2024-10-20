@@ -19,9 +19,9 @@ namespace Server.Controllers
 
 
         [HttpGet("getAll")] 
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            List<SupplierDto> SupplierList = await _supplierService.GetAllAsync();
+            var SupplierList = await _supplierService.GetAllAsync(page, limit);
             return Ok(SupplierList);
         }
 
