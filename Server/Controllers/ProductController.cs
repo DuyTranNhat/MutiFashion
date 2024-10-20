@@ -22,9 +22,10 @@ namespace Server.Controllers
         }
 
         [HttpPost("uploadImage/{idProduct:int}")]
-        public async Task<IActionResult> UploadImageProduct(IFormFile image, [FromRoute] int idProduct)
+        public async Task<IActionResult> UploadImageProduct([FromForm]UploadRequestDto uploadDTO, [FromRoute] int idProduct)
         {
-            var result = await _productService.handleUploadAsync(idProduct, image);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var result = await _productService.handleUploadAsync(idProduct, uploadDTO);
             return Ok(result);
         }
 

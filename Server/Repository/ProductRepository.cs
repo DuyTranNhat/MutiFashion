@@ -13,13 +13,13 @@ namespace Server.Repository
             _db = db;
         }
 
-        public async Task<Product> UpdateImageAsync(int idProduct, string? imageUrl)
+        public async Task<int> UpdateImageAsync(int idProduct, string? imageUrl)
         {
             var productExisting = await _db.Products.
                 FirstOrDefaultAsync(p => p.ProductId == idProduct);
             if (productExisting != null) productExisting.ImageUrl = imageUrl;
             await _db.SaveChangesAsync();
-            return productExisting;
+            return productExisting.ProductId;
         }
     }
 }

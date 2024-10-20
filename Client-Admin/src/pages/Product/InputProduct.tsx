@@ -1,26 +1,36 @@
 import { ProductPost } from '../../Models/Product'
 import FormProduct from './ProductForm/FormProduct'
-import { productPostAPI } from '../../Services/ProductService';
+import { productPostAPI, UploadImageProductAPI } from '../../Services/ProductService';
 import { toast } from 'react-toastify';
 
 
 const InputProduct = () => {
- 
-  const handleSubmitProduct = (dataPost: ProductPost) => {
+
+  const handleSubmitProduct = (dataPost: ProductPost, image: File) => {
     productPostAPI(dataPost)
-    .then((res) => {
+      .then((res) => {
         if (res?.data) {
-            toast.success('Success');
+          if (res?.status === 200) {
+            console.log(res);
+            
+            const idProduct = res.data
+            UploadImageProductAPI(image, idProduct)
+              .then(res => {
+                if (res?.status === 200) {
+                  toast.success("Product created successfully!")
+                }
+              })
+          }
         }
-    })
-    .catch((error) => toast.error(error));
+      })
+      .catch((error) => toast.error(error));
   }
 
   return (
     <div style={{ padding: "58px" }} className='bg-light' >
-    <h3 className='py-3' >Create New Product</h3>
+      <h3 className='py-3' >Create New Product</h3>
       <div className='rounded-2 border shadow' style={{ padding: "58px" }}>
-          <FormProduct onSubmit={handleSubmitProduct} />
+        <FormProduct onSubmit={handleSubmitProduct} />
       </div>
     </div>
   )

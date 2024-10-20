@@ -19,19 +19,17 @@ namespace Server.Service
         }
 
 
-        public async Task<ProductDto> handleUploadAsync(int idProduct, IFormFile Image)
+        public async Task<int> handleUploadAsync(int idProduct, UploadRequestDto uploadDto)
         {
             string imageUrl = null;
-            if (Image != null)
+            if (uploadDto.ImageFile != null)
             {
                 await _imageService.SetDirect("images/product");
-                imageUrl = await _imageService.HandleImageUpload(Image);
+                imageUrl = await _imageService.HandleImageUpload(uploadDto.ImageFile);
             }
-            Product productExisting =  await _unitOfWork
+            var result =  await _unitOfWork
                 .Product.UpdateImageAsync(idProduct, imageUrl);
-            if (productExisting != null)
-                return productExisting.ToProductDTO();
-            return null;
+            return result;
         }
 
         public List<Dictionary<int, string>> GenerateCombinations(List<List<string>> optionCombinations)
@@ -43,7 +41,7 @@ namespace Server.Service
             return combinations;
         }
 
-        public async Task<object> handleGenerateVariantAsync(CreateProductWithVariantsDto dto)
+        public async Task<int> handleGenerateVariantAsync(CreateProductWithVariantsDto dto)
         {
             //1 Thêm Product
             
@@ -145,7 +143,7 @@ namespace Server.Service
                 await _unitOfWork.SaveAsync();
             }
 
-            return new { message = "success" };
+            return product.ProductId;
         }
 
         private async void GenerateCombinationsRecursive(

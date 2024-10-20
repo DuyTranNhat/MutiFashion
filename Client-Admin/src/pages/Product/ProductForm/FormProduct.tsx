@@ -11,7 +11,7 @@ import UploadImage from '../../../Components/UploadImage/UploadImage';
 import { toast } from 'react-toastify';
 
 type Props = {
-    onSubmit: (data: ProductPost) => void;
+    onSubmit: (data: ProductPost, image: File) => void;
 };
 
 const validateSchema = yup.object().shape({
@@ -93,7 +93,7 @@ const FormProduct = ({ onSubmit }: Props) => {
             options: attributePost,
         };
 
-        onSubmit(dataSubmit)
+        onSubmit(dataSubmit, image)
     };
 
     return (
