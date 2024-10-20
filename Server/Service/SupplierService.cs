@@ -29,7 +29,7 @@ namespace Server.Service
         {
             var supplierList = await _unitOfWork.Supplier.GetAllAsync();
             var querySupplierList = supplierList.Select(c => c.ToSupplierDto())
-                .ToPagination(page, limit);
+                .FilterPage(page, limit);
             return querySupplierList;
         }
 

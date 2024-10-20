@@ -19,6 +19,8 @@ public partial class Product
 
     public string? ImageUrl { get; set; }
 
+    public decimal? Saleprice { get; set; }
+
     public virtual Category? Category { get; set; }
 
     public virtual ICollection<ProductOption> ProductOptions { get; set; } = new List<ProductOption>();

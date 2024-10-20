@@ -16,7 +16,7 @@ const Supplier = () => {
             supplierGetAPI()
                 .then(res => {
                     if (res?.data) {
-                        setSuppliers(res?.data);
+                        setSuppliers(res?.data.items);
                     }
                 }).
                 catch(error => {

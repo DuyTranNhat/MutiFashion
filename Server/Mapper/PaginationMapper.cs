@@ -5,7 +5,7 @@ namespace Server.Mapper
 {
     public static class PaginationMapper
     {
-        public static QueryObject<T> ToPagination<T>(this IEnumerable<T> items, int page, int limit)
+        public static QueryObject<T> FilterPage<T>(this IEnumerable<T> items, int page, int limit)
         {
             IQueryable<T> query = items.AsQueryable();
             var count = query.Count();

@@ -8,13 +8,32 @@ export const TAB_CREATEPRODUCT = [
 ];
 
 export const CLASSLIST_COLORS = ['btn-warning', 'btn-danger', 'btn-success', 'btn-secondary', 'btn-primary', 'btn-outline-primary']
+export const CLASSLIST_COLORS_OL = ['btn-outline-warning', 'btn-outline-danger', 'btn-outline-success', 'btn-outline-secondary', 'btn-outline-primary', 'btn-outline-primary']
+
 
 export const getRandomColorClass = (): string => {
   const randomIndex = Math.floor(Math.random() * CLASSLIST_COLORS.length);
   return CLASSLIST_COLORS[randomIndex];
 };
 
-const API_URL = import.meta.env.VITE_API_URL
+export const getRandomColorClassOL = (): string => {
+  const randomIndex = Math.floor(Math.random() * CLASSLIST_COLORS_OL.length);
+  return CLASSLIST_COLORS_OL[randomIndex];
+};
+
+
+export const API_URL = import.meta.env.VITE_API_URL
 export const ATTRIBUTE_API = `${API_URL}/api/option`
 export const PRODUCT_API = `${API_URL}/api/product`
+export const VARIANT_API = `${API_URL}/api/variant`
 export const SUPPLIER_API = `${API_URL}/api/Supplier`
+
+export interface ProductGet {
+  productId: number;
+  name: string;
+  description: string | null;
+  status: boolean;
+  imageUrl: string | null;
+  totalVariant: number;
+  // category: Category | null;
+}

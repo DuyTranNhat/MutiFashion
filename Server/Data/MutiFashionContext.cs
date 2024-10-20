@@ -233,8 +233,10 @@ public partial class MutiFashionContext : DbContext
                 .HasColumnName("image_url");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
-                .IsUnicode(false)
                 .HasColumnName("name");
+            entity.Property(e => e.Saleprice)
+                .HasColumnType("decimal(18, 0)")
+                .HasColumnName("saleprice");
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.SupplierId).HasColumnName("supplier_id");
 

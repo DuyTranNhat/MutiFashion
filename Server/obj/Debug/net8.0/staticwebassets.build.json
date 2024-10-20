@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "S97Ob+toK1ACYcbHtH73t8WbGUx47HRQBz2jzXOkbyI=",
+  "Hash": "MTxvFj+rx10pnT4Q9lUlT5FE/bEh9/xbbGzLY6ucABk=",
   "Source": "Server",
   "BasePath": "_content/Server",
   "Mode": "Default",
@@ -34,6 +34,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Product\\011dc592-59e0-4102-a064-168e73b9e503_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
+    },
+    {
+      "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\25237d9d-9ca5-41b1-9dc0-ffe65ca5845c_vn-11134207-7r98o-lxduvvkb3n4p5f@resize_w900_nl.webp",
+      "SourceId": "Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\",
+      "BasePath": "_content/Server",
+      "RelativePath": "images/Product/25237d9d-9ca5-41b1-9dc0-ffe65ca5845c_vn-11134207-7r98o-lxduvvkb3n4p5f@resize_w900_nl.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Product\\25237d9d-9ca5-41b1-9dc0-ffe65ca5845c_vn-11134207-7r98o-lxduvvkb3n4p5f@resize_w900_nl.webp"
+    },
+    {
+      "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\e0ee9305-a45d-416e-b2cd-90f79bf3b6c7_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
+      "SourceId": "Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\",
+      "BasePath": "_content/Server",
+      "RelativePath": "images/Product/e0ee9305-a45d-416e-b2cd-90f79bf3b6c7_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Product\\e0ee9305-a45d-416e-b2cd-90f79bf3b6c7_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
     }
   ]
 }

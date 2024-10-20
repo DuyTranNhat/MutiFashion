@@ -1,6 +1,6 @@
 import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
-import { ProductPost } from "../Models/Product";
+import { ProductPost, ProductResponse } from "../Models/Product";
 import { PRODUCT_API } from "../Utils/constant";
 
 export const productPostAPI = async (productPost: ProductPost) => {
@@ -25,6 +25,20 @@ export const UploadImageProductAPI = async (image: File, id: number) => {
                 },
             });
         return imageUploadResponse;
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+export const ProductGetAPI = async (page: number = 1, litmit: number = 12) => {
+    try {
+        const data = await axios.get<ProductResponse>(`${PRODUCT_API}/getAll`, {
+            params : {
+                page: page,
+                limit: litmit,
+            },
+        });
+        return data;
     } catch (error) {
         handleError(error)
     }

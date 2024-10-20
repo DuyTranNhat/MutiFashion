@@ -20,13 +20,13 @@ export const GeneralForm = ({
 
     useEffect(() => {
         supplierGetAPI()
-          .then((res) => {
-            if (res?.data) {
-              setSuppliers(res?.data)
-            }
-          }).catch(error => toast.error(error))
-      }, [])
-    
+            .then((res) => {
+                if (res?.data) {
+                    setSuppliers(res?.data.items)
+                }
+            }).catch(error => toast.error(error))
+    }, [])
+
 
     return (
         <>
@@ -52,10 +52,25 @@ export const GeneralForm = ({
                 {error.description && <div className="invalid-feedback">{error.description.message}</div>}
             </div>
 
+            <div className="form-floating mb-3">
+                <input
+                    className={`form-control ${error.salePrice ? 'is-invalid' : ''}`}
+                    type="number"
+                    id="salePrice"
+                    name="salePrice"
+                    step="1"
+                    required
+                    placeholder="Nhập giá bán"
+                    {...register('salePrice')}
+                />
+                <label htmlFor="salePrice">Giá bán:</label>
+                {error.salePrice && <div className="invalid-feedback">{error.salePrice.message}</div>}
+            </div>
+
             <div className="form-check form-switch">
-                <input 
-                    className="form-check-input" 
-                    type="checkbox" 
+                <input
+                    className="form-check-input"
+                    type="checkbox"
                     role="switch"
                     id="flexSwitchCheckChecked"
                     {...register('status')}

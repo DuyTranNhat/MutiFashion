@@ -8,6 +8,14 @@ export type SupplierGet = {
     address: string;
 }
 
+export type SupplierResponse = {
+    items: SupplierGet[],
+    totalItems: number,
+    currentPage: number,
+    totalPages: number,
+    pageSize: number,
+}
+
 export type SupplierPost = {
     name: string;
     email: string;

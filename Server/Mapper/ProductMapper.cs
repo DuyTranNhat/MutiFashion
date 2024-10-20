@@ -13,6 +13,7 @@ namespace ecommerce_backend.Mappers
             return new Product
             {
                 Name = productDto.Name,
+                Saleprice = productDto.SalePrice,
                 CategoryId = null,
                 SupplierId = productDto.SupplierId,
                 Description = productDto.Description,
@@ -25,9 +26,12 @@ namespace ecommerce_backend.Mappers
             return new ProductDto
             {
                 Name = product.Name,
-                imageURL = product.ImageUrl!,
-                Id = product.ProductId,
-                Description = product.Description
+                Category = product.Category,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                ProductId = product.ProductId,
+                Status = product.Status,
+                totalVariant = product.Variants.Count(),
             };
         }
     }

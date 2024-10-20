@@ -1,12 +1,12 @@
 import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
-import { SupplierGet, SupplierPost, SupplierPut } from "../Models/Supplier";
+import { SupplierGet, SupplierPost, SupplierPut, SupplierResponse } from "../Models/Supplier";
 import { SupplierFormInput } from "../pages/Supplier/FormSupplier";
 import { SUPPLIER_API } from "../Utils/constant";
 
 export const supplierGetAPI = async () => {
     try {
-        const data = await axios.get<SupplierGet[]>(`${SUPPLIER_API}/getAll`);
+        const data = await axios.get<SupplierResponse>(`${SUPPLIER_API}/getAll`);
         return data;
     } catch (error) {
         handleError(error);

@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\images\\Product\\011dc592-59e0-4102-a064-168e73b9e503_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
     },
     {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\25237d9d-9ca5-41b1-9dc0-ffe65ca5845c_vn-11134207-7r98o-lxduvvkb3n4p5f@resize_w900_nl.webp",
+      "PackagePath": "staticwebassets\\images\\Product\\25237d9d-9ca5-41b1-9dc0-ffe65ca5845c_vn-11134207-7r98o-lxduvvkb3n4p5f@resize_w900_nl.webp"
+    },
+    {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\e0ee9305-a45d-416e-b2cd-90f79bf3b6c7_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
+      "PackagePath": "staticwebassets\\images\\Product\\e0ee9305-a45d-416e-b2cd-90f79bf3b6c7_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Server.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

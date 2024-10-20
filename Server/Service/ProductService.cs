@@ -1,6 +1,8 @@
 ﻿using ecommerce_backend.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Server.Dtos.Product;
+using Server.Helper;
+using Server.Mapper;
 using Server.Models;
 using Server.Repository.IRepository;
 using Server.Service.IService;
@@ -18,6 +20,12 @@ namespace Server.Service
             _imageService = imageService;
         }
 
+        public async Task<QueryObject<ProductDto>> GetProductsAsync(int page, int limit)
+        {
+            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties: "Variants");
+            var productQuery = listProduct.Select(p => p.ToProductDTO()).FilterPage(page, limit);
+            return productQuery;
+        }
 
         public async Task<int> handleUploadAsync(int idProduct, UploadRequestDto uploadDto)
         {
@@ -109,7 +117,8 @@ namespace Server.Service
                 var variant = new Variant
                 {
                     ProductId = product.ProductId,
-                    Quantity = 0,
+                    Quantity = 100,
+                    SalePrice = dto.SalePrice,
                     SkuId = Guid.NewGuid().ToString(),
                     Status = true
                 };
@@ -173,9 +182,9 @@ namespace Server.Service
 
         private async Task<int> GetOptionId(string optionValue)
         {
-            var option = await _unitOfWork.Option.GetAsync(o => 
+            var option = await _unitOfWork.Option.GetAsync(o =>
             o.Values.Select(v => v.Value1).Contains(optionValue));
-            return option?.OptionId ?? 0; 
+            return option?.OptionId ?? 0;
         }
     }
 }

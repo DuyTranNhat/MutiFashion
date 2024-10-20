@@ -5,6 +5,7 @@ namespace Server.Dtos.Product
     public class CreateProductWithVariantsDto
     {
         public string Name { get; set; }
+        public decimal SalePrice { get; set; }
         public int? CategoryId { get; set; }
         public int? SupplierId { get; set; }
         public string Description { get; set; }

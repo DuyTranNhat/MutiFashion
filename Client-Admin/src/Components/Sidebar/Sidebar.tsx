@@ -34,9 +34,8 @@ const Sidebar = () => {
                     <div className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Products</a>
                         <div className="dropdown-menu bg-transparent border-0">
-                            <a onClick={() => navigate("/product/create")} className="dropdown-item"><i className="fa fa-th me-2"></i>Create Product</a>
                             <a onClick={() => navigate("product")} className="dropdown-item">Product</a>
-                            <a href="typography.html" className="dropdown-item">Typography</a>
+                            <a onClick={() => navigate("variant")} className="dropdown-item">Variant</a>
                             <a href="element.html" className="dropdown-item">Other Elements</a>
                         </div>
                     </div>
