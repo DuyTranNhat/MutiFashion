@@ -17,6 +17,8 @@ public partial class Product
 
     public bool Status { get; set; }
 
+    public string? ImageUrl { get; set; }
+
     public virtual Category? Category { get; set; }
 
     public virtual ICollection<ProductOption> ProductOptions { get; set; } = new List<ProductOption>();

@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "z8/jf/uVtfFHkS7UZKSCL97FvnwEOhJPQdCo8dr/ZzU=",
+  "Hash": "HnY9Q25KEGOljfTsUj80wDAQbya1Gmgk8BOAzsXLsT4=",
   "Source": "Server",
   "BasePath": "_content/Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Server\\wwwroot",
+      "Source": "Server",
+      "ContentRoot": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\",
+      "BasePath": "_content/Server",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\b0968e06-6499-4104-b9a3-9bbe82ea71cd_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
+      "SourceId": "Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\",
+      "BasePath": "_content/Server",
+      "RelativePath": "images/Product/b0968e06-6499-4104-b9a3-9bbe82ea71cd_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Product\\b0968e06-6499-4104-b9a3-9bbe82ea71cd_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
+    }
+  ]
 }

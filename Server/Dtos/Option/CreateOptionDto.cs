@@ -9,7 +9,7 @@ namespace Server.Dtos.Option
         [MaxLength(255)]
         public string Name { get; set; }
         [Required]
-        public virtual ICollection<CreateValueDto> Values { get; set; } = new List<CreateValueDto>();
+        public virtual IEnumerable<CreateValueDto> Values { get; set; } = new List<CreateValueDto>();
 
     }
 }

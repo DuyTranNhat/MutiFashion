@@ -4,9 +4,7 @@ namespace Server.Dtos.Value
 {
     public class CreateValueDto
     {
-        [Required]
-        [MinLength(1)]
-        [MaxLength(255)]
+        [MaxLength(255, ErrorMessage = "Value name cannot be over 255 over characters")]
         public string Value { get; set; }
     }
 }

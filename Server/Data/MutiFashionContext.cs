@@ -228,6 +228,9 @@ public partial class MutiFashionContext : DbContext
             entity.Property(e => e.Description)
                 .HasColumnType("text")
                 .HasColumnName("description");
+            entity.Property(e => e.ImageUrl)
+                .HasMaxLength(255)
+                .HasColumnName("image_url");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .IsUnicode(false)

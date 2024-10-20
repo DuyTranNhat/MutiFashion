@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@tippyjs/react": "^4.2.6",
     "@vitejs/plugin-react": "^4.3.2",
     "axios": "^1.7.7",
     "path": "^0.12.7",
@@ -31,6 +32,7 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
     "globals": "^15.9.0",
+    "sass-embedded": "^1.80.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
     "vite": "^5.4.9",

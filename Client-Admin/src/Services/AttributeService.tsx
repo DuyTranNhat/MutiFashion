@@ -2,12 +2,11 @@ import axios from "axios"
 import { handleError } from "../Helpers/ErrorHandler";
 import { AttributeGet, AttributePost, AttributeUpdate } from "../Models/Option"
 import { AttributeFormInput } from "../pages/Attribute/FormAttrbute";
-
-const api = "https://localhost:7194/api/option"
+import { ATTRIBUTE_API } from "../Utils/constant";
 
 export const attributeGetAPI = async () => {
     try {
-        const data = await axios.get<AttributeGet[]>(`${api}/GetAll`);
+        const data = await axios.get<AttributeGet[]>(`${ATTRIBUTE_API}/GetAll`);
         return data;
     } catch (error) {
         handleError(error)
@@ -16,7 +15,7 @@ export const attributeGetAPI = async () => {
 
 export const attributeGetActiveAPI = async () => {
     try {
-        const data = await axios.get<AttributeGet[]>(api + "/getAllActive");
+        const data = await axios.get<AttributeGet[]>(`${ATTRIBUTE_API}/getAllActive`);
         return data;
     } catch (error) {
         handleError(error)
@@ -25,7 +24,7 @@ export const attributeGetActiveAPI = async () => {
 
 export const attributePostAPI = async (form: AttributeFormInput) => {
     try {
-        const data = await axios.post<AttributePost[]>(`${api}/create`, form);
+        const data = await axios.post<AttributePost[]>(`${ATTRIBUTE_API}/create`, form);
         return data;
     } catch (error) {
         handleError(error)
@@ -34,7 +33,7 @@ export const attributePostAPI = async (form: AttributeFormInput) => {
 
 export const attributeUpdateAPI = async (id: string, form: AttributeFormInput) => {
     try {
-        const data = await axios.put<AttributeUpdate[]>(api + "/update/" + id, form);
+        const data = await axios.put<AttributeUpdate[]>(`${ATTRIBUTE_API}/update/${id}`, form);
         return data;
     } catch (error) {
         handleError(error)
@@ -44,7 +43,7 @@ export const attributeUpdateAPI = async (id: string, form: AttributeFormInput) =
 
 export const attributeActiveAPI = async (id: number) => {
     try {
-        const data = await axios.put<AttributeGet>(api + "/updateStatus/" + id);
+        const data = await axios.put<AttributeGet>(`${ATTRIBUTE_API}/updateStatus/${id}`);
         return data;
     } catch (error) {   
         handleError(error)
@@ -53,7 +52,7 @@ export const attributeActiveAPI = async (id: number) => {
 
 export const attributeGetByIdAPI = async (id: string) => {
     try {
-        const data = await axios.get<AttributeGet>(api + "/getByID/" + id);
+        const data = await axios.get<AttributeGet>(`${ATTRIBUTE_API}/getByID/${id}`);
         return data;
     } catch (error) {
         handleError(error)

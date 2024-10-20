@@ -25,20 +25,5 @@ namespace ecommerce_backend.Mappers
             v.ToValueModelFromCreate(OptionModel.OptionId))).ToList();
             return OptionModel;
         }
-
-        //public static AttributeVariantValueDto ToAttributeVariantValueDto(this Models.Option OptionModel)
-        //{
-        //    if (OptionModel == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(OptionModel), "Option model cannot be null.");
-        //    }
-        //    return new AttributeVariantValueDto
-        //    {
-        //        AttributeId = OptionModel.AttributeId,
-        //        Name = OptionModel.Name
-        //    };
-        //}
-
-
     }
 }

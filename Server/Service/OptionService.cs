@@ -15,6 +15,8 @@ namespace Server.Service
         }
 
 
+
+
         public async Task<List<OptionDto>> GetAllAsync()
         {
             var optionExisting = await _unitOfWork.Option.

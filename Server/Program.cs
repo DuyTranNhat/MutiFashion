@@ -24,6 +24,8 @@ builder.Services.AddDbContext<MutiFashionContext>(options =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<IOptionService,  OptionService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddTransient<IImageService, ImageService>();
 
 
 var app = builder.Build();
@@ -43,7 +45,6 @@ app.UseCors(x => x
     .SetIsOriginAllowed(origin => true));
 
 app.UseCors("AllowReactLocalhost");
-
 
 app.UseHttpsRedirection();
 

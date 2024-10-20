@@ -6,12 +6,19 @@ import EditSupplier from '../pages/Supplier/EditSupplier';
 import Attribute from '../pages/Attribute/Attribute';
 import InputAttribute from '../pages/Attribute/InputAttribute';
 import EditAttribute from '../pages/Attribute/EditAttribute';
+import InputProduct from '../pages/Product/InputProduct';
 
 const Router = createBrowserRouter([
     {
         path: "/",
         element: <AdminLayout />,
         children: [
+            {
+                path: "product/create",
+                element: 
+                    <InputProduct />
+                ,
+            },
             {
                 path: "supplier",
                 element: 

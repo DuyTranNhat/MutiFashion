@@ -31,6 +31,7 @@ const Sidebar = () => {
                         </div>
                     </div>
                     <a onClick={() => navigate("/supplier")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Supplier</a>
+                    <a onClick={() => navigate("/product/create")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Create Product</a>
                     <a onClick={() => navigate("/attribute")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Attribute</a>
                     <a href="table.html" className="nav-item nav-link"><i className="fa fa-table me-2"></i>Tables</a>
                     <a href="chart.html" className="nav-item nav-link"><i className="fa fa-chart-bar me-2"></i>Charts</a>

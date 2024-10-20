@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\b0968e06-6499-4104-b9a3-9bbe82ea71cd_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
+      "PackagePath": "staticwebassets\\images\\Product\\b0968e06-6499-4104-b9a3-9bbe82ea71cd_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Server.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Server.props",
+      "PackagePath": "build\\Server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Server.props",
+      "PackagePath": "buildMultiTargeting\\Server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Server.props",
+      "PackagePath": "buildTransitive\\Server.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
