@@ -1,3 +1,5 @@
+import { PageObject } from "./Common";
+
 export type ProductPost = {
     name: string;
     categoryId: number | null;
@@ -15,13 +17,10 @@ export type ProductAttributePost = {
 
 export type ProductResponse = {
     items: ProductGet[],
-    totalItems: number,
-    currentPage: number,
-    totalPages: number,
-    pageSize: number,
+    page: PageObject,
 }
 
-export interface ProductGet {
+export interface ProductGet {  
     productId: number;
     name: string;
     description: string | null;

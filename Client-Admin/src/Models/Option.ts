@@ -1,3 +1,5 @@
+import { PageObject } from "./Common";
+
 export interface AttributeGet {
     optionID: number;
     name: string;
@@ -5,17 +7,20 @@ export interface AttributeGet {
     values: ValueGet[];
 }
 
+export type AttributeResponse = {
+    items: AttributeGet[],
+    page: PageObject,
+}
+
 export interface ValueGet {
     valueId: number;
     value: string;
 }
-
     
 export type AttributeUpdate = {
     name: string,
     values: VallueUpdate[]
 }
-
 
 export type VallueUpdate = {
     valueId: number | null,

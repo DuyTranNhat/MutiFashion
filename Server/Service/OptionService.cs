@@ -1,5 +1,7 @@
 ﻿using ecommerce_backend.Mappers;
 using Server.Dtos.Option;
+using Server.Helper;
+using Server.Mapper;
 using Server.Models;
 using Server.Repository.IRepository;
 using Server.Service.IService;
@@ -14,14 +16,13 @@ namespace Server.Service
             _unitOfWork = unitOfWork;
         }
 
-
-
-
-        public async Task<List<OptionDto>> GetAllAsync()
+        public async Task<QueryObject<OptionDto>> GetOptionsAsync(int page, int limit)
         {
             var optionExisting = await _unitOfWork.Option.
                 GetAllAsync(includeProperties: "Values");
-            return optionExisting.Select(o => o.ToOptionDto()).ToList();
+            var optionDto = optionExisting.Select(o => o.ToOptionDto()).
+                AsQueryable().FilterPage(page, limit);
+            return optionDto;
         }
 
         public async Task<List<OptionDto>> GetAllActiveAsync()

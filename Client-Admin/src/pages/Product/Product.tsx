@@ -3,22 +3,36 @@ import { ProductGetAPI } from '../../Services/ProductService'
 import Table from '../../Components/Table/Table'
 import { ProductGet } from '../../Models/Product'
 import { FaPen } from "react-icons/fa";
-import { API_URL } from '../../Utils/constant';
+import { API_URL, PAGE_LIMIT_PRODUCT } from '../../Utils/constant';
 import { FiTrash } from "react-icons/fi";
 import { ProductAttributePost } from './ProductForm/AttributeForm';
 import { useNavigate } from 'react-router-dom';
+import { PageObject } from '../../Models/Common';
+import Paging from '../../Components/Paging/Paging';
+import { toast } from 'react-toastify';
 
 const Product = () => {
     const [products, setProducts] = useState<ProductGet[]>()
+    const [pageObject, setPageObject] = useState<PageObject>()
 
     const navigate = useNavigate()
+
+    const handlePageChange = (pageNumber: number) => {
+        ProductGetAPI(pageNumber, PAGE_LIMIT_PRODUCT)
+        .then(res => {
+            if (res?.data) {
+                setProducts(res?.data.items)
+                setPageObject(res?.data.page)
+            }
+        }).catch(error => toast.error(error))
+    }
 
     useEffect(() => {
         ProductGetAPI()
             .then(res => {
                 if (res?.data) {
-                    console.log(res?.data.items);
                     setProducts(res?.data.items)
+                    setPageObject(res?.data.page)
                 }
             })
     }, [])
@@ -49,7 +63,7 @@ const Product = () => {
             render: (productGet: ProductGet) => productGet.totalVariant,
         },
         {
-            label: (<button 
+            label: (<button
                 className='btn btn-primary ms-auto'
                 onClick={() => navigate("/product/create")}
             >
@@ -89,6 +103,13 @@ const Product = () => {
                         ? <Table configs={configsTableProduct} data={products} />
                         : <h3>loading</h3>
                     }
+                    <Paging
+                        currentPage={pageObject?.currentPage!}
+                        onPageChange={handlePageChange}
+                        pageSize={pageObject?.pageSize!}
+                        totalItems={pageObject?.totalItems!}
+                        totalPages={pageObject?.totalPages!}
+                    />
                 </div>
             </div>
         </div>

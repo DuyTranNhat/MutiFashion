@@ -5,18 +5,23 @@ import { toast } from 'react-toastify';
 import Table from '../../Components/Table/Table';
 import { SupplierGet } from '../../Models/Supplier'
 import { supplierGetAPI, supplietUpfateStatusAPI } from '../../Services/SupplierService';
+import { PageObject } from '../../Models/Common';
+import Paging from '../../Components/Paging/Paging';
+import { PAGE_LIMIT_SUPPLIER } from '../../Utils/constant';
 
 const Supplier = () => {
     const [suppliers, setSuppliers] = useState<SupplierGet[]>([]);
+    const [pageObject, setPageObject] = useState<PageObject>()
 
     const navigate = useNavigate();
 
     useEffect(() => {
         const getSuppliers = () => {
-            supplierGetAPI()
+            supplierGetAPI(1, PAGE_LIMIT_SUPPLIER)
                 .then(res => {
                     if (res?.data) {
                         setSuppliers(res?.data.items);
+                        setPageObject(res?.data.page);
                     }
                 }).
                 catch(error => {
@@ -27,11 +32,18 @@ const Supplier = () => {
         getSuppliers()
     }, [])
 
-
+    const handlePageChange = (pageNumber: number) => {
+        supplierGetAPI(pageNumber, PAGE_LIMIT_SUPPLIER)
+            .then(res => {
+                if (res?.data) {
+                    setSuppliers(res?.data.items)
+                    setPageObject(res?.data.page)
+                }
+            }).catch(error => toast.error(error))
+    }
 
     const onStatusChange = (supplierID: number) => {
         updateStatusAPI(supplierID)
-
     }
 
     const updateStatusAPI = (supplierID: number) => {
@@ -102,8 +114,8 @@ const Supplier = () => {
         <div className='container-fluid pt-4 px-4' >
             <h1 className='py-3' >Supplier Management</h1>
             <div className="col-12">
-                <div className="rounded-2 border shadow custom-container h-100" style={{padding: "18px 58px"}}>
-                    <div style={{height: "100px"}} className='d-flex align-items-center' >
+                <div className="rounded-2 border shadow custom-container h-100" style={{ padding: "18px 58px" }}>
+                    <div style={{ height: "100px" }} className='d-flex align-items-center' >
                         <h6 className="">Supplier List</h6>
                         <button className='ml-auto btn btn-primary ms-auto'
                             onClick={() => { navigate("/supplier/create") }}
@@ -113,10 +125,20 @@ const Supplier = () => {
                         </button>
                     </div>
                     <div className="table-responsive"></div>
-                    {suppliers
-                        ? (<Table data={suppliers} configs={configs} />)
-                        : <h1>Loading</h1>
-                    }
+                    <div>
+                        {suppliers
+                            ? (<Table data={suppliers} configs={configs} />)
+                            : <h1>Loading</h1>
+
+                        }
+                        <Paging
+                            currentPage={pageObject?.currentPage!}
+                            onPageChange={handlePageChange}
+                            pageSize={pageObject?.pageSize!}
+                            totalItems={pageObject?.totalItems!}
+                            totalPages={pageObject?.totalPages!}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

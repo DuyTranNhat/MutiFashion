@@ -57,7 +57,7 @@ const FormAttribute = ({ handleAttribute, attribute }: Props) => {
 
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='rounded-2 border shadow' style={{padding: "42px"}} >
+    <form onSubmit={handleSubmit(onSubmit)} className='rounded-2 border shadow' style={{ padding: "42px" }} >
       {/* Name Input */}
       <hr />
       <h6 className='mb-4'>Attribute</h6>

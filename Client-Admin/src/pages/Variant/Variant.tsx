@@ -1,27 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { VariantGetAPI } from '../../Services/VariantService';
 import { VariantGet } from '../../Models/Variant';
-import { API_URL, getRandomColorClass, getRandomColorClassOL } from '../../Utils/constant';
+import { API_URL, getRandomColorClassOL, PAGE_LIMIT_VARIANT } from '../../Utils/constant';
 import Table from '../../Components/Table/Table';
 import { useNavigate } from 'react-router-dom';
+import { PageObject } from '../../Models/Common';
+import { toast } from 'react-toastify';
+import Paging from '../../Components/Paging/Paging';
 
 const Variant = () => {
     const [variants, setVariants] = useState<VariantGet[]>([])
     const navigate = useNavigate()
+    const [pageObject, setPageObject] = useState<PageObject>()
 
     useEffect(() => {
-        VariantGetAPI()
+        VariantGetAPI(1, PAGE_LIMIT_VARIANT)
             .then(res => {
                 if (res?.data) {
                     setVariants(res?.data.items);
+                    setPageObject(res?.data.page)
                 }
             })
     }, [])
 
+    const handlePageChange = (pageNumber: number) => {
+        VariantGetAPI(pageNumber, PAGE_LIMIT_VARIANT)
+            .then(res => {
+                if (res?.data) {
+                    setVariants(res?.data.items)
+                    setPageObject(res?.data.page)
+                }
+            }).catch(error => toast.error(error))
+    }
+
     const handleClickRecordTB = (idVariant: number) =>
         navigate(`/variants/details/${idVariant}`)
-
-
 
     const configs = [
         {
@@ -36,7 +49,7 @@ const Variant = () => {
             label: "Variant's Images",
             render: (variant: VariantGet) =>
             (
-                <ul className="list-group list-group-flush" style={{minWidth: "132px"}} >
+                <ul className="list-group list-group-flush" style={{ minWidth: "132px" }} >
                     <div >
                         {
                             variant.images.length > 0
@@ -106,6 +119,13 @@ const Variant = () => {
                         />
                         : <h3>loading</h3>
                     }
+                    <Paging
+                        currentPage={pageObject?.currentPage!}
+                        onPageChange={handlePageChange}
+                        pageSize={pageObject?.pageSize!}
+                        totalItems={pageObject?.totalItems!}
+                        totalPages={pageObject?.totalPages!}
+                    />
                 </div>
             </div>
         </div>

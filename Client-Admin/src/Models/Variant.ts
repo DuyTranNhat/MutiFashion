@@ -1,10 +1,10 @@
-export type ProductResponse = {
+import { PageObject } from "./Common";
+
+export type VariantResponse = {
     items: VariantGet[],
-    totalItems: number,
-    currentPage: number,
-    totalPages: number,
-    pageSize: number,
+    page: PageObject,
 }
+
 
 export type VariantGet = {
     skuId: string;

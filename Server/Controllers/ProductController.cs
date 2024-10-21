@@ -38,7 +38,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetProducts([FromQuery] int page = 1, [FromQuery] int limit = 10)
+        public async Task<IActionResult> GetProducts([FromQuery] int page = 1, [FromQuery] int limit = 12)
         {
             var result = await _productService.GetProductsAsync(page, limit);
             return Ok(result);

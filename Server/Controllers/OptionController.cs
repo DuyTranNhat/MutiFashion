@@ -21,10 +21,10 @@ namespace Server.Controllers
             return CreatedAtRoute("getByID", new { idOption = optionRs.OptionID }, optionRs);
         }
 
-        [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("GetOptions")]
+        public async Task<IActionResult> GetOptions([FromQuery] int page = 1, [FromQuery] int limit = 12)
         {
-            var optionRS = await _optionService.GetAllAsync();
+            var optionRS = await _optionService.GetOptionsAsync(page, limit);
             return Ok(optionRS);
         }
 

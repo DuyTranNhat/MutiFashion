@@ -1,12 +1,17 @@
 import axios from "axios"
 import { handleError } from "../Helpers/ErrorHandler";
-import { AttributeGet, AttributePost, AttributeUpdate } from "../Models/Option"
+import { AttributeGet, AttributePost, AttributeResponse, AttributeUpdate } from "../Models/Option"
 import { AttributeFormInput } from "../pages/Attribute/FormAttrbute";
 import { ATTRIBUTE_API } from "../Utils/constant";
 
-export const attributeGetAPI = async () => {
+export const attributeGetAPI = async (page: number = 1, litmit: number = 12) => {
     try {
-        const data = await axios.get<AttributeGet[]>(`${ATTRIBUTE_API}/GetAll`);
+        const data = await axios.get<AttributeResponse>(`${ATTRIBUTE_API}/GetOptions`, {
+            params: {
+                page: page,
+                limit: litmit,
+            },
+        });
         return data;
     } catch (error) {
         handleError(error)
@@ -45,7 +50,7 @@ export const attributeActiveAPI = async (id: number) => {
     try {
         const data = await axios.put<AttributeGet>(`${ATTRIBUTE_API}/updateStatus/${id}`);
         return data;
-    } catch (error) {   
+    } catch (error) {
         handleError(error)
     }
 }

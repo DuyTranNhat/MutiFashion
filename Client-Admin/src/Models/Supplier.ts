@@ -1,3 +1,5 @@
+import { PageObject } from "./Common";
+
 export type SupplierGet = {
     supplierId: number;
     name: string;
@@ -10,10 +12,7 @@ export type SupplierGet = {
 
 export type SupplierResponse = {
     items: SupplierGet[],
-    totalItems: number,
-    currentPage: number,
-    totalPages: number,
-    pageSize: number,
+    page: PageObject,
 }
 
 export type SupplierPost = {

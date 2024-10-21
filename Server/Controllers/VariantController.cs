@@ -84,7 +84,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("GetVariants")]
-        public async Task<IActionResult> GetVariants([FromQuery] int page = 1, [FromQuery] int limit = 10)
+        public async Task<IActionResult> GetVariants([FromQuery] int page = 1, [FromQuery] int limit = 12)
         {
             var result = await _variantService.GetVariantsAsync(page, limit);
             return Ok(result);

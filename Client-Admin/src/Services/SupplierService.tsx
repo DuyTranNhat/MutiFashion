@@ -4,9 +4,14 @@ import { SupplierGet, SupplierPost, SupplierPut, SupplierResponse } from "../Mod
 import { SupplierFormInput } from "../pages/Supplier/FormSupplier";
 import { SUPPLIER_API } from "../Utils/constant";
 
-export const supplierGetAPI = async () => {
+export const supplierGetAPI = async (page: number = 1, limit: number = 4) => {
     try {
-        const data = await axios.get<SupplierResponse>(`${SUPPLIER_API}/getAll`);
+        const data = await axios.get<SupplierResponse>(`${SUPPLIER_API}/getAll`, {
+            params : {
+                page: page,
+                limit: limit,
+            },
+        });
         return data;
     } catch (error) {
         handleError(error);
