@@ -5,6 +5,7 @@ using Server.Data;
 using Server.Dtos.Option;
 using Server.Dtos.Product;
 using Server.Dtos.Supplier;
+using Server.Exceptions;
 using Server.Models;
 using Server.Service;
 using Server.Service.IService;
@@ -37,11 +38,49 @@ namespace Server.Controllers
         //    return Ok(result);
         //}
 
+
+        [HttpPost("uploadListImages/{variantID:int}")]
+        public async Task<IActionResult> UploadImages([FromForm] UploadListRequestDto imageRequest, [FromRoute] int variantID)
+        {
+            try
+            {
+                var reponsedata = await _variantService.UploadListImgAsync(imageRequest, variantID);
+                return Ok(reponsedata);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("getListImage/{variantID:int}")]
+        public async Task<IActionResult> GetImagesByVariantId([FromRoute] int variantID)
+        {
+            try
+            {
+                var imagesRS = await _variantService.getImagesByIDVariantAsync(variantID);
+                return Ok(imagesRS);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("GetVariants")]
         public async Task<IActionResult> GetVariants([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
             var result = await _variantService.GetVariantsAsync(page, limit);
             return Ok(result);
         }
+
     }
 }

@@ -5,15 +5,17 @@ type Props = {
 };
 
 const Table = ({ configs, data, onClickRecord }: Props) => {
-    const id = data.id || data.variantId
 
-    const renderedRows = data.map((company: any, index: number) => {
+    const renderedRows = data.map((item: any, index: number) => {
+        const id = item.id || item.variantId
         return (
             <tr
                 style={{ cursor: 'pointer' }}
-                key={company.cik}>
+                key={id}
+                onClick={() => { onClickRecord && onClickRecord(id) }}
+            >
                 {configs.map((config: any) => {
-                    return <td>{config.render(company, index)}</td>
+                    return <td>{config.render(item, index)}</td>
                 })}
             </tr>
         );
@@ -24,7 +26,6 @@ const Table = ({ configs, data, onClickRecord }: Props) => {
             <th
                 className="p-4 text-xs font-medium text-gray-500 uppercase tracking-wider  align-items-center"
                 key={config.label}
-                onClick={() => { onClickRecord && onClickRecord(id) }}
             >
                 {config.label}
             </th>

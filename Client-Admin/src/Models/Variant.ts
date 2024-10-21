@@ -31,3 +31,10 @@ export type VariantImageGet = {
     variantId: number;
     imageUrl: string;
 }
+
+export type ImageGet = {
+    imageId: number;
+    variantId: number;
+    imageUrl: string;
+  }
+  

@@ -16,6 +16,7 @@ namespace Server.Repository
         public IValueRepository Value { get; }
         public IVariantRepository Variant { get; }
         public IVariantValueRepository VariantValue { get; }
+        public IImageRepository Image { get; }
 
         public UnitOfWork(MutiFashionContext db)
         {
@@ -27,6 +28,7 @@ namespace Server.Repository
             Supplier = new SupplierRepository(db);
             ProductOption = new ProductOptionRepository(db);
             VariantValue = new VariantValueRepository(_db);
+            Image = new ImageRepository(db);
         }
        
         public async Task SaveAsync()

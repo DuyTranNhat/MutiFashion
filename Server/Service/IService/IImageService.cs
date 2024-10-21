@@ -3,7 +3,7 @@
     public interface IImageService
     {
         Task SetDirect(string direct);
-        Task<string> HandleImageUpload(IFormFile imageFile);
+        Task<string> HandleImageUploadAsync(IFormFile imageFile);
 
         Task DeleteOldImage(string oldImageUrl);
     }

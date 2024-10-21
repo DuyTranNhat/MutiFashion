@@ -6,4 +6,9 @@ namespace Server.Dtos.Product
     {
         public IFormFile ImageFile { get; set; }
     }
+
+    public class UploadListRequestDto
+    {
+        public List<IFormFile>? fileImages { get; set; }
+    }
 }

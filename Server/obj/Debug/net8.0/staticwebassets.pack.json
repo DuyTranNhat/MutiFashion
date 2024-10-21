@@ -1,6 +1,18 @@
 {
   "Files": [
     {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\04b71010-440f-4e1e-b242-066e0c2eea96_vn-11134207-7r98o-lxbaj903xg49b0.webp",
+      "PackagePath": "staticwebassets\\images\\04b71010-440f-4e1e-b242-066e0c2eea96_vn-11134207-7r98o-lxbaj903xg49b0.webp"
+    },
+    {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\491da2e1-7c5f-4c35-8c0e-6e1a4789992b_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
+      "PackagePath": "staticwebassets\\images\\491da2e1-7c5f-4c35-8c0e-6e1a4789992b_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
+    },
+    {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\91396fd0-cf49-4de0-8009-a4424aa853ea_vn-11134207-7r98o-lsbfnsmevr2cf4.webp",
+      "PackagePath": "staticwebassets\\images\\91396fd0-cf49-4de0-8009-a4424aa853ea_vn-11134207-7r98o-lsbfnsmevr2cf4.webp"
+    },
+    {
       "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\011dc592-59e0-4102-a064-168e73b9e503_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
       "PackagePath": "staticwebassets\\images\\Product\\011dc592-59e0-4102-a064-168e73b9e503_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
     },
@@ -9,8 +21,20 @@
       "PackagePath": "staticwebassets\\images\\Product\\25237d9d-9ca5-41b1-9dc0-ffe65ca5845c_vn-11134207-7r98o-lxduvvkb3n4p5f@resize_w900_nl.webp"
     },
     {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\b8c631b3-2315-4194-ab90-3c6067db0b01_vn-11134207-7r98o-lr00hxweisw464.webp",
+      "PackagePath": "staticwebassets\\images\\Product\\b8c631b3-2315-4194-ab90-3c6067db0b01_vn-11134207-7r98o-lr00hxweisw464.webp"
+    },
+    {
       "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\Product\\e0ee9305-a45d-416e-b2cd-90f79bf3b6c7_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
       "PackagePath": "staticwebassets\\images\\Product\\e0ee9305-a45d-416e-b2cd-90f79bf3b6c7_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
+    },
+    {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\d5cfaf2d-4d64-4cf3-b458-cffdc3804b03_vn-11134207-7r98o-lxbaj8ztwg6161.webp",
+      "PackagePath": "staticwebassets\\images\\d5cfaf2d-4d64-4cf3-b458-cffdc3804b03_vn-11134207-7r98o-lxbaj8ztwg6161.webp"
+    },
+    {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\e4834857-aa46-43b4-ba31-ead2a47427f9_vn-11134207-7r98o-lxbaj8ztwg6161.webp",
+      "PackagePath": "staticwebassets\\images\\e4834857-aa46-43b4-ba31-ead2a47427f9_vn-11134207-7r98o-lxbaj8ztwg6161.webp"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Server.Microsoft.AspNetCore.StaticWebAssets.props",

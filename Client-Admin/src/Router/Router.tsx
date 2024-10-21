@@ -9,6 +9,7 @@ import EditAttribute from '../pages/Attribute/EditAttribute';
 import InputProduct from '../pages/Product/InputProduct';
 import Product from '../pages/Product/Product';
 import Variant from '../pages/Variant/Variant';
+import VariantDetaills from '../pages/Variant/Details/VariantDetaills';
 
 const Router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const Router = createBrowserRouter([
             {
                 path: "variant",
                 element: <Variant />
+            },
+            {
+                path: "variants/details/:idVariant",
+                element: <VariantDetaills />
             },
             {
                 path: "product",

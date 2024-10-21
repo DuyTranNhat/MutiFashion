@@ -33,10 +33,9 @@ namespace Server.Service
             if (uploadDto.ImageFile != null)
             {
                 await _imageService.SetDirect("images/product");
-                imageUrl = await _imageService.HandleImageUpload(uploadDto.ImageFile);
+                imageUrl = await _imageService.HandleImageUploadAsync(uploadDto.ImageFile);
             }
-            var result =  await _unitOfWork
-                .Product.UpdateImageAsync(idProduct, imageUrl);
+            var result =  await _unitOfWork.Product.UpdateImageAsync(idProduct, imageUrl);
             return result;
         }
 

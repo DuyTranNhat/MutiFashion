@@ -25,7 +25,7 @@ namespace Server.Service
                 GetCurrentDirectory(), "wwwroot", _currentDirect);
         }
 
-        public async Task<string> HandleImageUpload(IFormFile imageFile)
+        public async Task<string> HandleImageUploadAsync(IFormFile imageFile)
         {
             if (!Directory.Exists(_uploadsFolder))
             {

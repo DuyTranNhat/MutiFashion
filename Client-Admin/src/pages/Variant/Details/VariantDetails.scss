@@ -1,0 +1,409 @@
+@import url(https://fonts.googleapis.com/css?family=Gabriela);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+
+.my-tab {
+  .bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .page {
+    position: relative;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+
+  /**/
+  /* main styles */
+  /**/
+  .pcss3t {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    font-size: 0;
+    text-align: left;
+  }
+  .pcss3t > input {
+    position: absolute;
+    left: -9999px;
+  }
+  .pcss3t > label {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.1s;
+    -o-transition: all 0.1s;
+    -ms-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+  }
+  .pcss3t > label i {
+    display: block;
+    float: left;
+    margin: 16px 8px 0 -2px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-size: 17px;
+  }
+  .pcss3t > input:checked + label {
+    cursor: default;
+  }
+  .pcss3t > ul {
+    list-style: none;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    font-size: 13px;
+  }
+  .pcss3t > ul > li {
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+    padding: 30px 40px 40px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    opacity: 0;
+    transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+  }
+  .pcss3t > .tab-content-first:checked ~ ul .tab-content-first,
+  .pcss3t > .tab-content-2:checked ~ ul .tab-content-2,
+  .pcss3t > .tab-content-3:checked ~ ul .tab-content-3,
+  .pcss3t > .tab-content-4:checked ~ ul .tab-content-4,
+  .pcss3t > .tab-content-5:checked ~ ul .tab-content-5,
+  .pcss3t > .tab-content-6:checked ~ ul .tab-content-6,
+  .pcss3t > .tab-content-7:checked ~ ul .tab-content-7,
+  .pcss3t > .tab-content-8:checked ~ ul .tab-content-8,
+  .pcss3t > .tab-content-9:checked ~ ul .tab-content-9,
+  .pcss3t > .tab-content-last:checked ~ ul .tab-content-last {
+    z-index: 1;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    -webkit-transform: scale(1, 1);
+    -webkit-transform: rotate(0deg);
+  }
+
+  /*----------------------------------------------------------------------------*/
+  /*                                 EXTENSIONS                                 */
+  /*----------------------------------------------------------------------------*/
+
+  /**/
+  /* auto height */
+  /**/
+  .pcss3t-height-auto > ul {
+    height: auto !important;
+  }
+  .pcss3t-height-auto > ul > li {
+    position: static;
+    display: none;
+    height: auto !important;
+  }
+
+  .pcss3t-height-auto > ul .tab-content {
+    display: none;
+  }
+  
+  .pcss3t-height-auto > .tab-content-first:checked ~ ul .tab-content-first,
+  .pcss3t-height-auto > .tab-content-2:checked ~ ul .tab-content-2,
+  .pcss3t-height-auto > .tab-content-3:checked ~ ul .tab-content-3,
+  .pcss3t-height-auto > .tab-content-4:checked ~ ul .tab-content-4,
+  .pcss3t-height-auto > .tab-content-5:checked ~ ul .tab-content-5,
+  .pcss3t-height-auto > .tab-content-last:checked ~ ul .tab-content-last {
+    display: block;
+  }
+
+  /**/
+  /* grid */
+  /**/
+  .pcss3t .grid-row {
+    margin-top: 20px;
+  }
+  .pcss3t .grid-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .pcss3t .grid-row:first-child {
+    margin-top: 0;
+  }
+  .pcss3t .grid-col {
+    display: block;
+    float: left;
+    margin-left: 2%;
+  }
+  .pcss3t .grid-col:first-child {
+    margin-left: 0;
+  }
+  .pcss3t .grid-col .inner {
+    padding: 10px 0;
+    border-radius: 5px;
+    background: #f2f2f2;
+    text-align: center;
+  }
+  .pcss3t .grid-col-1 {
+    width: 15%;
+  }
+  .pcss3t .grid-col-2 {
+    width: 32%;
+  }
+  .pcss3t .grid-col-3 {
+    width: 49%;
+  }
+  .pcss3t .grid-col-4 {
+    width: 66%;
+  }
+  .pcss3t .grid-col-5 {
+    width: 83%;
+  }
+  .pcss3t .grid-col-offset-1 {
+    margin-left: 19%;
+  }
+  .pcss3t .grid-col-offset-1:first-child {
+    margin-left: 17%;
+  }
+  .pcss3t .grid-col-offset-2 {
+    margin-left: 36%;
+  }
+  .pcss3t .grid-col-offset-2:first-child {
+    margin-left: 34%;
+  }
+  .pcss3t .grid-col-offset-3 {
+    margin-left: 53%;
+  }
+  .pcss3t .grid-col-offset-3:first-child {
+    margin-left: 51%;
+  }
+  .pcss3t .grid-col-offset-4 {
+    margin-left: 70%;
+  }
+  .pcss3t .grid-col-offset-4:first-child {
+    margin-left: 68%;
+  }
+  .pcss3t .grid-col-offset-5:first-child {
+    margin-left: 85%;
+  }
+
+  /**/
+  /* typography */
+  /**/
+  /**/
+  /* animation effects */
+  /**/
+  .pcss3t-effect-scale > ul > li {
+    -webkit-transform: scale(0.1, 0.1);
+  }
+  .pcss3t-effect-rotate > ul > li {
+    -webkit-transform: rotate(180deg);
+  }
+  .pcss3t-effect-slide-top > ul > li {
+    top: -40px;
+  }
+  .pcss3t-effect-slide-right > ul > li {
+    left: 80px;
+  }
+  .pcss3t-effect-slide-bottom > ul > li {
+    top: 40px;
+  }
+  .pcss3t-effect-slide-left > ul > li {
+    left: -80px;
+  }
+
+  /*----------------------------------------------------------------------------*/
+  /*                                   LAYOUTS                                  */
+  /*----------------------------------------------------------------------------*/
+
+  /**/
+  /* top right */
+  /**/
+  .pcss3t-layout-top-right {
+    text-align: right;
+  }
+
+  /**/
+  /* top center */
+  /**/
+  .pcss3t-layout-top-center {
+    text-align: center;
+  }
+
+  /**/
+  /* top combi */
+  /**/
+  .pcss3t > .right {
+    float: right;
+  }
+
+  /*----------------------------------------------------------------------------*/
+  /*                                    ICONS                                   */
+  /*----------------------------------------------------------------------------*/
+
+  /**/
+  /* icons positions */
+  /**/
+  .pcss3t-icons-top > label {
+    text-align: center;
+  }
+  .pcss3t-icons-top > label i {
+    float: none;
+    margin: 0 auto -10px;
+    padding-top: 17px;
+    font-size: 23px;
+    line-height: 23px;
+    text-align: center;
+  }
+  .pcss3t-icons-right > label i {
+    float: right;
+    margin: 0 -2px 0 8px;
+  }
+  .pcss3t-icons-bottom > label {
+    text-align: center;
+  }
+  .pcss3t-icons-bottom > label i {
+    float: none;
+    margin: -10px auto 0;
+    padding-bottom: 17px;
+    font-size: 23px;
+    line-height: 23px;
+    text-align: center;
+  }
+  .pcss3t-icons-only > label i {
+    float: none;
+    margin: 0 auto;
+    font-size: 23px;
+  }
+
+  /**/
+  /* font awesome */
+  /**/
+
+  /*----------------------------------------------------------------------------*/
+  /*                               RESPONSIVENESS                               */
+  /*----------------------------------------------------------------------------*/
+
+  /**/
+  /* pad */
+  /**/
+  @media screen and (max-width: 980px) {
+  }
+
+  /**/
+  /* phone */
+  /**/
+  @media screen and (max-width: 767px) {
+    .pcss3t > label {
+      display: block;
+    }
+    .pcss3t > .right {
+      float: none;
+    }
+  }
+
+  /*----------------------------------------------------------------------------*/
+  /*                                   THEMES                                   */
+  /*----------------------------------------------------------------------------*/
+
+  /**/
+  /* default */
+  /**/
+  .pcss3t > label {
+    padding: 0 20px;
+    background: #e5e5e5;
+    font-size: 13px;
+    line-height: 49px;
+  }
+  .pcss3t > label:hover {
+    background: #f2f2f2;
+  }
+  .pcss3t > input:checked + label {
+    background: #fff;
+  }
+  .pcss3t > ul {
+    background: #fff;
+    text-align: left;
+  }
+  .pcss3t-steps > label:hover {
+    background: #e5e5e5;
+  }
+
+  /**/
+  /* theme 4 */
+  /**/
+  .pcss3t-theme-4 > label {
+    margin: 0 10px 10px 0;
+    border-radius: 5px;
+    background: #78c5fd;
+    background: linear-gradient(to bottom, #78c5fd 0%, #2c8fdd 100%);
+    background: -o-linear-gradient(top, #78c5fd 0%, #2c8fdd 100%);
+    background: -ms-linear-gradient(top, #78c5fd 0%, #2c8fdd 100%);
+    background: -moz-linear-gradient(top, #78c5fd 0%, #2c8fdd 100%);
+    background: -webkit-linear-gradient(top, #78c5fd 0%, #2c8fdd 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#78c5fd', endColorstr='#2c8fdd', GradientType=0);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 1px rgba(0, 0, 0, 0.5);
+    line-height: 39px;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+  .pcss3t-theme-4 > label:hover {
+    background: #90cffc;
+    background: linear-gradient(to bottom, #90cffc 0%, #439bde 100%);
+    background: -o-linear-gradient(top, #90cffc 0%, #439bde 100%);
+    background: -ms-linear-gradient(top, #90cffc 0%, #439bde 100%);
+    background: -moz-linear-gradient(top, #90cffc 0%, #439bde 100%);
+    background: -webkit-linear-gradient(top, #90cffc 0%, #439bde 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#90cffc', endColorstr='#439bde', GradientType=0);
+  }
+  .pcss3t-theme-4 > input:checked + label {
+    top: 1px;
+    background: #5f9dc9;
+    background: linear-gradient(to bottom, #5f9dc9 0%, #2270ab 100%);
+    background: -o-linear-gradient(top, #5f9dc9 0%, #2270ab 100%);
+    background: -ms-linear-gradient(top, #5f9dc9 0%, #2270ab 100%);
+    background: -moz-linear-gradient(top, #5f9dc9 0%, #2270ab 100%);
+    background: -webkit-linear-gradient(top, #5f9dc9 0%, #2270ab 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5f9dc9', endColorstr='#2270ab', GradientType=0);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5),
+      0 1px rgba(255, 255, 255, 0.5);
+    text-shadow: none;
+  }
+  .pcss3t-theme-4 > ul {
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  @media screen and (max-width: 767px) {
+    .pcss3t-theme-4 > label {
+      margin-right: 0;
+    }
+  }
+
+  /*----------------------------------------------------------------------------*/
+  /*                               CUSTOMIZATION                                */
+  /*----------------------------------------------------------------------------*/
+
+  /**/
+  /* height */
+  /**/
+  .pcss3t > ul,
+  .pcss3t > ul > li {
+    height: 1200px;
+  }
+}

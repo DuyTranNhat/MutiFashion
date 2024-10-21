@@ -33,10 +33,10 @@ const Variant = () => {
             render: (variant: VariantGet) => variant.productName,
         },
         {
-            label: "Variant's Values",
+            label: "Variant's Images",
             render: (variant: VariantGet) =>
             (
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush" style={{minWidth: "132px"}} >
                     <div >
                         {
                             variant.images.length > 0
