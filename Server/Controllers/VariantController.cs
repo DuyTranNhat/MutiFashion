@@ -75,6 +75,14 @@ namespace Server.Controllers
             }
         }
 
+        [HttpDelete("deleteImageVariant/{imageId}")]
+        public async Task<IActionResult> DeleteImage([FromRoute] int imageId)
+        {
+            var result = await _variantService.DeleteImageByIDVarAsync(imageId);
+            if (result == null) return NotFound("Image is not existed!");
+            return NoContent();
+        }
+
         [HttpGet("GetVariants")]
         public async Task<IActionResult> GetVariants([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {

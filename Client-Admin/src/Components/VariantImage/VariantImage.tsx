@@ -10,9 +10,9 @@ type Props = {
 
 const VariantImage = ({ image, index, handleDelete }: Props) => {
     return (
-        <div className="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+        <div style={{cursor: 'pointer'}} className="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
             <div className="service-item rounded">
-                <div className="service-im  g rounded-top">
+                <div className="service-img rounded-top">
                     <img src={`${API_URL}/${image.imageUrl}`} className="img-fluid rounded-top w-100" alt="" />
                 </div>
                 <div className="service-content rounded-bottom p-4">

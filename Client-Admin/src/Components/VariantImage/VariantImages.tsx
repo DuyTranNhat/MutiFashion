@@ -11,7 +11,8 @@ const VariantImages = ({ images, handleDelete }: Props) => {
     return (
         <>
             {images.map((image, index) => (
-                <VariantImage handleDelete={handleDelete}
+                <VariantImage
+                    handleDelete={handleDelete}
                     key={image.imageId}
                     image={image}
                     index={index + 1}

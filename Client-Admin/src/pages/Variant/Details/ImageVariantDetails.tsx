@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import VariantImages from '../../../Components/VariantImage/VariantImages';
 import { ImageGet } from '../../../Models/Variant';
-import { ImgListGetByIDVariantAPI, upLoadListImageAPI } from '../../../Services/VariantService';
+import { ImageVariantDelete, ImgListGetByIDVariantAPI, upLoadListImageAPI } from '../../../Services/VariantService';
 import UploadListImage from '../../../Components/UploadImage/UploadListImage';
 
 type Props = {
@@ -49,16 +49,19 @@ const ImageVariantDetails = ({ id }: Props) => {
         }
     }
 
-    // const handleDelete = (idImage: number) => {
-    //     if (id) {
-    //         ImageDeleteAPI(idImage.toString(), id)
-    //             .then(res => {
-    //                 if (res?.data) {
-    //                     setImages(res?.data)
-    //                 }
-    //             }).catch(err => toast.error(err))
-    //     }
-    // }
+    const handleDelete = (idImage: number) => {
+        if (id && idImage) {
+            ImageVariantDelete(idImage)
+                .then(res => {
+                    if (res?.status === 204) {
+                        toast.success("Delete successfully!")
+                        setImages(prev => prev.filter(img => 
+                            img.imageId !== idImage
+                        ))
+                    }
+                }).catch(err => toast.error(err))
+        }
+    }
 
     return (
         <div className="container-fluid service p-4" >
@@ -79,7 +82,7 @@ const ImageVariantDetails = ({ id }: Props) => {
                 <div className="row g-4 justify-content-center">
                     <VariantImages
                         images={images}
-                        handleDelete={() => { }}
+                        handleDelete={handleDelete}
                     />
                 </div>
             </div>

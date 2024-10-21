@@ -21,6 +21,18 @@ namespace Server.Service
             _imageService = imageService;
         }
 
+        public async Task<object> DeleteImageByIDVarAsync(int imageId)
+        {
+            var imageExisting = await _unitOfWork.Image.GetAsync(i => i.ImageId == imageId);
+            if (imageExisting == null) return null;
+            _imageService.SetDirect("images/variants");
+            _imageService.DeleteOldImage(imageExisting.ImageUrl);
+            await _unitOfWork.Image.RemoveAsync(imageExisting); 
+            await _unitOfWork.SaveAsync();
+            return new { message = "Delete successfully" };
+
+        }
+
         public async Task<IEnumerable<VariantImageDto>> getImagesByIDVariantAsync(int variantID)
         {
             var variantExisting = await _unitOfWork.Variant.GetAsync(v => v.VariantId == variantID)
