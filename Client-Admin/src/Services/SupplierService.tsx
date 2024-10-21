@@ -4,7 +4,7 @@ import { SupplierGet, SupplierPost, SupplierPut, SupplierResponse } from "../Mod
 import { SupplierFormInput } from "../pages/Supplier/FormSupplier";
 import { SUPPLIER_API } from "../Utils/constant";
 
-export const supplierGetAPI = async (page: number = 1, limit: number = 4) => {
+export const supplierGetAPI = async (page: number = 1, limit: number = 100) => {
     try {
         const data = await axios.get<SupplierResponse>(`${SUPPLIER_API}/getAll`, {
             params : {

@@ -5,6 +5,15 @@ export type VariantResponse = {
     page: PageObject,
 }
 
+export type FilterVariantPost = {
+    skuId?: string | null
+    categoryID?: number | null
+    supplierID?: number | null
+    keyWord?: string | null
+    fromPrice?: number| null
+    toPrice?: number | null
+  }
+  
 
 export type VariantGet = {
     skuId: string;

@@ -22,22 +22,13 @@ namespace Server.Controllers
             _variantService = variantService;
         }
 
-        //[HttpPost("uploadImage/{idProduct:int}")]
-        //public async Task<IActionResult> UploadImageProduct([FromForm]UploadRequestDto uploadDTO, [FromRoute] int idProduct)
-        //{
-        //    if (!ModelState.IsValid) return BadRequest(ModelState);
-        //    var result = await _productService.handleUploadAsync(idProduct, uploadDTO);
-        //    return Ok(result);
-        //}
-
-        //[HttpPost("create")]
-        //public async Task<IActionResult> CreateProductWithVariants([FromBody] CreateProductWithVariantsDto dto)
-        //{
-        //    if (!ModelState.IsValid) return BadRequest(ModelState);
-        //    var result = await _productService.handleGenerateVariantAsync(dto);
-        //    return Ok(result);
-        //}
-
+        [HttpPost("filterVariants")]
+        public async Task<IActionResult> FilterVariants([FromBody] VariantFilterDto
+                    filterRequest, [FromQuery] int page = 1, [FromQuery] int limit = 12)
+        {
+            var result = await _variantService.FilterVariantsAsync(filterRequest, page, limit);
+            return Ok(result);
+        }
 
         [HttpPost("uploadListImages/{variantID:int}")]
         public async Task<IActionResult> UploadImages([FromForm] UploadListRequestDto imageRequest, [FromRoute] int variantID)

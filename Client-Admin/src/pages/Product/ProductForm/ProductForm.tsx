@@ -35,7 +35,6 @@ export type ProductForm = {
 
 const ProductForm = ({ onSubmit }: Props) => {
     const [tab, setTab] = useState<string>(TAB_CREATEPRODUCT[0].id);
-    const [idSupplierSelected, setIdSupplierSelected] = useState<number | null>(null);
     const [attributePost, setAttributePost] = useState<ProductAttributePost[]>([]);
     const [image, setImage] = useState<File | null>(null); // Manage image file
 
@@ -54,10 +53,6 @@ const ProductForm = ({ onSubmit }: Props) => {
             status: false,
         },
     });
-
-    const handleSelectedSupplier = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setIdSupplierSelected(Number(e.target.value));
-    };
 
     const handleCreateAttPost = (attInput: valueInput[], valueInput: valueInput[]) => {
         setAttributePost((prev) => {
@@ -131,8 +126,6 @@ const ProductForm = ({ onSubmit }: Props) => {
                 <div style={{ height: '240px' }}></div>
                 {tab === GENERALINFORM && (
                     <GeneralForm
-                        handleSelectedSupplier={handleSelectedSupplier}
-                        idSupplierSelected={idSupplierSelected}
                         register={register}
                         error={errors}
                     />

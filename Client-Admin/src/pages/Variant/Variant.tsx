@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { VariantGetAPI } from '../../Services/VariantService';
-import { VariantGet } from '../../Models/Variant';
+import { VariantFilterAPI, VariantGetAPI } from '../../Services/VariantService';
+import { FilterVariantPost, VariantGet } from '../../Models/Variant';
 import { API_URL, getRandomColorClassOL, PAGE_LIMIT_VARIANT } from '../../Utils/constant';
 import Table from '../../Components/Table/Table';
 import { useNavigate } from 'react-router-dom';
 import { PageObject } from '../../Models/Common';
 import { toast } from 'react-toastify';
 import Paging from '../../Components/Paging/Paging';
+import Filter, { FilterForm } from './Filter/Filter';
 
 const Variant = () => {
     const [variants, setVariants] = useState<VariantGet[]>([])
-    const navigate = useNavigate()
     const [pageObject, setPageObject] = useState<PageObject>()
+    const [filterPost, setFilterPost] = useState<FilterVariantPost>(
+        () => ({
+            categoryID: null, fromPrice: null, keyWord: null,
+            skuId: null, supplierID: null, toPrice: null
+        } as FilterVariantPost)
+    )
+    const navigate = useNavigate()
 
     useEffect(() => {
         VariantGetAPI(1, PAGE_LIMIT_VARIANT)
@@ -35,6 +42,37 @@ const Variant = () => {
 
     const handleClickRecordTB = (idVariant: number) =>
         navigate(`/variants/details/${idVariant}`)
+
+    const handleOnchangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilterPost(prev => ({ ...prev, keyWord: e.target.value }))
+    }
+
+    const handleSelectedSupplier = (idSupplier: number) => {
+        setFilterPost(prev => ({ ...prev, supplierID: idSupplier }))
+    }
+
+    const handleOnchangeSku = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilterPost(prev => ({ ...prev, skuId: e.target.value }))
+    }
+
+    const onSubmitFilter = (filterForm: FilterForm) => {
+        const dataSubmit: FilterVariantPost = {
+            categoryID: filterPost.categoryID,
+            keyWord: filterPost.keyWord,
+            skuId: filterPost.skuId,
+            supplierID: filterPost.supplierID,
+            fromPrice: filterForm.fromPrice,
+            toPrice: filterForm.toPrice,
+        }
+        VariantFilterAPI(dataSubmit)
+            .then(res => {
+                if (res?.data) {
+                    setVariants(res?.data.items)
+                    setPageObject(res?.data.page)
+                    toast.success("Success")
+                }
+            }).catch(error => toast.error(error))
+    }
 
     const configs = [
         {
@@ -106,10 +144,18 @@ const Variant = () => {
         <div className='container-fluid pt-4 px-4' >
             <h1>Product</h1>
             <div className="col-12">
-                <div className="rounded-2 border shadow custom-container h-100 " style={{ padding: "18px 58px" }}>
-                    <div style={{ height: "100px" }} className='d-flex align-items-center' >
-                        <h6 className="mb-4">(Search/ Filter)</h6>
-
+                <div className="rounded-2 border shadow custom-container h-100 " style={{ padding: "58px" }}>
+                    <div className='d-flex' >
+                        <h3 className='m-auto my-3' >Filter Variants</h3>
+                    </div>
+                    <Filter
+                        onSubmitFilter={onSubmitFilter}
+                        handleOnchangeSku={handleOnchangeSku}
+                        handleOnchangeKeyword={handleOnchangeKeyword}
+                        handleSelectedSupplier={handleSelectedSupplier}
+                    />
+                    <div className='d-flex' >
+                        <h3 className='m-auto my-3' >Variant List   </h3>
                     </div>
                     {variants
                         ? <Table

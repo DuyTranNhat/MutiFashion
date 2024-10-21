@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react"
-import { AttributeGet } from "../../../Models/Option"
 import { SupplierGet } from "../../../Models/Supplier"
 import { supplierGetAPI } from "../../../Services/SupplierService"
 import { toast } from "react-toastify"
 
 type Props = {
-    idSupplierSelected: number | null,
-    handleSelectedSupplier: (e: React.ChangeEvent<HTMLSelectElement>) => void,
     register: any,
     error: any
 }
 
 export const GeneralForm = ({
-    handleSelectedSupplier,
     register,
     error
 }: Props) => {
@@ -100,7 +96,6 @@ export const GeneralForm = ({
             <select
                 className={`form-select form-select-lg mb-3 ${error.supplierId ? 'is-invalid' : ''}`}
                 aria-label=".form-select-lg example"
-                onChange={handleSelectedSupplier}
                 {...register('supplierId')}
             >
                 <option value={-1}>Select Supplier</option>

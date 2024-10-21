@@ -225,6 +225,8 @@
   });
 })(jQuery);
 
+
+/*pagination*/
 const pagination = document.querySelector('.pagination')
 
 if (pagination) {
@@ -307,3 +309,4 @@ if (pagination) {
 
   postionIndicator(paginationActiveNumber)
 }
+

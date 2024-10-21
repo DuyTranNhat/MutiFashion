@@ -46,7 +46,7 @@ const Paging = ({
 
     return (
         <div className="my-page">
-            <div className="pagination">
+            <div className="pagination" style={{boxShadow: "none"}}>
                 <span className="pagination__number-indicator">
                     Page {currentPage} of {totalPages} (Total Items: {totalItems})
                 </span>
