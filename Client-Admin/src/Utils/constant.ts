@@ -1,7 +1,8 @@
-export const PAGE_LIMIT_SUPPLIER = 3
-export const PAGE_LIMIT_VARIANT = 5
-export const PAGE_LIMIT_ATTRIBUTE = 5
-export const PAGE_LIMIT_PRODUCT = 10
+export const PAGE_LIMIT_SUPPLIER = 4
+export const PAGE_LIMIT_VARIANT = 4
+export const PAGE_LIMIT_ATTRIBUTE = 4
+export const PAGE_LIMIT_PRODUCT = 12
+export const PAGE_LIMIT_BANNER = 12
 
 export const GENERALINFORM = 'GENERALINFORM'
 export const VARIANT_ATTRIBUTE = 'VARIANT_ATTRIBUTE'
@@ -28,9 +29,10 @@ export const getRandomColorClassOL = (): string => {
 };
 
 
-export const API_URL = import.meta.env.VITE_API_URL
-export const ATTRIBUTE_API = `${API_URL}/api/option`
-export const PRODUCT_API = `${API_URL}/api/product`
-export const VARIANT_API = `${API_URL}/api/variant`
-export const SUPPLIER_API = `${API_URL}/api/Supplier`
+export const BASE_URL = import.meta.env.VITE_BASE_URL
+export const ATTRIBUTE_API = `${BASE_URL}/api/option`
+export const PRODUCT_API = `${BASE_URL}/api/product`
+export const VARIANT_API = `${BASE_URL}/api/variant`
+export const SUPPLIER_API = `${BASE_URL}/api/supplier`
+export const BANNER_API = `${BASE_URL}/api/banner`
 

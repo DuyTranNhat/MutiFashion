@@ -22,11 +22,12 @@ builder.Services.AddDbContext<MutiFashionContext>(options =>
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ISupplierService, SupplierService>();
+builder.Services.AddScoped<IBannerService, BannerService>();
+builder.Services.AddTransient<IImageService, ImageService>();
 builder.Services.AddScoped<IOptionService,  OptionService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IVariantService, VariantService>();
-builder.Services.AddTransient<IImageService, ImageService>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 
 var app = builder.Build();

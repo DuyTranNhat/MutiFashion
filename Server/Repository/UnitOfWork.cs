@@ -17,18 +17,21 @@ namespace Server.Repository
         public IVariantRepository Variant { get; }
         public IVariantValueRepository VariantValue { get; }
         public IImageRepository Image { get; }
+        public IBannerRepository Banner { get; }
+
 
         public UnitOfWork(MutiFashionContext db)
         {
             _db = db;
             Value = new ValueRepository(db);
+            Image = new ImageRepository(db);
+            Banner = new BannerRepository(db);
             Option = new OptionRepository(db);
             Product = new ProductRepository(db);
             Variant = new VariantRepository(db);
             Supplier = new SupplierRepository(db);
             ProductOption = new ProductOptionRepository(db);
             VariantValue = new VariantValueRepository(_db);
-            Image = new ImageRepository(db);
         }
        
         public async Task SaveAsync()

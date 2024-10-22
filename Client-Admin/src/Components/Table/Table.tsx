@@ -7,12 +7,12 @@ type Props = {
 const Table = ({ configs, data, onClickRecord }: Props) => {
 
     const renderedRows = data.map((item: any, index: number) => {
-        const id = item.id || item.variantId
+        const id = item.id || item.variantId || item.slideId
         return (
             <tr
                 style={{ cursor: 'pointer' }}
                 key={id}
-                onClick={() => { onClickRecord && onClickRecord(id) }}
+                onClick={() => { onClickRecord && onClickRecord(id)}}
             >
                 {configs.map((config: any) => {
                     return <td>{config.render(item, index)}</td>

@@ -27,7 +27,7 @@ const validation = yup.object().shape({
 });
 
 const FormSupplier = ({ handleSupllier, supplier }: Props) => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<SupplierFormInput>({
+  const { register, handleSubmit, formState: { errors } } = useForm<SupplierFormInput>({
     resolver: yupResolver(validation),
     defaultValues: supplier || { name: '', email: '', phone: '', address: '', status: false, notes: '' }, // Dùng defaultValues để điền vào form
   });

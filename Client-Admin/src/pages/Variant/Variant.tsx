@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { VariantFilterAPI, VariantGetAPI } from '../../Services/VariantService';
 import { FilterVariantPost, VariantGet } from '../../Models/Variant';
-import { API_URL, getRandomColorClassOL, PAGE_LIMIT_VARIANT } from '../../Utils/constant';
+import { BASE_URL, getRandomColorClassOL, PAGE_LIMIT_VARIANT } from '../../Utils/constant';
 import Table from '../../Components/Table/Table';
 import { useNavigate } from 'react-router-dom';
 import { PageObject } from '../../Models/Common';
@@ -94,7 +94,7 @@ const Variant = () => {
                                 ? (variant.images.slice(0, 3).map(img => (
                                     <img
                                         className="rounded-circle img-fluid me-2"
-                                        src={`${API_URL}/${img.imageUrl}`}
+                                        src={`${BASE_URL}/${img.imageUrl}`}
                                         alt=""
                                         style={{ width: '40px', height: '40px' }}
                                     />
@@ -103,7 +103,7 @@ const Variant = () => {
                                     <div className='d-flex align-items-center' >
                                         <img
                                             className="rounded-circle img-fluid me-2"
-                                            src={`${API_URL}/${variant.baseImage}`}
+                                            src={`${BASE_URL}/${variant.baseImage}`}
                                             alt=""
                                             style={{ width: '40px', height: '40px' }}
                                         />

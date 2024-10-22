@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FilterVariantPost, ImageGet, VariantResponse } from "../Models/Variant";
-import { API_URL, VARIANT_API } from "../Utils/constant";
+import { VARIANT_API } from "../Utils/constant";
 import { handleError } from "../Helpers/ErrorHandler";
 
 export const VariantGetAPI = async (page: number = 1, litmit: number = 12) => {

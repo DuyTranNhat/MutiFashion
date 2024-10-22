@@ -11,8 +11,8 @@ export type SupplierGet = {
 }
 
 export type SupplierResponse = {
-    items: SupplierGet[],
-    page: PageObject,
+    items: SupplierGet[];
+    page: PageObject;
 }
 
 export type SupplierPost = {
