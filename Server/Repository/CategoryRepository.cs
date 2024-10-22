@@ -28,7 +28,7 @@ namespace Server.Repository
             return existingCategory;
         }
 
-        public async Task<Category> UpdateStatus(int id)
+        public async Task<Category> UpdateStatusAsync(int id)
         {
             var existingCategory = await _db.Categories.
                FirstOrDefaultAsync(item => item.CategoryId == id);

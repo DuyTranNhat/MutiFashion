@@ -6,7 +6,7 @@ namespace Server.Repository.IRepository
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        Task<Category> UpdateStatus(int id);
+        Task<Category> UpdateStatusAsync(int id);
         Task<Category> UpdateAsync(int id, UpdateCategoryDto updateCategoryDto);
     }
 }

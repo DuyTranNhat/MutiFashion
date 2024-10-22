@@ -1,17 +1,17 @@
 import { PageObject } from "./Common";
 
 export type VariantResponse = {
-    items: VariantGet[],
-    page: PageObject,
+    items: VariantGet[];
+    page: PageObject;
 }
 
 export type FilterVariantPost = {
-    skuId?: string | null
-    categoryID?: number | null
-    supplierID?: number | null
-    keyWord?: string | null
-    fromPrice?: number| null
-    toPrice?: number | null
+    skuId?: string | null;
+    categoryID?: number | null;
+    supplierID?: number | null;
+    keyWord?: string | null;
+    fromPrice?: number| null;
+    toPrice?: number | null;
   }
   
 

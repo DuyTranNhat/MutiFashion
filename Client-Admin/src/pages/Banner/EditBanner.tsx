@@ -7,7 +7,6 @@ import { BannerGet } from '../../Models/Banner';
 
 const EditBanner: React.FC = () => {
     const { id } = useParams<{ id: string }>(); // Assuming the ID comes from the route parameters
-    const navigate = useNavigate();
     const [bannerData, setBannerData] = useState<BannerGet | null>(null);
 
     useEffect(() => {

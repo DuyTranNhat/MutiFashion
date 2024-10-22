@@ -29,7 +29,7 @@ export const supplietUpfateStatusAPI = async (id: number) => {
 
 export const supplierPostAPI = async (formUpdate: SupplierFormInput) => {
         try {
-            const data = await axios.post<SupplierPost>(`${SUPPLIER_API}/create`, { ...formUpdate });
+            const data = await axios.post<SupplierPost>(`${SUPPLIER_API}/create`, formUpdate);
             return data;
         } catch (error) {
             handleError(error)
@@ -38,7 +38,7 @@ export const supplierPostAPI = async (formUpdate: SupplierFormInput) => {
 
 export const supplierPutAPI = async (id: string, formUpdate: SupplierFormInput) => {
     try {
-        const data = await axios.put<SupplierPut>(`${SUPPLIER_API}/update/${id}`, { ...formUpdate })
+        const data = await axios.put<SupplierPut>(`${SUPPLIER_API}/update/${id}`, formUpdate)
         return data;
     } catch (error) {
         handleError(error)

@@ -13,6 +13,9 @@ import VariantDetaills from '../pages/Variant/Details/VariantDetaills';
 import Banner from '../pages/Banner/Banner';
 import InputBanner from '../pages/Banner/InputBanner';
 import EditBanner from '../pages/Banner/EditBanner';
+import InputCategory from '../pages/Category/InputCategory';
+import Category from '../pages/Category/Category';
+import EditCategory from '../pages/Category/EditCategory';
 
 const Router = createBrowserRouter([
     {
@@ -30,6 +33,18 @@ const Router = createBrowserRouter([
             {
                 path: "banner/edit/:id",
                 element: <EditBanner />
+            },
+            {
+                path: "category",
+                element: <Category />
+            },
+            {
+                path: "category/create",
+                element: <InputCategory />
+            },
+            {
+                path: "category/edit/:id",
+                element: <EditCategory />
             },
             {
                 path: "variant",

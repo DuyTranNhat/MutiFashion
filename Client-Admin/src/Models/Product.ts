@@ -16,8 +16,8 @@ export type ProductAttributePost = {
 }
 
 export type ProductResponse = {
-    items: ProductGet[],
-    page: PageObject,
+    items: ProductGet[];
+    page: PageObject;
 }
 
 export interface ProductGet {  

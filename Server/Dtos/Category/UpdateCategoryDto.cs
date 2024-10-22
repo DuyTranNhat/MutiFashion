@@ -1,7 +1,11 @@
-﻿namespace Server.Dtos.Category
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Server.Dtos.Category
 {
     public class UpdateCategoryDto
     {
-        public string Name { get; }
+
+        [Required]
+        public string Name { get; set; }
     }
 }

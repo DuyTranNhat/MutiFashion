@@ -49,7 +49,7 @@ namespace Server.Service
 
         public async Task<CategoryDto?> UpdateStatusAsync(int id)
         {
-            Category? existingCategory = await _unitOfWork.Category.UpdateStatus(id);
+            Category? existingCategory = await _unitOfWork.Category.UpdateStatusAsync(id);
             if (existingCategory == null) return null;
             return existingCategory.ToCategoryDto();
         }
