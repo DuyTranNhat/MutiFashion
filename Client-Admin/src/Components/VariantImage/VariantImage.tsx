@@ -1,6 +1,6 @@
 import React from 'react'
 import { ImageGet } from '../../Models/Variant'
-import { API_URL } from '../../Utils/constant'
+import { BASE_URL } from '../../Utils/constant'
 
 type Props = {
     image: ImageGet
@@ -13,7 +13,7 @@ const VariantImage = ({ image, index, handleDelete }: Props) => {
         <div style={{cursor: 'pointer'}} className="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
             <div className="service-item rounded">
                 <div className="service-img rounded-top">
-                    <img src={`${API_URL}/${image.imageUrl}`} className="img-fluid rounded-top w-100" alt="" />
+                    <img src={`${BASE_URL}/${image.imageUrl}`} className="img-fluid rounded-top w-100" alt="" />
                 </div>
                 <div className="service-content rounded-bottom p-4">
                     <div className="service-content-inner">

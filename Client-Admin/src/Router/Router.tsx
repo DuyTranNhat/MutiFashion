@@ -10,12 +10,27 @@ import InputProduct from '../pages/Product/InputProduct';
 import Product from '../pages/Product/Product';
 import Variant from '../pages/Variant/Variant';
 import VariantDetaills from '../pages/Variant/Details/VariantDetaills';
+import Banner from '../pages/Banner/Banner';
+import InputBanner from '../pages/Banner/InputBanner';
+import EditBanner from '../pages/Banner/EditBanner';
 
 const Router = createBrowserRouter([
     {
         path: "/",
         element: <AdminLayout />,
         children: [
+            {
+                path: "banner",
+                element: <Banner />
+            },
+            {
+                path: "banner/create",
+                element: <InputBanner />
+            },
+            {
+                path: "banner/edit/:id",
+                element: <EditBanner />
+            },
             {
                 path: "variant",
                 element: <Variant />

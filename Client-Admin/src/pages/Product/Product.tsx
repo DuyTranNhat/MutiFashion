@@ -3,7 +3,7 @@ import { ProductGetAPI } from '../../Services/ProductService'
 import Table from '../../Components/Table/Table'
 import { ProductGet } from '../../Models/Product'
 import { FaPen } from "react-icons/fa";
-import { API_URL, PAGE_LIMIT_PRODUCT } from '../../Utils/constant';
+import { BASE_URL, PAGE_LIMIT_PRODUCT } from '../../Utils/constant';
 import { FiTrash } from "react-icons/fi";
 import { ProductAttributePost } from './ProductForm/AttributeForm';
 import { useNavigate } from 'react-router-dom';
@@ -48,7 +48,7 @@ const Product = () => {
             (
                 <img
                     className="rounded-circle img-fluid"
-                    src={`${API_URL}/${productGet.imageUrl}`}
+                    src={`${BASE_URL}/${productGet.imageUrl}`}
                     alt=""
                     style={{ width: '40px', height: '40px', objectFit: 'cover' }}
                 />

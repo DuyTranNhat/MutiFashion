@@ -14,6 +14,7 @@ namespace Server.Repository.IRepository
         IVariantRepository Variant { get; }
         IVariantValueRepository VariantValue { get; }
         IImageRepository Image { get; }
+        IBannerRepository Banner { get; }
 
         Task SaveAsync();
         Task<IDbContextTransaction> BeginTransactionAsync();
