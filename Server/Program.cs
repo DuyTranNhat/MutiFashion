@@ -25,6 +25,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IBannerService, BannerService>();
 builder.Services.AddTransient<IImageService, ImageService>();
 builder.Services.AddScoped<IOptionService,  OptionService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IVariantService, VariantService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();

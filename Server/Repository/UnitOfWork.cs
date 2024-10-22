@@ -18,6 +18,7 @@ namespace Server.Repository
         public IVariantValueRepository VariantValue { get; }
         public IImageRepository Image { get; }
         public IBannerRepository Banner { get; }
+        public ICategoryRepository Category { get; }
 
 
         public UnitOfWork(MutiFashionContext db)
@@ -30,6 +31,7 @@ namespace Server.Repository
             Product = new ProductRepository(db);
             Variant = new VariantRepository(db);
             Supplier = new SupplierRepository(db);
+            Category = new CategoryRepository(db);
             ProductOption = new ProductOptionRepository(db);
             VariantValue = new VariantValueRepository(_db);
         }

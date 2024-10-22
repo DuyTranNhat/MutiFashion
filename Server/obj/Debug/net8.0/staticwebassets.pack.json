@@ -29,6 +29,18 @@
       "PackagePath": "staticwebassets\\images\\d5cfaf2d-4d64-4cf3-b458-cffdc3804b03_vn-11134207-7r98o-lxbaj8ztwg6161.webp"
     },
     {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\slides\\6289353f-6ba7-4619-ac02-51c72647af17_carousel-1.jpg",
+      "PackagePath": "staticwebassets\\images\\slides\\6289353f-6ba7-4619-ac02-51c72647af17_carousel-1.jpg"
+    },
+    {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\slides\\c9bb99c0-912c-428f-9d31-ff2a7a3e8c11_carousel-2.jpg",
+      "PackagePath": "staticwebassets\\images\\slides\\c9bb99c0-912c-428f-9d31-ff2a7a3e8c11_carousel-2.jpg"
+    },
+    {
+      "Id": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\slides\\d2f93c11-4cdb-484b-9c6e-60bb33423f35_carousel-3.jpg",
+      "PackagePath": "staticwebassets\\images\\slides\\d2f93c11-4cdb-484b-9c6e-60bb33423f35_carousel-3.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Server.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

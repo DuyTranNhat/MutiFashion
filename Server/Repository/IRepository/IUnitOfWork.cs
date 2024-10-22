@@ -6,15 +6,16 @@ namespace Server.Repository.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
-        ISupplierRepository Supplier { get; }
-        IProductRepository Product { get; }
-        IProductOptionRepository ProductOption { get; }
-        IOptionRepository Option { get; }
         IValueRepository Value { get; }
-        IVariantRepository Variant { get; }
-        IVariantValueRepository VariantValue { get; }
         IImageRepository Image { get; }
         IBannerRepository Banner { get; }
+        IOptionRepository Option { get; }
+        IProductRepository Product { get; }
+        IVariantRepository Variant { get; }
+        ISupplierRepository Supplier { get; }
+        ICategoryRepository Category { get; }
+        IVariantValueRepository VariantValue { get; }
+        IProductOptionRepository ProductOption { get; }
 
         Task SaveAsync();
         Task<IDbContextTransaction> BeginTransactionAsync();

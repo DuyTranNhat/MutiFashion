@@ -23,11 +23,11 @@ public partial class Product
 
     public virtual Category? Category { get; set; }
 
-    public virtual Supplier? Supplier { get; set; }
-
-    public virtual ICollection<Variant> Variants { get; set; } = new List<Variant>();
-
     public virtual ICollection<ProductOption> ProductOptions { get; set; } = new List<ProductOption>();
 
     public virtual ICollection<ProductReview> ProductReviews { get; set; } = new List<ProductReview>();
+
+    public virtual Supplier? Supplier { get; set; }
+
+    public virtual ICollection<Variant> Variants { get; set; } = new List<Variant>();
 }

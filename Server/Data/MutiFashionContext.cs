@@ -82,6 +82,9 @@ public partial class MutiFashionContext : DbContext
             entity.ToTable("categories");
 
             entity.Property(e => e.CategoryId).HasColumnName("category_id");
+            entity.Property(e => e.ActiveStatus)
+                .HasDefaultValue(false)
+                .HasColumnName("activeStatus");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .IsUnicode(false)

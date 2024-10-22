@@ -14,7 +14,7 @@ namespace Server.Repository
             _db = db;
         }
 
-        public async Task<Supplier> UpdateAsync(int id, UpdateSupplierDtos obj)
+        public async Task<Supplier> UpdateAsync(int id, UpdateSupplierDto obj)
         {
             var existingSupplier = await _db.Suppliers.FirstOrDefaultAsync(item => item.SupplierId == id);
 

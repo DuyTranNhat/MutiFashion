@@ -5,7 +5,7 @@ namespace Server.Repository.IRepository
 {
     public interface ISupplierRepository : IRepository<Supplier>
     {
-        Task<Supplier> UpdateAsync(int id, UpdateSupplierDtos supplierDto);
+        Task<Supplier> UpdateAsync(int id, UpdateSupplierDto supplierDto);
         Task<Supplier> UpdateStatus(int id);
     }
 }

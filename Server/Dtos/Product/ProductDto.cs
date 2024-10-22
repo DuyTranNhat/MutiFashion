@@ -16,6 +16,6 @@ namespace Server.Dtos.Product
 
         public int totalVariant { get; set; } = 0;
 
-        public virtual Category? Category { get; set; }
+        public virtual Models.Category? Category { get; set; }
     }
 }

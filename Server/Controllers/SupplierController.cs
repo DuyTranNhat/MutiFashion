@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Server.Dtos.Category;
 using Server.Dtos.Supplier;
 using Server.Mapper;
 using Server.Models;
@@ -54,16 +55,18 @@ namespace Server.Controllers
             return Ok(supplierExisting);
         }
 
+
+        
         [HttpPut("update/{id:int}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateSupplierDtos supplierDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateSupplierDto supplierUpdateDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var supplierRS = await _supplierService.UpdateAsync(id, supplierDto);
-            if (supplierRS == null)
+            var categoryRS = await _supplierService.UpdateAsync(id, supplierUpdateDto);
+            if (categoryRS == null)
                 return NotFound();
-            return Ok(supplierRS);
+            return Ok(categoryRS);
         }
     }
 }

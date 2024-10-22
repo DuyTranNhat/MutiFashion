@@ -41,7 +41,7 @@ namespace Server.Service
             return null;
         }
 
-        public async Task<SupplierDto> UpdateAsync(int id, UpdateSupplierDtos supplierDto)
+        public async Task<SupplierDto> UpdateAsync(int id, UpdateSupplierDto supplierDto)
         {
             var supplierRS = await _unitOfWork.Supplier.UpdateAsync(id, supplierDto);
             if (supplierRS == null)
