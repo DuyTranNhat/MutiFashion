@@ -7,8 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <>
-      <ToastContainer />
       <RouterProvider router={Router} />
+      <ToastContainer />
     </>
   )
 }
