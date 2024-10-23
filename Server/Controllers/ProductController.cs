@@ -37,7 +37,7 @@ namespace Server.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("getProducts")]
         public async Task<IActionResult> GetProducts([FromQuery] int page = 1, [FromQuery] int limit = 12)
         {
             var result = await _productService.GetProductsAsync(page, limit);

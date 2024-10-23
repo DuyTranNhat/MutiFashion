@@ -22,7 +22,7 @@ namespace Server.Service
 
         public async Task<QueryObject<ProductDto>> GetProductsAsync(int page, int limit)
         {
-            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties: "Variants");
+            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties: "Variants,Category");
             var productQuery = listProduct.Select(p => p.ToProductDTO()).FilterPage(page, limit);
             return productQuery;
         }

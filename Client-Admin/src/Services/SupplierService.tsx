@@ -6,7 +6,7 @@ import { SUPPLIER_API } from "../Utils/constant";
 
 export const supplierGetAPI = async (page: number = 1, limit: number = 100) => {
     try {
-        const data = await axios.get<SupplierResponse>(`${SUPPLIER_API}/getAll`, {
+        const data = await axios.get<SupplierResponse>(`${SUPPLIER_API}/GetSuppliers`, {
             params : {
                 page: page,
                 limit: limit,

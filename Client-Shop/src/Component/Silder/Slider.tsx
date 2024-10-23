@@ -82,7 +82,7 @@ const Slider = () => {
                         </div>
                         <div className="col-lg-4">
                             <div className="product-offer mb-30" style={{ height: "200px" }}>
-                                <img className="img-fluid" src="img/offer-1.jpg" alt="" />
+                                <img className="img-fluid" src="/img/offer-1.jpg" alt="" />
                                 <div className="offer-text">
                                     <h6 className="text-white text-uppercase">Save 20%</h6>
                                     <h3 className="text-white mb-3">Special Offer</h3>
@@ -90,7 +90,7 @@ const Slider = () => {
                                 </div>
                             </div>
                             <div className="product-offer mb-30" style={{ height: "200px" }}>
-                                <img className="img-fluid" src="img/offer-2.jpg" alt="" />
+                                <img className="img-fluid" src="/img/offer-2.jpg" alt="" />
                                 <div className="offer-text">
                                     <h6 className="text-white text-uppercase">Save 20%</h6>
                                     <h3 className="text-white mb-3">Special Offer</h3>

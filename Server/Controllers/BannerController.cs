@@ -55,7 +55,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("GetBanners")]
-        public async Task<IActionResult> GetAll([FromQuery] int page = 1, int limit = 12)
+        public async Task<IActionResult> GetBanners([FromQuery] int page = 1, int limit = 12)
         {
             var result = await _bannerService.GetBannersAsync(page, limit);
             return Ok(result);

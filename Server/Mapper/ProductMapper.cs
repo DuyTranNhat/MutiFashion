@@ -26,12 +26,14 @@ namespace ecommerce_backend.Mappers
             return new ProductDto
             {
                 Name = product.Name,
-                Category = product.Category,
-                Description = product.Description,
-                ImageUrl = product.ImageUrl,
-                ProductId = product.ProductId,
                 Status = product.Status,
-                totalVariant = product.Variants.Count(),
+                ImageUrl = product.ImageUrl,
+                Category = product.Category,
+                SalePrice = product.Saleprice,
+                ProductId = product.ProductId,
+                Description = product.Description,
+                totalVariant = product.Variants.Count,
+                totalPreviews = product.ProductReviews.Count,
             };
         }
     }

@@ -32,7 +32,7 @@ export const UploadImageProductAPI = async (image: File, id: number) => {
 
 export const ProductGetAPI = async (page: number = 1, litmit: number = 12) => {
     try {
-        const data = await axios.get<ProductResponse>(`${PRODUCT_API}/getAll`, {
+        const data = await axios.get<ProductResponse>(`${PRODUCT_API}/getProducts`, {
             params : {
                 page: page,
                 limit: litmit,

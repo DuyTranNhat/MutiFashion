@@ -1,3 +1,4 @@
+import { CategoryGet } from "./Category";
 import { PageObject } from "./Common";
 
 export type ProductPost = {
@@ -20,12 +21,13 @@ export type ProductResponse = {
     page: PageObject;
 }
 
-export interface ProductGet {  
-    productId: number;
+export type ProductGet = {  
     name: string;
-    description: string | null;
     status: boolean;
-    imageUrl: string | null;
+    productId: number;
     totalVariant: number;
-    // category: Category | null;
+    totalPreviews: number;
+    category: CategoryGet;
+    imageUrl: string | null;
+    description: string | null;
 }
