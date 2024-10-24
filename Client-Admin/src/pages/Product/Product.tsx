@@ -104,9 +104,9 @@ const Product = () => {
                         : <h3>loading</h3>
                     }
                     <Paging
-                        currentPage={pageObject?.currentPage!}
                         onPageChange={handlePageChange}
                         pageSize={pageObject?.pageSize!}
+                        currentPage={pageObject?.currentPage!}
                         totalItems={pageObject?.totalItems!}
                         totalPages={pageObject?.totalPages!}
                     />

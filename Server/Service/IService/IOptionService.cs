@@ -8,9 +8,8 @@ namespace Server.Service.IService
     public interface IOptionService
     {
         Task<OptionDto> CreateAsync(CreateOptionDto createOptionDto);
-        Task<List<OptionDto>> GetAllActiveAsync();
         Task<OptionDto> GetByIDAsync(int idOption);
-        Task<QueryObject<OptionDto>> GetOptionsAsync(int page, int limit);
+        Task<QueryObject<OptionDto>> GetOptionsAsync(int page, int limit, bool isActive);
         Task<Option> ToggleFilterAsync(int id);
         Task<OptionDto> UpdateAsync(int id, UpdateOptionDto attributeDto);
     }

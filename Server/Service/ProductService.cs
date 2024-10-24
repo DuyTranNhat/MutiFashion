@@ -1,11 +1,13 @@
 ﻿using ecommerce_backend.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Server.Dtos.Product;
+using Server.Extensions;
 using Server.Helper;
 using Server.Mapper;
 using Server.Models;
 using Server.Repository.IRepository;
 using Server.Service.IService;
+using System.Linq;
 
 namespace Server.Service
 {
@@ -20,9 +22,25 @@ namespace Server.Service
             _imageService = imageService;
         }
 
+        public async Task<List<ProductDto>> searchByKeyAsync(ProductSearchDto productSearch)
+        {
+            var products = await _unitOfWork.Product.GetAllAsync(includeProperties: "Category");
+            products = products.AsQueryable().AsNoTracking();
+            if (!string.IsNullOrWhiteSpace(productSearch.key))
+            {
+                var normalizedKey = productSearch.key.RemoveVietnameseDiacritics().ToLower();
+                products = products.Where(p =>
+                p.Name.RemoveVietnameseDiacritics().ToLower().Contains(normalizedKey)
+                || p.Category.Name.ToLower().RemoveVietnameseDiacritics().Contains(normalizedKey));
+            }
+            var productsDTO = products.Select(p => p.ToProductDTO()).ToList();
+            return productsDTO;
+        }
+
         public async Task<QueryObject<ProductDto>> GetProductsAsync(int page, int limit)
         {
-            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties: "Variants,Category");
+            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties:
+                                "Variants,Category,ProductOptions.Option.Values");
             var productQuery = listProduct.Select(p => p.ToProductDTO()).FilterPage(page, limit);
             return productQuery;
         }
@@ -35,7 +53,7 @@ namespace Server.Service
                 await _imageService.SetDirect("images/product");
                 imageUrl = await _imageService.HandleImageUploadAsync(uploadDto.ImageFile);
             }
-            var result =  await _unitOfWork.Product.UpdateImageAsync(idProduct, imageUrl);
+            var result = await _unitOfWork.Product.UpdateImageAsync(idProduct, imageUrl);
             return result;
         }
 
@@ -51,7 +69,7 @@ namespace Server.Service
         public async Task<int> handleGenerateVariantAsync(CreateProductWithVariantsDto dto)
         {
             //1 Thêm Product
-            
+
             var product = dto.ToProductFromCreate();
             await _unitOfWork.Product.AddAsync(product);
             await _unitOfWork.SaveAsync();
@@ -71,7 +89,7 @@ namespace Server.Service
                         Name = optionDto.OptionName,
                         ActiveStatus = true
                     };
-                     await _unitOfWork.Option.AddAsync(option);
+                    await _unitOfWork.Option.AddAsync(option);
                     await _unitOfWork.SaveAsync();
                 }
 
@@ -130,9 +148,9 @@ namespace Server.Service
                     var optionId = optionValuePair.Key;
                     var valueName = optionValuePair.Value;
 
-                    var option = await _unitOfWork.Option.GetAsync(o 
+                    var option = await _unitOfWork.Option.GetAsync(o
                         => o.OptionId == optionId);
-                    var value = await _unitOfWork.Value.GetAsync(v 
+                    var value = await _unitOfWork.Value.GetAsync(v
                         => v.Value1 == valueName && v.OptionId == optionId);
 
                     if (value != null && option != null)
@@ -170,11 +188,11 @@ namespace Server.Service
 
             foreach (var optionValue in optionValues)
             {
-                int optionId = await GetOptionId(optionValue); 
+                int optionId = await GetOptionId(optionValue);
                 currentCombination[optionId] = optionValue;
 
                 GenerateCombinationsRecursive(optionCombinations, index + 1, currentCombination, combinations);
-                
+
                 currentCombination.Remove(optionId);
             }
         }

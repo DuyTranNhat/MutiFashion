@@ -6,5 +6,6 @@
         public string Name { get; set; }
         public long Quantity { get; set; } = 0;
         public bool ActiveStatus { get; set; }
+        public long totalProduct { get; set;  }
     }
 }

@@ -5,25 +5,26 @@ import { ProductGetAPI } from '../../Service/ProductService';
 
 export type Props = {
     col: number;
+    existedProducts?: ProductGet[] | null
 }
 
-const ProductList = ({ col }: Props) => {
+const ProductList = ({ col, existedProducts }: Props) => {
     const [productList, setProductList] = useState<ProductGet[]>()
 
     useEffect(() => {
-        ProductGetAPI()
+        existedProducts 
+        ? setProductList(existedProducts)
+        : (ProductGetAPI()
             .then(res => {
                 if (res?.data) {
                     setProductList(res.data.items)
                 }
-            })
-    }, [])
-
-    
+            }))
+    }, [existedProducts])
 
     return <div className="row px-xl-5">
         {
-            productList
+            productList 
                 ?
                 (productList.map(product =>
                     <ProductItem col={col} product={product} />))

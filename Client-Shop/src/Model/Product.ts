@@ -1,4 +1,5 @@
 
+import { ValueGet } from "./Attribute";
 import { CategoryGet } from "./Category";
 import { PageObject } from "./Common";
 
@@ -8,14 +9,25 @@ export type ProductResponse = {
     page: PageObject;
 }
 
-export type ProductGet = {  
-    name: string;
+export type ProductGet = {
     status: boolean;
     productId: number;
-    salePrice: number;
+    imageUrl: string | null;
+    salePrice: number | null;
+    description: string | null;
+    name: string;
     totalVariant: number;
     totalPreviews: number;
-    category: CategoryGet;
-    imageUrl: string | null;
-    description: string | null;
+    category: CategoryGet | null;
+    productOptions: ProductOptionsGet[];
+}
+
+export type ProductSearchPost = {
+    key?: string;
+}
+
+export type ProductOptionsGet = {
+    attributeID: number;
+    attributeName: string;
+    values: ValueGet[];
 }

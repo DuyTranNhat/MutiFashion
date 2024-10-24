@@ -22,18 +22,11 @@ namespace Server.Controllers
         }
 
         [HttpGet("GetOptions")]
-        public async Task<IActionResult> GetOptions([FromQuery] int page = 1, [FromQuery] int limit = 12)
+        public async Task<IActionResult> GetOptions([FromQuery] int page = 1, 
+                [FromQuery] int limit = 12, [FromQuery] bool isActive = false)
         {
-            var optionRS = await _optionService.GetOptionsAsync(page, limit);
+            var optionRS = await _optionService.GetOptionsAsync(page, limit, isActive);
             return Ok(optionRS);
-        }
-
-
-        [HttpGet("getAllActiveFilter")]
-        public async Task<IActionResult> GetAllActive()
-        {
-            var attributesRS = _optionService.GetAllActiveAsync();
-            return Ok(attributesRS);
         }
 
 

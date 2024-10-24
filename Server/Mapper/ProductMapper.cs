@@ -1,5 +1,6 @@
 ﻿using Server.Dtos.Option;
 using Server.Dtos.Product;
+using Server.Mapper;
 using Server.Mappers;
 using Server.Models;
 using System;
@@ -28,12 +29,23 @@ namespace ecommerce_backend.Mappers
                 Name = product.Name,
                 Status = product.Status,
                 ImageUrl = product.ImageUrl,
-                Category = product.Category,
                 SalePrice = product.Saleprice,
                 ProductId = product.ProductId,
                 Description = product.Description,
                 totalVariant = product.Variants.Count,
                 totalPreviews = product.ProductReviews.Count,
+                Category = product.Category.ToCategoryDto(),
+                ProductOptions = product.ProductOptions.Select(p => p.ToProductOptions()).ToList(),
+            };
+        }
+
+        public static ProductOptionsDto ToProductOptions(this ProductOption productOption)
+        {
+            return new ProductOptionsDto
+            {
+                AttributeID = productOption.OptionId,
+                AttributeName = productOption.Option.Name,
+                values = productOption.Option.Values.Select(v => v.ToValueDto()).ToList(),
             };
         }
     }

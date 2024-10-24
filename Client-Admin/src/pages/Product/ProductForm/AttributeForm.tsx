@@ -33,14 +33,14 @@ const AttributeForm = ({
     const [filterAttributes, setFilterAttributes] = useState<AttributeGet[]>([]);
     const [searchAtt, setSearchAtt] = useState<string>("");
     const [searchValue, setSearchValue] = useState<string>("");
-    const [newValues, setNewValues] = useState<valueInput[]>([]); // Trạng thái cho giá trị mới
-    const [newAtt, setNewAtt] = useState<valueInput[]>([]); // Trạng thái cho giá trị mới
+    const [newValues, setNewValues] = useState<valueInput[]>([]); 
+    const [newAtt, setNewAtt] = useState<valueInput[]>([]); 
 
     useEffect(() => {
         attributeGetAPI()
             .then((res) => {
                 if (res?.data) {
-                    const attributeList = res?.data;
+                    const attributeList = res?.data.items;
                     setAttributes(attributeList);
                     setFilterAttributes(attributeList);
                     const filterValues = attributeList.flatMap(att => att.values);

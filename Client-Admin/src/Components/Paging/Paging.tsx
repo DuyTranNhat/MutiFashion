@@ -2,11 +2,11 @@ import React from 'react';
 import './Paging.scss';
 
 export type PagingProps = {
+    pageSize: number;
+    totalPages: number;
     totalItems: number;
     currentPage: number;
-    totalPages: number;
-    pageSize: number;
-    onPageChange: (page: number) => void;  // Callback function for changing pages
+    onPageChange: (page: number) => void;  
 };
 
 const Paging = ({

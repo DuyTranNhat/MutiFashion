@@ -9,4 +9,5 @@ export type CategoryGet = {
     name: string;
     quantity: number;
     activeStatus: boolean;
+    totalProduct: number;
 }

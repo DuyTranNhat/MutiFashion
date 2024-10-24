@@ -21,6 +21,13 @@ namespace Server.Controllers
             _productService = productService;
         }
 
+        [HttpPost("search/")]
+        public async Task<IActionResult> SearchByKey([FromBody] ProductSearchDto productSearch)
+        {
+            var result = await _productService.searchByKeyAsync(productSearch);
+            return Ok(result);
+        }
+
         [HttpPost("uploadImage/{idProduct:int}")]
         public async Task<IActionResult> UploadImageProduct([FromForm]UploadRequestDto uploadDTO, [FromRoute] int idProduct)
         {

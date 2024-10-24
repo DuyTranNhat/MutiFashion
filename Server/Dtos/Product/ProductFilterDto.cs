@@ -1,8 +1,8 @@
 ﻿namespace Server.Dtos.Product
 {
-    public class ProductFilterDto
+    public class ProductSearchDto
     {
-
+        public string? key { get; set; }
     }
 
     public class VariantFilterDto

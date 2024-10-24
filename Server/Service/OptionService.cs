@@ -1,4 +1,5 @@
 ﻿using ecommerce_backend.Mappers;
+using Microsoft.AspNetCore.Mvc;
 using Server.Dtos.Option;
 using Server.Helper;
 using Server.Mapper;
@@ -16,16 +17,21 @@ namespace Server.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<QueryObject<OptionDto>> GetOptionsAsync(int page, int limit)
+        public async Task<QueryObject<OptionDto>> GetOptionsAsync([FromQuery] int page, 
+                            [FromQuery] int limit, [FromQuery] bool isActive = false)
         {
             var optionExisting = await _unitOfWork.Option.
                 GetAllAsync(includeProperties: "Values");
+
+            if (isActive) 
+                optionExisting = optionExisting.Where(c => c.ActiveStatus == isActive);
+
             var optionDto = optionExisting.Select(o => o.ToOptionDto()).
-                AsQueryable().FilterPage(page, limit);
+                    AsQueryable().FilterPage(page, limit);
             return optionDto;
         }
 
-        public async Task<List<OptionDto>> GetAllActiveAsync()
+        public async Task<List<OptionDto>> GetAllActiveAsync(bool isActive)
         {
             var attributeModels = await _unitOfWork.Option.GetAllAsync(o 
                 => o.ActiveStatus ?? false, includeProperties: "Values");

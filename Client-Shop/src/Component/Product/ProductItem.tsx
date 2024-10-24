@@ -30,7 +30,7 @@ const ProductItem = ({ col, product }: Props) => {
                             {new Intl.NumberFormat('vi-VN', {
                                 style: 'currency'
                                 , currency: 'VND'
-                            }).format(product.salePrice)}</h5>
+                            }).format(product?.salePrice ?? 0)}</h5>
                         <h6 className="text-muted ml-2"><del>(bổ xung sau)</del></h6>
                     </div>
                     <div className="d-flex align-items-center justify-content-center mb-1">

@@ -34,7 +34,7 @@ namespace Server.Service
         
         public async Task<QueryObject<CategoryDto>> GetCategoriesAsync(int page, int limit)
         {
-            var categories = await _unitOfWork.Category.GetAllAsync();
+            var categories = await _unitOfWork.Category.GetAllAsync(includeProperties: "Products");
             var categoriesDto = categories.Select(c =>
                 c.ToCategoryDto()).FilterPage(page, limit);
             return categoriesDto;

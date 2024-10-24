@@ -13,7 +13,8 @@ namespace Server.Mapper
                 Name = category.Name,
                 CategoryId = category.CategoryId,
                 Quantity = category.Products.Count,
-                ActiveStatus = category.ActiveStatus ?? false
+                ActiveStatus = category.ActiveStatus ?? false,
+                totalProduct = category.Products.Count,
             };
         }
 

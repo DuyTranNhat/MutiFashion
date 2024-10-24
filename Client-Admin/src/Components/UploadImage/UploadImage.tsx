@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './UploadImage.css'
-import DefaultImage from '../../img/DefaultImage.png'
+import DefaultImage from '/img/DefaultImage.png'
 
 export type Props = {
     handleSetImage: (image: File) => void

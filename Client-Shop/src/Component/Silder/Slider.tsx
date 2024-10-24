@@ -84,7 +84,7 @@ const Slider = () => {
                             <div className="product-offer mb-30" style={{ height: "200px" }}>
                                 <img className="img-fluid" src="/img/offer-1.jpg" alt="" />
                                 <div className="offer-text">
-                                    <h6 className="text-white text-uppercase">Save 20%</h6>
+                                    <h6 className="text-white text-uppercase">New Fashion</h6>
                                     <h3 className="text-white mb-3">Special Offer</h3>
                                     <a href="http://127.0.0.1:5501/img/offer-1.jpg" className="btn btn-primary">Shop Now</a>
                                 </div>
@@ -92,7 +92,7 @@ const Slider = () => {
                             <div className="product-offer mb-30" style={{ height: "200px" }}>
                                 <img className="img-fluid" src="/img/offer-2.jpg" alt="" />
                                 <div className="offer-text">
-                                    <h6 className="text-white text-uppercase">Save 20%</h6>
+                                    <h6 className="text-white text-uppercase">New Fashion</h6>
                                     <h3 className="text-white mb-3">Special Offer</h3>
                                     <a href="" className="btn btn-primary">Shop Now</a>
                                 </div>
