@@ -1,9 +1,23 @@
 ﻿using Server.Dtos.Category;
+using Server.Dtos.Option;
 using Server.Dtos.Value;
 using Server.Models;
 
 namespace Server.Dtos.Product
 {
+
+    public class ProductVariantDto
+    {
+        public int ProductId { get; set; }
+        public string Name { get; set; } = null!;
+        public string? Description { get; set; }
+        public string? ImageUrl { get; set; }
+        public int totalPreviews { get; set; } = 0;
+        public virtual CategoryDto? CategoryDto { get; set; }
+        public virtual ICollection<VariantDto> Variants { get; set; } = new List<VariantDto>();
+        public virtual ICollection<ProductOptionsDto> Attributes { get; set; } = new List<ProductOptionsDto>();
+    }
+
     public class ProductDto
     {
         public bool Status { get; set; }

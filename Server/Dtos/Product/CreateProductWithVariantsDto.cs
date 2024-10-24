@@ -18,6 +18,4 @@ namespace Server.Dtos.Product
         public string OptionName { get; set; }
         public List<string> Values { get; set; } = new List<string>();
     }
-
-
 }

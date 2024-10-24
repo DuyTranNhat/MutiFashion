@@ -9,16 +9,18 @@ namespace Server.Repository
         private readonly MutiFashionContext _db;
         private IDbContextTransaction _transaction;
 
-        public ISupplierRepository Supplier { get; }
-        public IOptionRepository Option { get; }
-        public IProductRepository Product { get; }
-        public IProductOptionRepository ProductOption { get; }
+        public ICartRepository Cart { get; }
         public IValueRepository Value { get; }
-        public IVariantRepository Variant { get; }
-        public IVariantValueRepository VariantValue { get; }
         public IImageRepository Image { get; }
         public IBannerRepository Banner { get; }
+        public IOptionRepository Option { get; }
+        public IVariantRepository Variant { get; }
+        public IProductRepository Product { get; }
+        public ICustomerRepository Customer { get; }
+        public ISupplierRepository Supplier { get; }
         public ICategoryRepository Category { get; }
+        public IVariantValueRepository VariantValue { get; }
+        public IProductOptionRepository ProductOption { get; }
 
 
         public UnitOfWork(MutiFashionContext db)

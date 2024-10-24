@@ -34,7 +34,12 @@ export const GeneralForm = ({
                     {...register('name')}
                 />
                 <label htmlFor="name">Product's Name</label>
-                {error.name && <div className="invalid-feedback">{error.name.message}</div>}
+                {error.name && 
+                <>
+                    {toast.error(error.name.message)}
+                    <div className="invalid-feedback">{error.name.message}</div>
+                </>
+                }
             </div>
 
             <div className="form-floating mb-3">

@@ -50,5 +50,13 @@ namespace Server.Controllers
             var result = await _productService.GetProductsAsync(page, limit);
             return Ok(result);
         }
+
+        [HttpGet("getProductVariantsByID/{idProduct:int}")]
+        public async Task<IActionResult> GetProductVariants([FromRoute] int idProduct)
+        {
+            var result = await _productService.GetProductVariantsAsync(idProduct);
+            if (result == null) return NotFound("Product is not existed!");
+            return Ok(result);
+        }
     }
 }

@@ -12,7 +12,7 @@ const ProductItem = ({ col, product }: Props) => {
     const navigate = useNavigate()
 
     return (
-        <div onClick={() => navigate(`/productDetails/${product.productId}/product/${product.productId}`)} className={`col-lg-${col} col-md-6 col-sm-6 pb-1`}>
+        <div onClick={() => navigate(`/DetailsVariant/${product.productId}`)} className={`col-lg-${col} col-md-6 col-sm-6 pb-1`}>
             <div className="product-item bg-light mb-4">
                 <div className="product-img position-relative overflow-hidden">
                     <img className="img-fluid w-100" src={`${BASE_URL}/${product.imageUrl}`} alt="" />

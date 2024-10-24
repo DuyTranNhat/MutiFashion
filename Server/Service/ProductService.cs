@@ -37,14 +37,6 @@ namespace Server.Service
             return productsDTO;
         }
 
-        public async Task<QueryObject<ProductDto>> GetProductsAsync(int page, int limit)
-        {
-            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties:
-                                "Variants,Category,ProductOptions.Option.Values");
-            var productQuery = listProduct.Select(p => p.ToProductDTO()).FilterPage(page, limit);
-            return productQuery;
-        }
-
         public async Task<int> handleUploadAsync(int idProduct, UploadRequestDto uploadDto)
         {
             string imageUrl = null;
@@ -64,6 +56,27 @@ namespace Server.Service
             //Tạo tổ hợp
             GenerateCombinationsRecursive(optionCombinations, 0, new Dictionary<int, string>(), combinations);
             return combinations;
+        }
+
+        public async Task<QueryObject<ProductDto>> GetProductsAsync(int page, int limit)
+        {
+            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties:
+                                "Variants,Category,ProductOptions.Option.Values");
+            var productQuery = listProduct.Select(p => p.ToProductDTO()).FilterPage(page, limit);
+            return productQuery;
+        }
+
+        public async Task<ProductVariantDto> GetProductVariantsAsync(int idProduct)
+        {
+            var productVariants = await _unitOfWork.Product.GetAsync(
+                    p => p.ProductId == idProduct, includeProperties: 
+                "Category,ProductOptions.Option.Values,Variants.VariantValues" +
+                ".Value,Variants.VariantValues.ProductOption.Option,Variants.Images");
+
+            if (productVariants == null) return null;
+
+            var productVariantsDTO = productVariants.ToProductVariantsDTO();
+            return productVariantsDTO;
         }
 
         public async Task<int> handleGenerateVariantAsync(CreateProductWithVariantsDto dto)

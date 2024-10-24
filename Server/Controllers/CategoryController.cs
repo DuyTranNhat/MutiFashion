@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Server.Dtos.Category;
-using Server.Dtos.Option;
-using Server.Dtos.Supplier;
-using Server.Service;
 using Server.Service.IService;
 
 namespace Server.Controllers

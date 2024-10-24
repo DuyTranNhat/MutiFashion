@@ -25,7 +25,7 @@ namespace Server.Service
         public async Task<QueryObject<VariantDto>> FilterVariantsAsync(VariantFilterDto filterRequest, int page, int limit)
         {
             var variants = await _unitOfWork.Variant.GetAllAsync(includeProperties: "VariantValues.Value," +
-                "VariantValues.ProductOption.Option,Product.Category,Product.Supplier,Images");
+                "VariantValues.ProductOption.Option.Values,Product.Category,Product.Supplier,Images");
 
             var variantsQuery = variants.AsQueryable().AsNoTracking();
 

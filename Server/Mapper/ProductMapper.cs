@@ -39,6 +39,21 @@ namespace ecommerce_backend.Mappers
             };
         }
 
+        public static ProductVariantDto ToProductVariantsDTO(this Product product)
+        {
+            return new ProductVariantDto
+            {
+                Name = product.Name,
+                ImageUrl= product.ImageUrl,
+                ProductId = product.ProductId,
+                Description = product.Description,
+                totalPreviews = product.ProductReviews.Count,
+                CategoryDto = product.Category.ToCategoryDto(),
+                Variants = product.Variants.Select(v => v.ToVariantDto()).ToList(),
+                Attributes = product.ProductOptions.Select(po => po.ToProductOptions()).ToList(),
+            };
+        }
+
         public static ProductOptionsDto ToProductOptions(this ProductOption productOption)
         {
             return new ProductOptionsDto
