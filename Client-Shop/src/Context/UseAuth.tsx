@@ -3,34 +3,19 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LoginRequest, LogoutRequest, RegisterRequest, UserProfile } from "../Model/User";
-import { LoginAPI, LogoutApi, RegisterAPI } from "../Service/AuthService";
+import { LoginRequest, LogoutRequest, RegisterRequest, TokenKit, UserProfile } from "../Model/User";
+import { LoginAPI, LogoutApi, refreshTokenAPI, RegisterAPI } from "../Service/AuthService";
+import { getCookie, deleteCookie, setCookie } from "../Helpers/CookieHelper";
 
-const setCookie = (name: string, value: string, days?: number) => {
-    let cookieString = `${name}=${value}; path=/; secure; samesite=strict;`;
-    if (days) {
-        const expires = new Date(Date.now() + days * 864e5).toUTCString();
-        cookieString += `expires=${expires};`;
-    }
-    document.cookie = cookieString;
-};
-
-const getCookie = (name: string) => {
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return match ? match[2] : null;
-};
-
-const deleteCookie = (name: string) => {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-};
 
 type UserContextType = {
     isReady: boolean;
     user: UserProfile | null;
     logout: () => void;
     isLoggedIn: () => boolean;
-    registerUser: (form: RegisterRequest) => void;
+    handleTokenRefresh: () => void;
     login: (form: LoginRequest) => void;
+    registerUser: (form: RegisterRequest) => void;
 };
 
 type Props = { children: React.ReactNode }
@@ -69,7 +54,6 @@ export const UserProvider = ({ children }: Props) => {
                     };
                     setUser(UserObj);
                     toast.success("Register success!");
-                    navigate("/");
                 }
             }).catch(() => toast.warning("Server error occurred"));
     }
@@ -81,8 +65,8 @@ export const UserProvider = ({ children }: Props) => {
                     const userResponse = res.data.user;
                     const tokenKit = res.data.tokenKit;
 
-                    setCookie("accessToken", tokenKit.accessToken, 1); 
-                    localStorage.setItem("refreshtoken", tokenKit.refreshToken); 
+                    setCookie("accessToken", tokenKit.accessToken, 1);
+                    localStorage.setItem("refreshtoken", tokenKit.refreshToken);
 
                     axios.defaults.headers.common["Authorization"] = "Bearer " + tokenKit.accessToken;
                     const UserObj: UserProfile = {
@@ -106,11 +90,30 @@ export const UserProvider = ({ children }: Props) => {
             });
     }
 
+    const handleTokenRefresh = async () => {
+        try {
+            const accessToken = getCookie("accessToken") ?? "";
+            const refreshToken = localStorage.getItem("refreshtoken") ?? "";
+            const tokenKit: TokenKit = {
+                accessToken,
+                refreshToken
+            }
+            const res = await refreshTokenAPI(tokenKit);
+            if (res) {
+                const newTokenKit = res?.data;
+
+                setCookie("accessToken", newTokenKit.accessToken, 1);
+                localStorage.setItem("refreshtoken", newTokenKit.refreshToken);
+            }
+        } catch (error) {
+            console.error("Token refresh failed", error);
+            return null;
+        }
+    };
+
     const isLoggedIn = () => {
         return !!user;
     };
-
-
 
     const logout = async () => {
         if (!user) {
@@ -138,7 +141,8 @@ export const UserProvider = ({ children }: Props) => {
 
 
     return (
-        <UserContext.Provider value={{ user, registerUser, login, logout, isLoggedIn, isReady }}>
+        <UserContext.Provider
+            value={{ user, registerUser, login, logout, isLoggedIn, handleTokenRefresh, isReady }}>
             {isReady ? children : null}
         </UserContext.Provider>
     );

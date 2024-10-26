@@ -25,7 +25,7 @@ const Pagination: React.FC<PagingProps> = ({ currentPage, pageSize, totalItems, 
 
     return (
         <div className="col-12">
-            <div>
+            <div className="mt-3" >
                 <ul className="pagination justify-content-center">
                     <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
                         <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>

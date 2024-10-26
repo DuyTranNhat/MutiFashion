@@ -16,6 +16,22 @@ namespace Server.DataAccess.Repository
             _db = db;
         }
 
+        public async Task<Cart> IncreaseQuantityAsync(int idCart)
+        {
+            var existingCart = await _db.Carts.FirstOrDefaultAsync(c => c.CartId == idCart);
+            existingCart.Quantity += 1;
+            await _db.SaveChangesAsync();
+            return existingCart;
+        }
+
+        public async Task<Cart> DecreaseQuantityAsync(int idCart)
+        {
+            var existingCart = await _db.Carts.FirstOrDefaultAsync(c => c.CartId == idCart);
+            existingCart.Quantity -= 1;
+            await _db.SaveChangesAsync();
+            return existingCart;
+        }
+
         public async Task<Cart> UpdateAsync(CreateCartDto cartDto)
         {
 
@@ -23,43 +39,6 @@ namespace Server.DataAccess.Repository
             if (existingCart == null) return null;
             existingCart.Quantity += cartDto.Quantity;
             existingCart.DateAdded = cartDto.DateAdded;
-            await _db.SaveChangesAsync();
-            return existingCart;
-        }
-
-
-        public async Task<Cart?> increaseQuantity(int idCart)
-        {
-            var existingCart = _db.Carts.Where(c => c.CartId == idCart).
-                    Include(c => c.Variant).ThenInclude(v => v.Images)
-                    .Include(c => c.Variant).ThenInclude(v => v.VariantValues).
-                    ThenInclude(v => v.Value).FirstOrDefault();
-            if (existingCart == null) return null;
-
-            if (existingCart.Quantity >= existingCart.Variant.Quantity)
-            {
-                throw new BadHttpRequestException("Quantity cannot be increased further as it is not enough.");
-            }
-
-            existingCart.Quantity += 1;
-            await _db.SaveChangesAsync();
-            return existingCart;
-        }
-
-        public async Task<Cart?> decreaseQuantity(int idCart)
-        {
-            var existingCart = _db.Carts.Where(c => c.CartId == idCart).
-                    Include(c => c.Variant).ThenInclude(v => v.Images)
-                    .Include(c => c.Variant).ThenInclude(v => v.VariantValues).
-                    ThenInclude(v => v.Value).FirstOrDefault();
-            if (existingCart == null) return null;
-
-            if (existingCart.Quantity == 0)
-            {
-                throw new BadHttpRequestException("Quantity cannot be reduced further as it is already zero.");
-            }
-
-            existingCart.Quantity -= 1;
             await _db.SaveChangesAsync();
             return existingCart;
         }

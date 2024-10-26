@@ -40,7 +40,7 @@ namespace Server.Service
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(3),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = creds,
                 Issuer = _config["JWT:Issuer"],
                 Audience = _config["JWT:Audience"]
@@ -59,7 +59,7 @@ namespace Server.Service
                 IsUsed = false,
                 IsRevoked = false,
                 IssuedAt = DateTime.UtcNow,
-                ExpiredAt = DateTime.UtcNow.AddHours(1)
+                ExpiredAt = DateTime.UtcNow.AddDays(1)
             });
             await _unitOfWork.SaveAsync();
 

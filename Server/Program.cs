@@ -29,6 +29,7 @@ builder.Services.AddScoped<IBannerService, BannerService>();
 builder.Services.AddTransient<IImageService, ImageService>(); 
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IOptionService, OptionService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();

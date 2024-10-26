@@ -5,6 +5,9 @@ import VariantImagePreview from './VariantImagePreview/VariantImagePreview';
 import { ProductVariantGet } from '../../Model/Product';
 import { ProductVariantsGetAPI } from '../../Service/ProductService';
 import { VariantGet } from '../../Model/Variant';
+import { useAuth } from '../../Context/UseAuth';
+import { addCartAPI } from '../../Service/CartService';
+import { CartPost } from '../../Model/Cart';
 
 type AttributeSelected = {
     idValue: number,
@@ -18,8 +21,8 @@ const VariantDetails = () => {
     const [selectedValues, setSelectedValues] = useState<AttributeSelected[]>([]);
     const [variantSelected, setVariantSelected] = useState<VariantGet | undefined>();
     const { idProduct } = useParams<{ idProduct: string }>();
+    const { user, isLoggedIn } = useAuth()
     const navigate = useNavigate()
-
 
     useEffect(() => {
         if (idProduct) {
@@ -27,8 +30,16 @@ const VariantDetails = () => {
                 .then(res => {
                     if (res?.data) {
                         var productVariants: ProductVariantGet = res?.data
+                        const defaultSelectVar = productVariants.variants[0]
                         setProductVariants(productVariants);
-                        setVariantSelected(productVariants.variants[0]);
+                        setVariantSelected(defaultSelectVar);
+                        setSelectedValues(prev => {
+                            const selectedValuesDefault = defaultSelectVar.variantValues.map(value =>
+                                ({ idAttr: value.attributeID, idValue: value.valueId })
+                            )
+                            return [...prev, ...selectedValuesDefault]
+                        }
+                        )
                     }
                 });
         }
@@ -54,13 +65,32 @@ const VariantDetails = () => {
     const handleQuantityChange = (delta: number) => {
         setQuantity(prevQuantity => {
             const newQuantity = prevQuantity + delta;
-            if (newQuantity < 1) return 1;  
+            if (newQuantity < 1) return 1;
             if (variantSelected && newQuantity > variantSelected.quantity) {
                 toast.error('Exceeds available stock');
-                return variantSelected.quantity;  
+                return variantSelected.quantity;
             }
             return newQuantity;
         });
+    };
+
+    const handleAddToCart = () => {
+        if (variantSelected && quantity <= variantSelected.quantity && !inavailableError) {
+            if (isLoggedIn()) {
+                const cartPost: CartPost = {
+                    customerId: user?.customerId!,
+                    variantId: variantSelected.variantId,
+                    quantity: quantity
+                }
+                addCartAPI(cartPost)
+                    .then(res => {
+                        if (res?.status === 201)
+                            toast.success(`Add ${quantity} items!`)
+                    }).catch(error => toast.success(error))
+            } else { navigate("/access/login") }
+        } else {
+            toast.error('Invalid quantity!');
+        }
     };
 
     return (
@@ -85,7 +115,7 @@ const VariantDetails = () => {
                                     <small className="fas fa-star-half-alt"></small>
                                     <small className="far fa-star"></small>
                                 </div>
-                                <small className="pt-1">(total preview handling)</small>
+                                <small className="pt-1">{productVariants.totalPreviews + " previews (Xu ly total nha)"}</small>
                             </div>
                             <h3 className="font-weight-semi-bold mb-4">
                                 {variantSelected.salePrice?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
@@ -127,7 +157,7 @@ const VariantDetails = () => {
                                     </div>
                                 </div>
                                 <button
-                                // className="btn btn-primary px-3" onClick={handleAddToCart}
+                                    className="btn btn-primary px-3" onClick={handleAddToCart}
                                 >
                                     <i className="fa fa-shopping-cart mr-1"></i> Add To Cart
                                 </button>

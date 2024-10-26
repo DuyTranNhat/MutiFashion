@@ -45,8 +45,8 @@ const Navbar = () => {
                         </button>
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto py-0">
-                                <a onClick={() => navigate('/')}  className="nav-item nav-link">Home</a>
-                                <a onClick={() => navigate('/shop')}  className="nav-item nav-link">Shop</a>
+                                <a onClick={() => navigate('/')} className="nav-item nav-link">Home</a>
+                                <a onClick={() => navigate('/shop')} className="nav-item nav-link">Shop</a>
                                 <a className="nav-item nav-link">Shop Detail</a>
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i className="fa fa-angle-down mt-1"></i></a>
@@ -58,13 +58,14 @@ const Navbar = () => {
                                 <a href="contact.html" className="nav-item nav-link">Contact</a>
                             </div>
                             <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                <a href="" className="btn px-0">
-                                    <i className="fas fa-heart text-primary"></i>
-                                    <span className="badge text-secondary border border-secondary rounded-circle" style={{ paddingTop: "2px" }}>0</span>
-                                </a>
-                                <a href="" className="btn px-0 ml-3">
+                                <a className="btn px-0 ml-3">
                                     <i className="fas fa-shopping-cart text-primary"></i>
-                                    <span className="badge text-secondary border border-secondary rounded-circle" style={{ paddingTop: "2px" }}>0</span>
+                                    <span className="badge text-secondary border border-secondary rounded-circle"
+                                        style={{ paddingTop: "2px" }}
+                                        onClick={() => navigate('/cart')}
+                                    >
+                                        0
+                                    </span>
                                 </a>
                             </div>
                         </div>

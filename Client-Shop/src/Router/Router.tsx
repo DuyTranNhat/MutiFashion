@@ -1,11 +1,13 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import CustomerLayout from '../CustomerLayout/CustomerLayout'
+import CustomerLayout from '../CustomerLayout/CustomerLayout/CustomerLayout'
 import Home from '../Page/Home/Home'
 import Shop from '../Page/Shop/Shop'
 import VariantDetails from '../Page/VariantDetails/VariantDetails'
 import LoginLayout from '../CustomerLayout/LoginLayout'
 import Login from '../Page/Login/Login'
+import Register from '../Page/Register/Register'
+import Cart from '../Page/Cart/Cart'
 
 const Router = createBrowserRouter([
     {
@@ -23,6 +25,10 @@ const Router = createBrowserRouter([
             {
                 path: "DetailsVariant/:idProduct",
                 element: <VariantDetails />
+            },
+            {
+                path: "cart/",
+                element: <Cart />
             }
         ]
     },
@@ -34,6 +40,10 @@ const Router = createBrowserRouter([
                 path: "login",
                 element: <Login />,
             },
+            {
+                path: "register",
+                element: <Register />,
+            }
         ]
     }
 ])

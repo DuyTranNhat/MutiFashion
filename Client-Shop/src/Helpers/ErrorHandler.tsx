@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../Context/UseAuth";
 
 export const handleError = (error: any) => {
+  const { handleTokenRefresh } = useAuth()
   if (axios.isAxiosError(error)) {
     var err = error.response;
     if (Array.isArray(err?.data.errors)) {
@@ -19,9 +21,10 @@ export const handleError = (error: any) => {
     }
     else if (err?.status == 401) {
       toast.warning("Please login");
-      window.history.pushState({}, "Login", "/access/login");
+      handleTokenRefresh()
+      window.history.pushState({}, "Login", "/login");
     } else if (err?.status === 403) {
-      window.history.pushState({}, "Login", "/access/login");
+      window.history.pushState({}, "Login", "/login");
       toast.warning("Your request was denied.");
     }
     else if (err?.status === 404) {
