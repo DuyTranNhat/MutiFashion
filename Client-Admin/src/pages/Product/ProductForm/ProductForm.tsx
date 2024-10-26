@@ -144,7 +144,7 @@ const ProductForm = ({ onSubmit }: Props) => {
                 />
             )}
         </div>
-    );
+    );  
 };
 
 export default ProductForm;

@@ -1,6 +1,14 @@
 import React from 'react'
+import { useAuth } from '../../Context/UseAuth'
+import { useNavigate } from 'react-router-dom'
+import DefaultUser from '/img/DefaultUser.png'
 
 const Topbar = () => {
+    const { isLoggedIn, user, logout } = useAuth()
+    const navigate = useNavigate()
+
+    console.log(user?.imageUrl);
+
     return (
         <div className="container-fluid">
             <div className="row bg-secondary py-1 px-xl-5">
@@ -9,43 +17,43 @@ const Topbar = () => {
                         <a className="text-body mr-3" href="">About</a>
                         <a className="text-body mr-3" href="">Contact</a>
                         <a className="text-body mr-3" href="">Help</a>
-                        <a className="text-body mr-3" href="">FAQs</a>
                     </div>
                 </div>
                 <div className="col-lg-6 text-center text-lg-right">
                     <div className="d-inline-flex align-items-center">
-                        <div className="btn-group">
-                            <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
-                            <div className="dropdown-menu dropdown-menu-right">
-                                <button className="dropdown-item" type="button">Sign in</button>
-                                <button className="dropdown-item" type="button">Sign up</button>
-                            </div>
-                        </div>
+                        {isLoggedIn()
+                            ? (
+                                <div className="btn-group">
+                                    <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">{user?.name}</button>
+                                    <div className="dropdown-menu dropdown-menu-right">
+                                        <button onClick={logout} className="dropdown-item" type="button">Logout</button>
+                                        <button onClick={() => navigate("/profile")} className="dropdown-item" type="button">Profile</button>
+                                    </div>
+                                </div>
+                            )
+                            : (
+                                <div className="btn-group">
+                                    <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
+                                    <div className="dropdown-menu dropdown-menu-right">
+                                        <button className="dropdown-item" type="button">Sign in</button>
+                                        <button className="dropdown-item" type="button">Sign up</button>
+                                    </div>
+                                </div>
+                            )
+                        }
+
                         <div className="btn-group mx-2">
-                            <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
-                            <div className="dropdown-menu dropdown-menu-right">
-                                <button className="dropdown-item" type="button">EUR</button>
-                                <button className="dropdown-item" type="button">GBP</button>
-                                <button className="dropdown-item" type="button">CAD</button>
-                            </div>
-                        </div>
-                        <div className="btn-group">
-                            <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
-                            <div className="dropdown-menu dropdown-menu-right">
-                                <button className="dropdown-item" type="button">FR</button>
-                                <button className="dropdown-item" type="button">AR</button>
-                                <button className="dropdown-item" type="button">RU</button>
-                            </div>
+                            <img src={user?.imageUrl || DefaultUser} style={{ height: "36px", width: "36px" }} alt="" />
                         </div>
                     </div>
                     <div className="d-inline-flex align-items-center d-block d-lg-none">
                         <a href="" className="btn px-0 ml-2">
                             <i className="fas fa-heart text-dark"></i>
-                            <span className="badge text-dark border border-dark rounded-circle" style={{padding: "2px"}}>0</span>
+                            <span className="badge text-dark border border-dark rounded-circle" style={{ padding: "2px" }}>0</span>
                         </a>
                         <a href="" className="btn px-0 ml-2">
                             <i className="fas fa-shopping-cart text-dark"></i>
-                            <span className="badge text-dark border border-dark rounded-circle" style={{padding: "2px"}}>0</span>
+                            <span className="badge text-dark border border-dark rounded-circle" style={{ padding: "2px" }}>0</span>
                         </a>
                     </div>
                 </div>

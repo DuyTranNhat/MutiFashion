@@ -16,6 +16,7 @@ namespace Server.Repository.IRepository
         ISupplierRepository Supplier { get; }
         ICustomerRepository Customer { get; }
         ICategoryRepository Category { get; }
+        IRefreshTokenRepository RefreshToken { get; }
         IVariantValueRepository VariantValue { get; }
         IProductOptionRepository ProductOption { get; }
 

@@ -36,6 +36,8 @@ public partial class MutiFashionContext : DbContext
 
     public virtual DbSet<ProductReview> ProductReviews { get; set; }
 
+    public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
+
     public virtual DbSet<Slide> Slides { get; set; }
 
     public virtual DbSet<Supplier> Suppliers { get; set; }
@@ -298,6 +300,24 @@ public partial class MutiFashionContext : DbContext
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__product_r__produ__4D94879B");
+        });
+
+        modelBuilder.Entity<RefreshToken>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__RefreshT__3214EC077ED9A948");
+
+            entity.ToTable("RefreshToken");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.ExpiredAt).HasColumnType("datetime");
+            entity.Property(e => e.IssuedAt).HasColumnType("datetime");
+            entity.Property(e => e.JwtId).HasMaxLength(255);
+            entity.Property(e => e.Token).HasMaxLength(255);
+
+            entity.HasOne(d => d.User).WithMany(p => p.RefreshTokens)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_RefreshToken_UserId");
         });
 
         modelBuilder.Entity<Slide>(entity =>

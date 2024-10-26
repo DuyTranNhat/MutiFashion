@@ -1,7 +1,7 @@
+import { toast } from "react-toastify"
 import { useEffect, useState } from "react"
 import { SupplierGet } from "../../../Models/Supplier"
 import { supplierGetAPI } from "../../../Services/SupplierService"
-import { toast } from "react-toastify"
 
 type Props = {
     register: any,

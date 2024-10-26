@@ -51,7 +51,6 @@ const VariantDetails = () => {
         });
     };
 
-
     const handleQuantityChange = (delta: number) => {
         setQuantity(prevQuantity => {
             const newQuantity = prevQuantity + delta;
@@ -63,8 +62,6 @@ const VariantDetails = () => {
             return newQuantity;
         });
     };
-
-
 
     return (
         productVariants && variantSelected && selectedValues ? (
@@ -133,7 +130,7 @@ const VariantDetails = () => {
                                 // className="btn btn-primary px-3" onClick={handleAddToCart}
                                 >
                                     <i className="fa fa-shopping-cart mr-1"></i> Add To Cart
-                                </button>a
+                                </button>
                             </div>
                             <div className="d-flex mb-3">
                                 {inavailableError ?
