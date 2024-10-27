@@ -9,6 +9,7 @@ import Login from '../Page/Login/Login'
 import Register from '../Page/Register/Register'
 import Cart from '../Page/Cart/Cart'
 import Checkout from '../Page/Checkout/Checkout'
+import CompletedCheckout from '../Page/Checkout/CompletedCheckout'
 
 const Router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const Router = createBrowserRouter([
             {
                 path: "checkout/",
                 element: <Checkout />
+            },
+            {
+                path: "checkoutSuccess/:idOrder",
+                element: <CompletedCheckout />
             }
         ]
     },

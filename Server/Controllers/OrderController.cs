@@ -24,20 +24,19 @@ namespace Server.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        //[HttpGet("getByID/{id:int}")]
-        //[Authorize]
-        //public async Task<IActionResult> GetCompletedOrderByID([FromRoute] int id)
-        //{
-        //    if (!ModelState.IsValid) return BadRequest(ModelState);
-        //    try
-        //    {
-        //        var order = await _orderService.GetCompletedOrderByIDAsync(id);
-        //        return Ok(order);
-        //    }
-        //    catch (BadHttpRequestException ex) {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+        [HttpGet("getByID/{id:int}")]
+        public async Task<IActionResult> GetCompletedOrderByID([FromRoute] int id)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                var order = await _orderService.GetCompletedOrderByIDAsync(id);
+                return Ok(order);
+            }
+            catch (BadHttpRequestException ex) {
+                return BadRequest(ex.Message);
+            }
+        }
 
 
         [Authorize]

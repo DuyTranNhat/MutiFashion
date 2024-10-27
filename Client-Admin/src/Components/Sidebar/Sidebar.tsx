@@ -1,10 +1,9 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
     const navigate = useNavigate()
-    return (
 
+    return (
         <div className="sidebar pointer pe-4 pb-3">
             <nav className="navbar bg-light navbar-light">
                 <a href="index.html" className="navbar-brand mx-4 mb-3">

@@ -92,14 +92,16 @@ namespace ecommerce_backend.Service
         }
 
 
-        //public async Task<OrderDto> GetCompletedOrderByIDAsync(int orderId)
-        //{
-        //    var order = await _unitOfWork.Order.GetAsync(o => o.OrderId == orderId,
-        //        includeProperties: "OrderDetails.Variant.VariantValues.Value,Customer")
-        //        ?? throw new BadHttpRequestException("Not found an order id");
+        public async Task<OrderDto> GetCompletedOrderByIDAsync(int orderId)
+        {
+            var order = await _unitOfWork.Order.GetAsync(o => o.OrderId == orderId, 
+                includeProperties: "OrderDetails.Variant.VariantValues.Value,Customer" +
+                ",OrderDetails.Variant.Product,OrderDetails.Variant.Images,OrderDetails." +
+                "Variant.VariantValues.ProductOption.Option")
+                ?? throw new BadHttpRequestException("Not found an order id");
 
-        //    var orderDTO = order.ToOrderDetailsWithoutImagesDto(order.OrderDetails, attributes);
-        //    return orderDTO;
-        //}
+            var orderDTO = order.ToOrderDto();
+            return orderDTO;
+        }
     }
 }
