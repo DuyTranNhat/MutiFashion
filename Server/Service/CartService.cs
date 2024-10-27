@@ -37,17 +37,6 @@ namespace Server.Service
             await _unitOfWork.Cart.DecreaseQuantityAsync(cartId);
         }
 
-        //public async Task Tolt(int cartId)
-        //{
-        //    Cart? existingCart = await _unitOfWork.Cart.GetAsync(c => c.CartId == cartId, includeProperties: "Variant")
-        //        ?? throw new NotFoundException("Cart is not existed!");
-
-        //    if (existingCart.Quantity == 0)
-        //        throw new BadHttpRequestException("Quantity cannot be reduced further as it is already zero.");
-
-        //    await _unitOfWork.Cart.DecreaseQuantityAsync(cartId);
-        //}
-
         public async Task<Cart> AddItemAsync(CreateCartDto cartDto)
         {
             if (await _unitOfWork.Customer.GetAsync(c => c.CustomerId == cartDto.CustomerId) == null) 

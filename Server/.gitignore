@@ -1,0 +1,58 @@
+﻿# Visual Studio
+.vs/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.sln.ide
+
+# DotNet
+project.lock.json
+project.fragment.lock.json
+
+# Logs
+logs/
+*.log
+
+# NCrunch
+*.ncrunch*
+nCrunchTemp_*
+
+# Test results
+TestResults/
+
+# Visual Studio Code settings
+.vscode/
+
+# Publish results
+publish/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# Secrets
+secrets.json
+
+# Ignore appsettings.json
+appsettings.json
+
+# Ignore .http files
+*.http
+
+# Azure Web Apps
+*.app_offline.htm
