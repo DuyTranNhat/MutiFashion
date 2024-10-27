@@ -11,6 +11,7 @@ namespace Server.Repository
         private IDbContextTransaction _transaction;
 
         public ICartRepository Cart { get; }
+        public IOrderRepository Order { get; }
         public IValueRepository Value { get; }
         public IImageRepository Image { get; }
         public IBannerRepository Banner { get; }
@@ -20,6 +21,7 @@ namespace Server.Repository
         public ICustomerRepository Customer { get; }
         public ISupplierRepository Supplier { get; }
         public ICategoryRepository Category { get; }
+        public IOrderDetailRepository OrderDetail { get; }
         public IVariantValueRepository VariantValue { get; }
         public IProductOptionRepository ProductOption { get; }
         public IRefreshTokenRepository RefreshToken { get; }
@@ -29,6 +31,7 @@ namespace Server.Repository
         {
             _db = db;
             Cart = new CartRepository(db);
+            Order = new OrderRepository(db);
             Value = new ValueRepository(db);
             Image = new ImageRepository(db);
             Banner = new BannerRepository(db);
@@ -38,9 +41,10 @@ namespace Server.Repository
             Customer = new CustomerRepository(db);
             Supplier = new SupplierRepository(db);
             Category = new CategoryRepository(db);
+            OrderDetail = new OrderDetailRepository(db);    
             VariantValue = new VariantValueRepository(db);
-            RefreshToken = new RefreshTokenRepository(db);
             ProductOption = new ProductOptionRepository(db);
+            RefreshToken = new RefreshTokenRepository(db);
         }
        
         public async Task SaveAsync()

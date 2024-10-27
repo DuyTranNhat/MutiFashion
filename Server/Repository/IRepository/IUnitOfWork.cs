@@ -7,6 +7,7 @@ namespace Server.Repository.IRepository
     public interface IUnitOfWork : IDisposable
     {
         ICartRepository Cart { get; }
+        IOrderRepository Order { get; }
         IValueRepository Value { get; }
         IImageRepository Image { get; }
         IBannerRepository Banner { get; }
@@ -16,6 +17,7 @@ namespace Server.Repository.IRepository
         ISupplierRepository Supplier { get; }
         ICustomerRepository Customer { get; }
         ICategoryRepository Category { get; }
+        IOrderDetailRepository OrderDetail { get; }
         IRefreshTokenRepository RefreshToken { get; }
         IVariantValueRepository VariantValue { get; }
         IProductOptionRepository ProductOption { get; }

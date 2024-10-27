@@ -151,7 +151,7 @@ const Cart = () => {
                         <div className="border-bottom pb-2">
                             <div className="d-flex justify-content-between mb-3">
                                 <h6>Subtotal</h6>
-                                <h6>{total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h6>
+                                <h6>{total.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h6>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <h6 className="font-weight-medium">Shipping</h6>
@@ -161,7 +161,7 @@ const Cart = () => {
                         <div className="pt-2">
                             <div className="d-flex justify-content-between mt-2">
                                 <h5>Total</h5>
-                                <h5>{total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h5>
+                                <h5>{total.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h5>
                             </div>
                             <button
                                 onClick={() => navigate("/checkout")}

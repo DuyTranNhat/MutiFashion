@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jU9WEhFK0C80XJpqmvx9rW0ymQfuA9ln3Cahy1RgKOs=",
+  "Hash": "9WVxG4pz/R/1bKbJuLZS7CbBwnaDa1ojSyzbCtLamGY=",
   "Source": "Server",
   "BasePath": "_content/Server",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\0196b6a5-b48b-4576-a1c8-5adaaff38872_vn-11134207-7r98o-lxbaj903xg49b0.webp",
+      "SourceId": "Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\",
+      "BasePath": "_content/Server",
+      "RelativePath": "images/0196b6a5-b48b-4576-a1c8-5adaaff38872_vn-11134207-7r98o-lxbaj903xg49b0.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\0196b6a5-b48b-4576-a1c8-5adaaff38872_vn-11134207-7r98o-lxbaj903xg49b0.webp"
+    },
     {
       "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\491da2e1-7c5f-4c35-8c0e-6e1a4789992b_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
       "SourceId": "Server",
@@ -36,12 +55,12 @@
       "OriginalItemSpec": "wwwroot\\images\\491da2e1-7c5f-4c35-8c0e-6e1a4789992b_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
     },
     {
-      "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\91396fd0-cf49-4de0-8009-a4424aa853ea_vn-11134207-7r98o-lsbfnsmevr2cf4.webp",
+      "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\55025b28-2f86-443b-b7d8-266a77186e07_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
       "SourceId": "Server",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
-      "RelativePath": "images/91396fd0-cf49-4de0-8009-a4424aa853ea_vn-11134207-7r98o-lsbfnsmevr2cf4.webp",
+      "RelativePath": "images/55025b28-2f86-443b-b7d8-266a77186e07_vn-11134207-7r98o-lxtcujiemg9nbe.webp",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,7 +71,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\91396fd0-cf49-4de0-8009-a4424aa853ea_vn-11134207-7r98o-lsbfnsmevr2cf4.webp"
+      "OriginalItemSpec": "wwwroot\\images\\55025b28-2f86-443b-b7d8-266a77186e07_vn-11134207-7r98o-lxtcujiemg9nbe.webp"
+    },
+    {
+      "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\7dc43664-4c68-4bc6-8232-c9a9fdaca72e_vn-11134207-7r98o-lxbaj903w1crb9.webp",
+      "SourceId": "Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\",
+      "BasePath": "_content/Server",
+      "RelativePath": "images/7dc43664-4c68-4bc6-8232-c9a9fdaca72e_vn-11134207-7r98o-lxbaj903w1crb9.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\7dc43664-4c68-4bc6-8232-c9a9fdaca72e_vn-11134207-7r98o-lxbaj903w1crb9.webp"
     },
     {
       "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\d5cfaf2d-4d64-4cf3-b458-cffdc3804b03_vn-11134207-7r98o-lxbaj8ztwg6161.webp",

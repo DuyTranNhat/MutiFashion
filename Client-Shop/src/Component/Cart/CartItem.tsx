@@ -24,7 +24,8 @@ const CartItem = ({ cart, handleIncrease, handleDecrease, handleRemoveCart }: Pr
                 </ul>
             </td>
             <td className="align-middle">
-                {cart.variant.salePrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+                {cart.variant.salePrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+            </td>
             <td className="align-middle">
                 <div className='d-flex align-items-center flex-column justify-content-center' >
                     <div className="input-group quantity mx-auto" style={{ width: "100px" }}>
@@ -44,8 +45,7 @@ const CartItem = ({ cart, handleIncrease, handleDecrease, handleRemoveCart }: Pr
                 </div>
             </td>
             <td className="align-middle">
-                {cart?.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
-
+                {cart?.totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
             </td>
             <td className="align-middle">
                 <button className="btn btn-sm btn-danger"

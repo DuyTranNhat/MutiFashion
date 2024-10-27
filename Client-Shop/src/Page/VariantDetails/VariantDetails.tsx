@@ -84,7 +84,7 @@ const VariantDetails = () => {
                 }
                 addCartAPI(cartPost)
                     .then(res => {
-                        if (res?.status === 201)
+                        if (res?.status === 200)
                             toast.success(`Add ${quantity} items!`)
                     }).catch(error => toast.success(error))
             } else { navigate("/access/login") }
@@ -118,7 +118,7 @@ const VariantDetails = () => {
                                 <small className="pt-1">{productVariants.totalPreviews + " previews (Xu ly total nha)"}</small>
                             </div>
                             <h3 className="font-weight-semi-bold mb-4">
-                                {variantSelected.salePrice?.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                                {variantSelected.salePrice?.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                             </h3>
 
                             {productVariants.attributes.map(attribute => {

@@ -24,14 +24,13 @@ namespace Server.Controllers
             _cartService = cartService;
         }
 
-        //// Lấy tất cả giỏ hàng
         [HttpGet("getCartsUser/{idUser:int}")]
         [Authorize]
         public async Task<IActionResult> GetCartByUser([FromRoute] int idUser,
                  [FromQuery] int page = 1, [FromQuery] int limit = 5)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            var result = await _cartService.getCartByUserAsync(idUser, page, limit);
+            var result = await _cartService.GetCartByUserAsync(idUser, page, limit);
             return Ok(result);
         }
 
@@ -42,7 +41,7 @@ namespace Server.Controllers
             try
             {
                 var result = await _cartService.AddItemAsync(cartDto);
-                return Ok(result);
+                return Ok(result.CartId);
             }
             catch (NotFoundException ex)
             {

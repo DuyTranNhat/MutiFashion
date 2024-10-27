@@ -40,7 +40,7 @@ export const removeCartAPI = async (idCart: number) => {
     }   
 }
 
-export const CartGetAPI = async (idUser: number, page: number, limit: number) => {
+export const CartGetAPI = async (idUser: number, page: number, limit: number | null = 30) => {
     try {
         const data = await axiosInstance.get<CartReponse>(`${CART_API}/getCartsUser/${idUser}`, {
             params: { page, limit }

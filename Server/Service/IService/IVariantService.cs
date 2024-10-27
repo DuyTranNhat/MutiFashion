@@ -11,5 +11,6 @@ namespace Server.Service.IService
         Task<IEnumerable<VariantImageDto>> getImagesByIDVariantAsync(int variantID);
         Task<IEnumerable<Image>> UploadListImgAsync(UploadListRequestDto imageRequest, int variantID);
         Task<QueryObject<VariantDto>> FilterVariantsAsync(VariantFilterDto filterRequest, int page, int limit);
+        Task DecreaseQuantityAsync(int variantId, int quantity);
     }
 }

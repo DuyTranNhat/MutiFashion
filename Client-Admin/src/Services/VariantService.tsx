@@ -17,7 +17,7 @@ export const VariantGetAPI = async (page: number = 1, litmit: number = 12) => {
     }
 }
 
-export const VariantFilterAPI = async (filterQuery: FilterVariantPost, page: number = 1, litmit: number = 12) => {
+export const VariantFilterAPI = async (filterQuery: FilterVariantPost, page: number = 1, litmit: number = 4) => {
     try {
         const data = await axios.post<VariantResponse>(`${VARIANT_API}/filterVariants`, filterQuery, {
             params: {

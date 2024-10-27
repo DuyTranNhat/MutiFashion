@@ -88,6 +88,9 @@ const Shop = () => {
             <div className="row px-xl-5">
                 <div className="col-lg-3 col-md-4">
                     <CategoryNav handleToggleCheckbox={handleFilterValues} />
+                    <AttributeNav handleToggleCheckbox={function (valueId: number, attributeId: number, checked: boolean): void {
+                        throw new Error('Function not implemented.');
+                    } }  />
                 </div>
                 <div className="col-lg-9 col-md-8">
                     <div className='row justify-content-center'>

@@ -2,7 +2,8 @@
 
 namespace Server.Repository.IRepository
 {
-    public interface IVariantRepository: IRepository<Variant>
+    public interface IVariantRepository : IRepository<Variant>
     {
+        Task UpdateQuantityAsync(int variantID, int quantityDecreased);
     }
 }

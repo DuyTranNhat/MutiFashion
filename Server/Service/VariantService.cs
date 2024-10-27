@@ -108,5 +108,16 @@ namespace Server.Service
                 GetAllAsync(i => i.VariantId == variantID);
             return reponseData;
         }
+
+        public async Task DecreaseQuantityAsync(int variantID, int quantityDecreased)
+        {
+            var variant = await _unitOfWork.Variant.GetAsync(v => v.VariantId == variantID)
+                ?? throw new NotFoundException("Variant Not Found");
+
+            if (variant.Quantity < quantityDecreased)
+                throw new BadHttpRequestException("Cannot provide enough quantity, Please choose proper ones!");
+
+            await _unitOfWork.Variant.UpdateQuantityAsync(variantID, quantityDecreased);
+        }
     }
 }

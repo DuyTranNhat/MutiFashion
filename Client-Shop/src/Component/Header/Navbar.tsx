@@ -57,12 +57,13 @@ const Navbar = () => {
                                 </div>
                                 <a href="contact.html" className="nav-item nav-link">Contact</a>
                             </div>
-                            <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
+                            <div className="navbar-nav ml-auto py-0 d-none d-lg-block"
+                                onClick={() => navigate('/cart')}
+                            >
                                 <a className="btn px-0 ml-3">
                                     <i className="fas fa-shopping-cart text-primary"></i>
                                     <span className="badge text-secondary border border-secondary rounded-circle"
                                         style={{ paddingTop: "2px" }}
-                                        onClick={() => navigate('/cart')}
                                     >
                                         0
                                     </span>

@@ -23,6 +23,10 @@ const Router = createBrowserRouter([
         element: <AdminLayout />,
         children: [
             {
+                path: "",
+                element: <Variant />
+            },
+            {
                 path: "banner",
                 element: <Banner />
             },

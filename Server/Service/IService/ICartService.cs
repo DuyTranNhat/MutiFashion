@@ -11,7 +11,7 @@ namespace Server.Service.IService
         Task<Cart> RemoveItemAsync(int id);
         Task IncreaseQuantityAsync(int cartId);
         Task DecreaseQuantityAsync(int cartId);
-        Task<QueryObject<CartDto>> getCartByUserAsync(int idUser, int page, int limit);
-        Task<CartDto> AddItemAsync(CreateCartDto cartDto);
+        Task<Cart> AddItemAsync(CreateCartDto cartDto);
+        Task<QueryObject<CartDto>> GetCartByUserAsync(int idUser, int page, int limit);
     }
 }

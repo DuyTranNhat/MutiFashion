@@ -37,35 +37,45 @@ namespace Server.Service
             await _unitOfWork.Cart.DecreaseQuantityAsync(cartId);
         }
 
-        public async Task<CartDto> AddItemAsync(CreateCartDto cartDto)
+        //public async Task Tolt(int cartId)
+        //{
+        //    Cart? existingCart = await _unitOfWork.Cart.GetAsync(c => c.CartId == cartId, includeProperties: "Variant")
+        //        ?? throw new NotFoundException("Cart is not existed!");
+
+        //    if (existingCart.Quantity == 0)
+        //        throw new BadHttpRequestException("Quantity cannot be reduced further as it is already zero.");
+
+        //    await _unitOfWork.Cart.DecreaseQuantityAsync(cartId);
+        //}
+
+        public async Task<Cart> AddItemAsync(CreateCartDto cartDto)
         {
             if (await _unitOfWork.Customer.GetAsync(c => c.CustomerId == cartDto.CustomerId) == null) 
                 throw new NotFoundException ("User is not existed");
             if (await _unitOfWork.Variant.GetAsync(v => v.VariantId == cartDto.VariantId) == null)
                 throw new NotFoundException("Variant is not existed");
 
-            var existingCart = await _unitOfWork.Cart.GetAsync(c => c.Variant
-            .VariantId == cartDto.VariantId && c.CustomerId == cartDto.CustomerId);
-
-            if (existingCart.Quantity >= existingCart.Variant.Quantity)
-                throw new BadHttpRequestException("Quantity in stock is not enough.");
+            var existingCart = await _unitOfWork.Cart.GetAsync(c => c.Variant.VariantId == cartDto
+                .VariantId && c.CustomerId == cartDto.CustomerId, includeProperties: "Variant");
 
             if (existingCart != null)
             {
+                if (existingCart.Quantity >= existingCart.Variant.Quantity)
+                throw new BadHttpRequestException("Quantity in stock is not enough.");
                 var updatedCart = await _unitOfWork.Cart.UpdateAsync(cartDto);
-                return updatedCart.ToCartDto();
+                return updatedCart;
             }
 
             else
             {
-                var cartModel = cartDto.ToCartFromCreate();
-                await _unitOfWork.Cart.AddAsync(cartModel);
+                var newCart = cartDto.ToCartFromCreate();
+                await _unitOfWork.Cart.AddAsync(newCart);
                 await _unitOfWork.SaveAsync();
-                return existingCart.ToCartDto();
+                return newCart;
             }
         }
 
-        public async Task<QueryObject<CartDto>> getCartByUserAsync(int idUser, int page, int limit)
+        public async Task<QueryObject<CartDto>> GetCartByUserAsync(int idUser, int page, int limit)
         {
             var carts = await _unitOfWork.Cart.GetAllAsync(c => c.Customer.
             CustomerId == idUser , includeProperties: "Variant.Images," +

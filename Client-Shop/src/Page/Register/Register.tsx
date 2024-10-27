@@ -43,7 +43,7 @@ const Register = () => {
                             type="text"
                             id="email"
                             className="form-control"
-                            placeholder="email@example.com"
+                            placeholder="your name"
                             {...register('name')} />
                         {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
                     </div>

@@ -8,6 +8,7 @@ import LoginLayout from '../CustomerLayout/LoginLayout'
 import Login from '../Page/Login/Login'
 import Register from '../Page/Register/Register'
 import Cart from '../Page/Cart/Cart'
+import Checkout from '../Page/Checkout/Checkout'
 
 const Router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const Router = createBrowserRouter([
             {
                 path: "cart/",
                 element: <Cart />
+            },
+            {
+                path: "checkout/",
+                element: <Checkout />
             }
         ]
     },
