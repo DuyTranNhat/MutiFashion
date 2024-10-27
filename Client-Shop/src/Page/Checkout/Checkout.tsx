@@ -60,7 +60,7 @@ const Checkout = () => {
             const res = await checkoutAPI(user!.customerId, order);
             if (res?.status === 200) {
                 toast.success('Order placed successfully!');
-                navigate(`/completedCheckout/${res.data}`);
+                navigate(`/checkoutSuccess/${res.data.orderId}`);
             }
         } catch (error) {
             toast.error('Failed to place order.');
@@ -69,9 +69,9 @@ const Checkout = () => {
 
     const totalAmount = cartList.reduce((total, item) => total + item.totalPrice, 0);
 
-    const handlePayPalSuccess = (details: any, data: any) => {
-        console.log("Transaction completed by " + details.payer.name.given_name);
-        navigate(`/completedCheckout/${data.orderID}`);
+    const handlePayPalSuccess = (orderID: number) => {
+        toast.success(`Transaction completed by ${user?.name}`);
+        navigate(`/checkoutSuccess/${orderID}`);
     };
 
     const handleSelectMethod = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -193,6 +193,7 @@ const Checkout = () => {
                                 <PayPalButton
                                     idUser={user?.customerId!}
                                     orderPost={order}
+                                    handlePayPalSuccess={handlePayPalSuccess}
                                 />
                             }
                             {

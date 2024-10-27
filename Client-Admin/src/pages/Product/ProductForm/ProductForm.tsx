@@ -20,8 +20,8 @@ const validateSchema = yup.object().shape({
     categoryId: yup.number().nullable().default(-1),
     supplierId: yup.number().nullable().default(-1),
     status: yup.boolean().default(false),
-    salePrice: yup.number().required().min(1000, 'Price must be more 1,000 VNĐ')
-        .max(10000000, 'Price cannot beyond 10,000,000 VNĐ')
+    salePrice: yup.number().required().min(0.01, 'Price must be more $0.01')
+        .max(1000000, 'Price cannot beyond $1000000')
 });
 
 export type ProductForm = {

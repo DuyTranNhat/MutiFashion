@@ -8,9 +8,9 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 const validateSchema = yup.object().shape({
-    fromPrice: yup.number().nullable().min(1000, 'Price must be more 1,000 VNĐ')
+    fromPrice: yup.number().nullable().min(0.01, 'Price must be more 1,000 VNĐ')
         .max(10000000, 'Price cannot beyond 10,000,000 VNĐ'),
-    toPrice: yup.number().nullable().max(10000000, 'Price must be more 1,000 VNĐ')
+    toPrice: yup.number().nullable().max(1000000, 'Price must be more 1,000 VNĐ')
         .max(10000000, 'Price cannot beyond 10,000,000 VNĐ')
 })
 
@@ -121,7 +121,7 @@ const Filter = ({
                                         <input 
                                             className={`form-control ${errors.fromPrice ? 'is-invalid' : ''}`}
                                             id="exampleInputEmail1"
-                                            placeholder='1,000VNĐ'
+                                            placeholder='$0.01'
                                             {...register('fromPrice')}
                                             aria-describedby="emailHelp" />
                                         {errors.fromPrice && <div className="invalid-feedback">{errors.fromPrice.message}</div>}
@@ -135,7 +135,7 @@ const Filter = ({
                                         <input 
                                             className={`form-control ${errors.toPrice ? 'is-invalid' : ''}`}
                                             id="exampleInputEmail1"
-                                            placeholder='10,000,000VNĐ'
+                                            placeholder='$1000000'
                                             aria-describedby="emailHelp" 
                                             {...register('toPrice')}
                                             />

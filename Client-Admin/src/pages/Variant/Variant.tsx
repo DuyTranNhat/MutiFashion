@@ -131,7 +131,7 @@ const Variant = () => {
         {
             label: "Variant's Price",
             render: (variant: VariantGet) =>
-                new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(variant.salePrice),
+                new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(variant.salePrice),
         },
         {
             label: "Variant's Quantity",

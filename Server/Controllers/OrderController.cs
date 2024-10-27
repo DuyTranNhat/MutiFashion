@@ -41,13 +41,13 @@ namespace Server.Controllers
 
         [Authorize]
         [HttpPost("Checkout/customerID/{idCustomer:int}")]
-        public async Task<IActionResult> Checkout([FromRoute] int idCustomer,[FromBody] CreateOrderDto createOrderDto)
+        public async Task<IActionResult> CheckoutCOD([FromRoute] int idCustomer,[FromBody] CreateOrderDto createOrderDto)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
                 var orders = await _orderService.CreateOrderAsync(idCustomer, createOrderDto);
-                return Ok(orders.OrderId);
+                return Ok(orders);
             }
             catch (BadHttpRequestException ex)
             {
@@ -85,7 +85,7 @@ namespace Server.Controllers
             {
                 var response = await _paypalService.CaptureOrder(orderID);
                 var orders = await _orderService.CreateOrderAsync(idUser, createOrderRequest);
-                return Ok(response);
+                return Ok(orders);
             }
             catch (Exception ex)
             {

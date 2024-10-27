@@ -7,9 +7,10 @@ import { ORDER_API } from '../../Utils/constant';
 export type Props = {
     orderPost: CreateOrderRequest,
     idUser: number,
+    handlePayPalSuccess: (idOrder: number) => void
 }
 
-const MyPayPalButton = ({ orderPost, idUser } : Props) => {
+const MyPayPalButton = ({ orderPost, idUser, handlePayPalSuccess } : Props) => {
     return (
         <div>
             <PayPalButton
@@ -32,7 +33,7 @@ const MyPayPalButton = ({ orderPost, idUser } : Props) => {
                         if (response.status !== 200) {
                             throw new Error('Failed to capture order');
                         }
-                        //Handle success
+                        handlePayPalSuccess(response.data.orderId)
                     } catch (error: any) {
                         alert(error.message);
                     }

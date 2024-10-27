@@ -167,7 +167,7 @@ const Cart = () => {
                                 onClick={() => navigate("/checkout")}
                                 className="btn btn-block btn-primary font-weight-bold my-3 py-3"
                             >
-                                Checkout (COD)
+                                Process Checkout
                             </button>
                         </div>
                     </div>
