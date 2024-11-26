@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import AttributeNav from '../../Component/AttributeNav/AttributeNav';
-import { useSearchParams } from 'react-router-dom';
-import { attributeGetAPI } from '../../Service/AttributeService';
-import { AttributeGet } from '../../Model/Attribute';
 import { toast } from 'react-toastify';
 import ProductList from '../../Component/Product/ProductList';
 import { ProductGetAPI, ProductSearchAPI } from '../../Service/ProductService';
@@ -88,9 +84,9 @@ const Shop = () => {
             <div className="row px-xl-5">
                 <div className="col-lg-3 col-md-4">
                     <CategoryNav handleToggleCheckbox={handleFilterValues} />
-                    <AttributeNav handleToggleCheckbox={function (valueId: number, attributeId: number, checked: boolean): void {
+                    {/* <AttributeNav handleToggleCheckbox={function (valueId: number, attributeId: number, checked: boolean): void {
                         throw new Error('Function not implemented.');
-                    } }  />
+                    } }  /> */}
                 </div>
                 <div className="col-lg-9 col-md-8">
                     <div className='row justify-content-center'>
@@ -103,14 +99,14 @@ const Shop = () => {
                             col={4}
                             existedProducts={filteredProducts}
                         />}
+                    <Pagination
+                        onPageChange={handlePageChange}
+                        pageSize={page?.pageSize!}
+                        currentPage={page?.currentPage!}
+                        totalItems={page?.totalItems!}
+                        totalPages={page?.totalPages!}
+                    />
                 </div>
-                <Pagination
-                    onPageChange={handlePageChange}
-                    pageSize={page?.pageSize!}
-                    currentPage={page?.currentPage!}
-                    totalItems={page?.totalItems!}
-                    totalPages={page?.totalPages!}
-                />
             </div>
         </div>
     );

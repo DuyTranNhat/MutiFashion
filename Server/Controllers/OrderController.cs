@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Server.Repository.IRepository;
 using Server.Dtos.Paypal;
 using Server.Models;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore.Update.Internal;
+using ecommerce_backend.Dtos.Order;
 
 namespace Server.Controllers
 {
@@ -23,21 +26,6 @@ namespace Server.Controllers
             _orderService = orderService;
             _unitOfWork = unitOfWork;
         }
-
-        [HttpGet("getByID/{id:int}")]
-        public async Task<IActionResult> GetCompletedOrderByID([FromRoute] int id)
-        {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            try
-            {
-                var order = await _orderService.GetCompletedOrderByIDAsync(id);
-                return Ok(order);
-            }
-            catch (BadHttpRequestException ex) {
-                return BadRequest(ex.Message);
-            }
-        }
-
 
         [Authorize]
         [HttpPost("Checkout/customerID/{idCustomer:int}")]
@@ -86,6 +74,56 @@ namespace Server.Controllers
                 var response = await _paypalService.CaptureOrder(orderID);
                 var orders = await _orderService.CreateOrderAsync(idUser, createOrderRequest);
                 return Ok(orders);
+            }
+            catch (Exception ex)
+            {
+                var error = new { ex.GetBaseException().Message };
+                return BadRequest(error);
+            }
+        }
+
+        [HttpGet("getByID/{id:int}")]
+        public async Task<IActionResult> GetCompletedOrderByID([FromRoute] int id)
+        {
+            try
+            {
+                var order = await _orderService.GetCompletedOrderByIDAsync(id);
+                return Ok(order);
+            }
+            catch (BadHttpRequestException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("getOrdersBycus")]
+        public async Task<IActionResult> GetOrdersByCus([FromQuery] int page = 1, [FromQuery] int limit = 12)
+        {
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("User ID không t?n t?i trong token.");
+
+            var result = await _orderService.GetOrdersByCusAsync(userId, page, limit);
+            return Ok(result);
+        }
+
+        [HttpGet("getOrders")]
+        public async Task<IActionResult> GetOrders([FromQuery] int page = 1, [FromQuery] int limit = 12)
+        {
+            var result = await _orderService.GetOrdersAsync(page, limit);
+            return Ok(result);
+        }
+
+        [HttpPut("update-status-order/{orderID}")]
+        public async Task<IActionResult> UpdateStatus([FromRoute] int orderID, [FromBody] UpdateStatusDto UpdateStatus)
+        {
+
+            try
+            {
+                var response = await _orderService.UpdateStatusAsync(orderID, UpdateStatus);
+                if (!response) return NotFound();
+                return NoContent();
             }
             catch (Exception ex)
             {

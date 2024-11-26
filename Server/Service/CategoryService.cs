@@ -24,11 +24,20 @@ namespace Server.Service
             return category.ToCategoryDto();
         }
 
+        public async Task<IEnumerable<CategoryDto>> GetActiveCategoriesAsync()
+        {
+            var activeCategories = await _unitOfWork.Category.GetAllAsync(c => c.ActiveStatus ?? true);
+            if (activeCategories == null) return null;
+            var categoriesDto = activeCategories.Select(c => c.ToCategoryDto()).ToList();
+            return categoriesDto;
+        }
+
         public async Task<CategoryDto?> getByIDAsync(int id)
         {
             Category? categoryExisting = await _unitOfWork.Category.GetAsync(c => c.CategoryId == id);
             if (categoryExisting != null)
                 return categoryExisting.ToCategoryDto();
+            
             return null;
         }
         

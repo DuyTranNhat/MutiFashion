@@ -2,6 +2,7 @@ import axios from "axios";
 import { FilterVariantPost, ImageGet, VariantResponse } from "../Models/Variant";
 import { VARIANT_API } from "../Utils/constant";
 import { handleError } from "../Helpers/ErrorHandler";
+import { VariantUpdateDto } from "../pages/Variant/Details/FormVariantDetails";
 
 export const VariantGetAPI = async (page: number = 1, litmit: number = 12) => {
     try {
@@ -11,6 +12,24 @@ export const VariantGetAPI = async (page: number = 1, litmit: number = 12) => {
                 limit: litmit,
             },
         });
+        return data;
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+export const VariantUpdatedGet = async (idVariant: number) => {
+    try {
+        const data = await axios.get<VariantUpdateDto>(`${VARIANT_API}/get-updated-variant/${idVariant}`);
+        return data;
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+export const VariantUpdatedPost = async (variantUpdated: VariantUpdateDto) => {
+    try {
+        const data = await axios.put<VariantUpdateDto>(`${VARIANT_API}/update`, variantUpdated);
         return data;
     } catch (error) {
         handleError(error)

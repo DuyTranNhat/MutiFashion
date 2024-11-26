@@ -24,6 +24,18 @@ namespace Server.Mapper
             };
         }
 
+        public static VariantUpdateDto ToVariantUpdatedDto(this Variant variant)
+        {
+
+            return new VariantUpdateDto
+            {
+                Status = variant.Status,
+                Name = variant.Product.Name,
+                VariantId = variant.VariantId,
+                Description = variant.Product.Description,
+            };
+        }
+
         public static VariantImageDto ToVariantImageDto(this Image img)
         {
 

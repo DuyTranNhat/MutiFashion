@@ -10,6 +10,7 @@ namespace Server.Service.IService
 {
     public interface ICategoryService
     {
+        Task<IEnumerable<CategoryDto>> GetActiveCategoriesAsync();
         Task<CategoryDto> CreateAsync(CreateCategoryDto categoryDto);
         Task<QueryObject<CategoryDto>> GetCategoriesAsync(int page, int limit);
         Task<CategoryDto> UpdateAsync(int id, UpdateCategoryDto supplierDto);

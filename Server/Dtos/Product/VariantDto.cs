@@ -1,4 +1,5 @@
 ﻿using Server.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Server.Dtos.Product
 {
@@ -16,6 +17,15 @@ namespace Server.Dtos.Product
         public virtual ICollection<VariantValueDto> VariantValues { get; set; } = new List<VariantValueDto>();
     }
 
+    public class VariantUpdateDto
+    {
+        [Required]
+        public int VariantId { get; set; }  
+        public string Name { get; set; }
+        public bool Status { get; set; }
+        public string? Description { get; set; }
+    }
+
     public class VariantValueDto
     {
         public int ValueId { get; set; }
@@ -23,6 +33,7 @@ namespace Server.Dtos.Product
         public int AttributeID { get; set; }
         public string AttributeName { get; set; }
     }
+
     public class VariantImageDto
     {
         public int ImageId { get; set; }

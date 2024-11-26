@@ -67,6 +67,11 @@
   border-radius: 50px;
 }
 
+.btn-success {
+  background: #2ecc71;
+  color: white;
+}
+
 /*** Layout ***/
 .sidebar {
   position: fixed;
@@ -282,8 +287,6 @@
   border-radius: 5px;
   position: relative;
 }
-
-
 
 .tags-container {
   display: flex;

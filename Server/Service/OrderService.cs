@@ -1,6 +1,7 @@
 ﻿using ecommerce_backend.Dtos.Order;
 using Server.Dtos.Order;
 using Server.Exceptions;
+using Server.Helper;
 using Server.Mapper;
 using Server.Models;
 using Server.Repository.IRepository;
@@ -102,6 +103,38 @@ namespace ecommerce_backend.Service
 
             var orderDTO = order.ToOrderDto();
             return orderDTO;
+        }
+
+        public async Task<QueryObject<OrderDto>> GetOrdersAsync(int page, int limit)
+        {
+            var orders = await _unitOfWork.Order.GetAllAsync(includeProperties:
+             "OrderDetails.Variant.VariantValues.Value,Customer,OrderDetails" +
+             ".Variant.Product,OrderDetails.Variant.Images,OrderDetails." +
+             "Variant.VariantValues.ProductOption.Option");
+
+            var orderQuery = orders.Select(o => o.ToOrderDto()).FilterPage(page, limit);
+
+            return orderQuery;
+        }
+
+        public async Task<QueryObject<OrderDto>> GetOrdersByCusAsync(string id, int page, int limit)
+        {
+            var orders = await _unitOfWork.Order.GetAllAsync(o => o.CustomerId.ToString() == id , includeProperties: 
+                "OrderDetails.Variant.VariantValues.Value,Customer,OrderDetails" +
+                ".Variant.Product,OrderDetails.Variant.Images,OrderDetails." +
+                "Variant.VariantValues.ProductOption.Option");
+
+            var orderQuery = orders.Select(o => o.ToOrderDto()).FilterPage(page, limit);
+
+            return orderQuery;
+        }
+
+        public async Task<bool> UpdateStatusAsync(int orderID, UpdateStatusDto updateStatus)
+        {
+            var updated = _unitOfWork.Order.GetAsync(c => c.OrderId == orderID);
+            if (updated == null) return false;
+            await _unitOfWork.Order.UpdateStatusAsync(orderID, updateStatus);
+            return true;
         }
     }
 }

@@ -66,6 +66,34 @@ namespace Server.Controllers
             }
         }
 
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateVariant([FromBody] VariantUpdateDto updatedVariant)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var result = await _variantService.UpdateVariantAsync(updatedVariant);
+            if (!result) return NotFound();
+            return NoContent();
+        }
+
+        [HttpGet("get-updated-variant/{variantID:int}")]
+        public async Task<IActionResult> GetUpdatedVariant([FromRoute] int variantID)
+        {
+            try
+            {
+                var result = await _variantService.GetUpdatedVariant(variantID);
+                if (result == null) return null;
+                return Ok(result);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpDelete("deleteImageVariant/{imageId}")]
         public async Task<IActionResult> DeleteImage([FromRoute] int imageId)
         {

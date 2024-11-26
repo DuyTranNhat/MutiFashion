@@ -4,6 +4,7 @@ namespace Server.Dtos.Product
 {
     public class CreateProductWithVariantsDto
     {
+        [Required]
         public string Name { get; set; }
         public decimal SalePrice { get; set; }
         public int? CategoryId { get; set; }

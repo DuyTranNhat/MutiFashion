@@ -93,7 +93,7 @@ const ProductForm = ({ onSubmit }: Props) => {
 
             options: attributePost,
         };
-
+        console.log(dataSubmit);
         onSubmit(dataSubmit, image)
     };
 
@@ -119,10 +119,10 @@ const ProductForm = ({ onSubmit }: Props) => {
                     </li>
                 ))}
             </ul>
+            <div className="position-absolute" style={{ position: 'absolute', top: 0, right: 240 }}>
+                <UploadImage handleSetImage={handleSetImage} />
+            </div>
             <form onSubmit={handleSubmit(hanleProductForm)}>
-                <div className="position-absolute" style={{ position: 'absolute', top: 0, right: 240 }}>
-                    <UploadImage handleSetImage={handleSetImage} />
-                </div>
                 <div style={{ height: '240px' }}></div>
                 {tab === GENERALINFORM && (
                     <GeneralForm
@@ -144,7 +144,7 @@ const ProductForm = ({ onSubmit }: Props) => {
                 />
             )}
         </div>
-    );  
+    );
 };
 
 export default ProductForm;

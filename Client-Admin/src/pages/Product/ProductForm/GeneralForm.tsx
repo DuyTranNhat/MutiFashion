@@ -2,6 +2,8 @@ import { toast } from "react-toastify"
 import { useEffect, useState } from "react"
 import { SupplierGet } from "../../../Models/Supplier"
 import { supplierGetAPI } from "../../../Services/SupplierService"
+import { CategoryGet } from "../../../Models/Category"
+import { categoryGetAPI } from "../../../Services/CategoryService"
 
 type Props = {
     register: any,
@@ -13,12 +15,20 @@ export const GeneralForm = ({
     error
 }: Props) => {
     const [suppliers, setSuppliers] = useState<SupplierGet[]>([]);
+    const [categories, setCategories] = useState<CategoryGet[]>([])
 
     useEffect(() => {
         supplierGetAPI()
             .then((res) => {
                 if (res?.data) {
                     setSuppliers(res?.data.items)
+                }
+            }).catch(error => toast.error(error))
+
+        categoryGetAPI(1, 100)
+            .then(res => {
+                if (res?.data) {
+                    setCategories(res?.data.items)
                 }
             }).catch(error => toast.error(error))
     }, [])
@@ -34,11 +44,11 @@ export const GeneralForm = ({
                     {...register('name')}
                 />
                 <label htmlFor="name">Product's Name</label>
-                {error.name && 
-                <>
-                    {toast.error(error.name.message)}
-                    <div className="invalid-feedback">{error.name.message}</div>
-                </>
+                {error.name &&
+                    <>
+                        {toast.error(error.name.message)}
+                        <div className="invalid-feedback">{error.name.message}</div>
+                    </>
                 }
             </div>
 
@@ -87,14 +97,14 @@ export const GeneralForm = ({
                 {...register('categoryId')}
             >
                 <option value={-1}>Select Category</option>
-                {/* {attributes.map(attribute => (
+                {categories.map(category => (
                     <option
-                        key={attribute.optionID}
-                        value={attribute.optionID}
+                        key={category.categoryId}
+                        value={category.categoryId}
                     >
-                        {attribute.name}
+                        {category.name}
                     </option>
-                ))} */}
+                ))}
             </select>
             {error.categoryId && <div className="invalid-feedback">{error.categoryId.message}</div>}
 

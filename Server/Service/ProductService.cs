@@ -1,6 +1,7 @@
 ﻿using ecommerce_backend.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Server.Dtos.Product;
+using Server.Exceptions;
 using Server.Extensions;
 using Server.Helper;
 using Server.Mapper;

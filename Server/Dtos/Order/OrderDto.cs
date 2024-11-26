@@ -42,4 +42,9 @@ namespace ecommerce_backend.Dtos.Order
 
         public decimal Price { get; set; }
     }
+
+    public class UpdateStatusDto
+    {
+        public string StatusOrder { get; set; }
+    }
 }

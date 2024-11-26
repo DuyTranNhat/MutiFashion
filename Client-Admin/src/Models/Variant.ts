@@ -47,3 +47,8 @@ export type ImageGet = {
     imageUrl: string;
   }
   
+export type VariantUpdateDto = {
+    name: string;
+    status: boolean;
+    description: string | null;
+}

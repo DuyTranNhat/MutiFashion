@@ -31,13 +31,7 @@ const Variant = () => {
     }, [])
 
     const handlePageChange = (pageNumber: number) => {
-        VariantGetAPI(pageNumber, PAGE_LIMIT_VARIANT)
-            .then(res => {
-                if (res?.data) {
-                    setVariants(res?.data.items)
-                    setPageObject(res?.data.page)
-                }
-            }).catch(error => toast.error(error))
+        onSubmitFilter(filterPost, pageNumber)
     }
 
     const handleClickRecordTB = (idVariant: number) =>
@@ -47,15 +41,32 @@ const Variant = () => {
         setFilterPost(prev => ({ ...prev, keyWord: e.target.value }))
     }
 
-    const handleSelectedSupplier = (idSupplier: number) => {
-        setFilterPost(prev => ({ ...prev, supplierID: idSupplier }))
+    const handleSelectedSupplier = (supplierID: number) => {
+        setFilterPost(prev => ({ ...prev, supplierID }))
+    }
+
+    const handleSelectedCategory = (categoryID: number) => {
+        setFilterPost(prev => ({ ...prev, categoryID }))
     }
 
     const handleOnchangeSku = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilterPost(prev => ({ ...prev, skuId: e.target.value }))
     }
 
-    const onSubmitFilter = (filterForm: FilterForm) => {
+    const handleClearForm = () => {
+        setFilterPost({
+            categoryID: null, fromPrice: null, keyWord: null,
+            skuId: null, supplierID: null, toPrice: null
+        } as FilterVariantPost)
+
+        handlePageChange(1)
+    }
+
+    const onSubmitFilter = (filterForm: FilterForm, page: number = 1) => {
+        if (typeof page !== "number" || isNaN(page)) {
+            page = 1; 
+        }
+    
         const dataSubmit: FilterVariantPost = {
             categoryID: filterPost.categoryID,
             keyWord: filterPost.keyWord,
@@ -63,16 +74,21 @@ const Variant = () => {
             supplierID: filterPost.supplierID,
             fromPrice: filterForm.fromPrice,
             toPrice: filterForm.toPrice,
-        }
-        VariantFilterAPI(dataSubmit)
+        };
+    
+        setFilterPost(dataSubmit);
+    
+        VariantFilterAPI(dataSubmit, page, PAGE_LIMIT_VARIANT)
             .then(res => {
                 if (res?.data) {
-                    setVariants(res?.data.items)
-                    setPageObject(res?.data.page)
-                    toast.success("Success")
+                    setVariants(res?.data.items);
+                    setPageObject(res?.data.page);
+                    toast.success("Success");
                 }
-            }).catch(error => toast.error(error))
-    }
+            })
+            .catch(error => toast.error(error));
+    };
+    
 
     const configs = [
         {
@@ -124,7 +140,6 @@ const Variant = () => {
                         )
                         )
                     }
-
                 </ul>
             ),
         },
@@ -149,9 +164,11 @@ const Variant = () => {
                         <h3 className='m-auto my-3' >Filter Variants</h3>
                     </div>
                     <Filter
+                        handleClearForm={handleClearForm}
                         onSubmitFilter={onSubmitFilter}
                         handleOnchangeSku={handleOnchangeSku}
                         handleOnchangeKeyword={handleOnchangeKeyword}
+                        handleSelectedCategory={handleSelectedCategory}
                         handleSelectedSupplier={handleSelectedSupplier}
                     />
                     <div className='d-flex' >

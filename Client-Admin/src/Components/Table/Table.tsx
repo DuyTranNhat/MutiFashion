@@ -5,9 +5,8 @@ type Props = {
 };
 
 const Table = ({ configs, data, onClickRecord }: Props) => {
-
     const renderedRows = data.map((item: any, index: number) => {
-        const id = item.id || item.variantId || item.slideId
+        const id = item.id || item.variantId || item.slideId || item.orderId
         return (
             <tr
                 style={{ cursor: 'pointer' }}

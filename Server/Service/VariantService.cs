@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Server.Exceptions;
 using Server.Dtos.Product;
-using Server.Exceptions;
 using Server.Helper;
 using Server.Mapper;
 using Server.Models;
-using Server.Repository;
 using Server.Repository.IRepository;
 using Server.Service.IService;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +49,8 @@ namespace Server.Service
             var variantsDTO = variantsQuery.Select(v => v.ToVariantDto()).FilterPage(page, limit);
             return variantsDTO;
         }
+
+
 
         public async Task<object> DeleteImageByIDVarAsync(int imageId)
         {
@@ -118,6 +118,24 @@ namespace Server.Service
                 throw new BadHttpRequestException("Cannot provide enough quantity, Please choose proper ones!");
 
             await _unitOfWork.Variant.UpdateQuantityAsync(variantID, quantityDecreased);
+        }
+
+        public async Task<VariantUpdateDto> GetUpdatedVariant(int variantID)
+        {
+            var variantUpdated = await _unitOfWork.Variant.GetAsync(v 
+                => v.VariantId == variantID, includeProperties: "Product");
+            if (variantUpdated == null) return null;
+            return variantUpdated.ToVariantUpdatedDto();
+        }
+        public async Task<bool> UpdateVariantAsync(VariantUpdateDto updatedVariant)
+        {
+            var variant = await _unitOfWork.Variant.GetAsync(c => c.VariantId == updatedVariant.VariantId);
+
+            if (variant == null) return false;
+
+            await _unitOfWork.Variant.UpdateAsync(updatedVariant);
+            await _unitOfWork.SaveAsync();
+            return true;
         }
     }
 }

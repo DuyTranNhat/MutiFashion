@@ -16,6 +16,7 @@ import EditBanner from '../pages/Banner/EditBanner';
 import InputCategory from '../pages/Category/InputCategory';
 import Category from '../pages/Category/Category';
 import EditCategory from '../pages/Category/EditCategory';
+import Order from '../pages/Order/Order';
 
 const Router = createBrowserRouter([
     {
@@ -96,7 +97,10 @@ const Router = createBrowserRouter([
             {
                 path: "attribute/edit/:id",
                 element: <EditAttribute />
-                
+            },
+            {
+                path: "order",
+                element: <Order />
             },
         ],
     },

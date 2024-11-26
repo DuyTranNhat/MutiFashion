@@ -24,14 +24,16 @@ const ProductItem = ({ col, product }: Props) => {
                     </div>
                 </div>
                 <div className="text-center p-4">
-                    <a className="h6 text-decoration-none multi-line-truncate" href=""> {product.name}</a>
+                    <a className="h6 text-decoration-none multi-line-truncate" style={{minHeight: "38px"}}> {product.name}</a>
                     <div className="d-flex align-items-center justify-content-center mt-2">
                         <h5 className='' >
                             {new Intl.NumberFormat('en-US', {
                                 style: 'currency'
                                 , currency: 'USD'
                             }).format(product?.salePrice ?? 0)}</h5>
-                        <h6 className="text-muted ml-2"><del>(bổ xung sau)</del></h6>
+                        <h6 className="text-muted ml-2">
+                            {/* <del>(bổ xung sau)</del> */}
+                        </h6>
                     </div>
                     <div className="d-flex align-items-center justify-content-center mb-1">
                         <small className='text-primary' >Total previews ({product.totalPreviews})</small>

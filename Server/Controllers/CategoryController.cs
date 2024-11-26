@@ -54,5 +54,11 @@ namespace Server.Controllers
             return Ok(categoriesRS);
         }
 
+        [HttpGet("getActiveCategories")]
+        public async Task<IActionResult> getActiveCategories()
+        {
+            var categoriesRS = await _categoryService.GetActiveCategoriesAsync();
+            return Ok(categoriesRS);
+        }
     }
 }

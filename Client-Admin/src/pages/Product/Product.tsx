@@ -19,12 +19,12 @@ const Product = () => {
 
     const handlePageChange = (pageNumber: number) => {
         ProductGetAPI(pageNumber, PAGE_LIMIT_PRODUCT)
-        .then(res => {
-            if (res?.data) {
-                setProducts(res?.data.items)
-                setPageObject(res?.data.page)
-            }
-        }).catch(error => toast.error(error))
+            .then(res => {
+                if (res?.data) {
+                    setProducts(res?.data.items)
+                    setPageObject(res?.data.page)
+                }
+            }).catch(error => toast.error(error))
     }
 
     useEffect(() => {
@@ -65,7 +65,10 @@ const Product = () => {
         {
             label: (<button
                 className='btn btn-primary ms-auto'
-                onClick={() => navigate("/product/create")}
+                onClick={() => {
+                    navigate("/product/create")
+                    window.location.reload();
+                }}
             >
                 New
             </button>),
@@ -77,13 +80,6 @@ const Product = () => {
                     // onClick={() => navigate(`/admin/banner/edit/${banner.slideId}`)}
                     >
                         <FaPen />
-                    </button>
-                    <button
-                        type="button"
-                        className="btn btn-danger d-flex align-items-center me-2"
-                    // onClick={() => handleDelete(banner.slideId)}
-                    >
-                        <FiTrash />
                     </button>
                 </div>
             ),

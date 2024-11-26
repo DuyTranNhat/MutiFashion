@@ -9710,3 +9710,12 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateY(-15px);
   }
 }
+
+.multi-line-truncate {
+  display: -webkit-box; /* Sử dụng định dạng hộp flex cho text */
+  -webkit-line-clamp: 2; /* Giới hạn hiển thị tối đa 2 dòng */
+  -webkit-box-orient: vertical; /* Hướng hộp dọc */
+  overflow: hidden; /* Ẩn phần nội dung bị cắt */
+  text-overflow: ellipsis; /* Thêm dấu "..." vào cuối dòng bị cắt */
+  word-wrap: break-word; /* Đảm bảo không bị tràn từ */
+}

@@ -55,6 +55,7 @@ const AttributeForm = ({
     const removeDiacritics = (str: string) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     };
+    
 
     useEffect(() => {
         const handleFilterAttribute = () => {
@@ -194,7 +195,7 @@ const AttributeForm = ({
 
     const handleCreateSetAtt = () => {
         handleCreateAttPost(newAtt, newValues)
-
+        clearAllField()
     }
 
     return newAtt.length > 0 && newValues.length > 0 ? (

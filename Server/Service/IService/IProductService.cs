@@ -9,7 +9,7 @@ namespace Server.Service.IService
         Task<int> handleGenerateVariantAsync(CreateProductWithVariantsDto dto);
         Task<int> handleUploadAsync(int idProduct, UploadRequestDto uploadDto);
         Task<List<ProductDto>> searchByKeyAsync(ProductSearchDto productSearch);
-        public List<Dictionary<int, string>> GenerateCombinations(List<List<string>> optionCombinations);
         Task<ProductVariantDto> GetProductVariantsAsync(int idProduct);
+        public List<Dictionary<int, string>> GenerateCombinations(List<List<string>> optionCombinations);
     }
 }

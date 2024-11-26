@@ -15,7 +15,7 @@ namespace ecommerce_backend.Mappers
             {
                 Name = productDto.Name,
                 Saleprice = productDto.SalePrice,
-                CategoryId = null,
+                CategoryId = productDto.CategoryId,
                 SupplierId = productDto.SupplierId,
                 Description = productDto.Description,
                 Status = productDto.Status

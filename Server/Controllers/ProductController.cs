@@ -1,12 +1,6 @@
-﻿using ecommerce_backend.Mappers;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Server.Data;
-using Server.Dtos.Option;
 using Server.Dtos.Product;
-using Server.Dtos.Supplier;
-using Server.Models;
-using Server.Service;
 using Server.Service.IService;
 
 namespace Server.Controllers

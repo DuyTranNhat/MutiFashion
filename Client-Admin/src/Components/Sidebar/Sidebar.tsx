@@ -21,16 +21,17 @@ const Sidebar = () => {
                 </div>
                 <div className="navbar-nav w-100">
                     <div className="nav-item dropdown">
-                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-solid fa-database"></i>Products</a>
+                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa me-2 fa-solid fa-database"></i>Products</a>
                         <div className="dropdown-menu bg-transparent border-0">
                             <a onClick={() => navigate("product")} className="dropdown-item">Product</a>
                             <a onClick={() => navigate("variant")} className="dropdown-item">Variant</a>
                         </div>
                     </div>
-                    <a onClick={() => navigate("/supplier")} className="nav-item nav-link"><i className="fa fa-solid fa-truck"></i>Supplier</a>
+                    <a onClick={() => navigate("/supplier")} className="nav-item nav-link"><i className="fa me-2 fa-solid fa-truck"></i>Supplier</a>
                     <a onClick={() => navigate("/attribute")} className="nav-item nav-link"><i className="fa fa-th me-2"></i>Attribute</a>
-                    <a onClick={() => navigate("/banner")} className="nav-item nav-link"><i className="fa fa-solid fa-chalkboard"></i>Banner</a>
+                    <a onClick={() => navigate("/banner")} className="nav-item nav-link"><i className="fa me-2 fa-solid fa-chalkboard"></i>Banner</a>
                     <a onClick={() => navigate("/category")} className="nav-item nav-link"><i className="fa fa-table me-2"></i>Category</a>
+                    <a onClick={() => navigate("/order")} className="nav-item nav-link"><i className="fa me-2 fa-solid fa-file-invoice"></i>Order</a>
                     <a href="chart.html" className="nav-item nav-link"><i className="fa fa-chart-bar me-2"></i>Charts</a>
                   
                 </div>

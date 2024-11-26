@@ -10,8 +10,6 @@ const InputProduct = () => {
       .then((res) => {
         if (res?.data) {
           if (res?.status === 200) {
-            console.log(res);
-
             const idProduct = res.data
             UploadImageProductAPI(image, idProduct)
               .then(res => {
