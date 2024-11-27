@@ -26,7 +26,7 @@ namespace Server.Service
 
         public async Task<IEnumerable<CategoryDto>> GetActiveCategoriesAsync()
         {
-            var activeCategories = await _unitOfWork.Category.GetAllAsync(c => c.ActiveStatus ?? true);
+            var activeCategories = await _unitOfWork.Category.GetAllAsync(c => c.ActiveStatus ?? true, includeProperties: "Products");
             if (activeCategories == null) return null;
             var categoriesDto = activeCategories.Select(c => c.ToCategoryDto()).ToList();
             return categoriesDto;

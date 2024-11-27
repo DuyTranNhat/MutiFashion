@@ -9719,3 +9719,7 @@ a.text-dark:hover, a.text-dark:focus {
   text-overflow: ellipsis; /* Thêm dấu "..." vào cuối dòng bị cắt */
   word-wrap: break-word; /* Đảm bảo không bị tràn từ */
 }
+
+.hover-effect:hover {
+  background-color: #3D464D !important;
+}

@@ -1,23 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import ProductList from '../../Component/Product/ProductList';
-import { ProductGetAPI, ProductSearchAPI } from '../../Service/ProductService';
-import { ProductGet, ProductSearchPost } from '../../Model/Product'; // Ensure you import the ProductGet type
+import { ProductFilterAPI, ProductGetAPI } from '../../Service/ProductService';
+import { ProductGet } from '../../Model/Product'; // Ensure you import the ProductGet type
 import CategoryNav from '../../Component/CategoryNav/CategoryNav';
 import Pagination from '../../Component/Pagination/Pagination';
 import { PageObject } from '../../Model/Common';
-import { PAGE_LIMIT_PRODUCT } from '../../Utils/constant';
+import { PAGE_LIMIT_PRODUCT_4, PAGE_LIMIT_PRODUCT_6 } from '../../Utils/constant';
 import Search from '../../Component/Search/Search';
+
+export type FilterOption = {
+    searchKey: string | undefined;
+    selectedValue: number | undefined;
+    page: number | undefined;
+    limit: number;
+    priceAcs: boolean
+    priceDes: boolean
+}
 
 const Shop = () => {
     const [products, setProducts] = useState<ProductGet[]>([]);
     const [page, setPage] = useState<PageObject>();
-    const [selectedValues, setSelectedValues] = useState<number[]>([]);
+
+    const [filterOption, setFilterOption] = useState<FilterOption>(
+        { searchKey: '', selectedValue: -1, page: 1, limit: PAGE_LIMIT_PRODUCT_4, priceAcs: false, priceDes: false }
+    );
+
     const [filteredProducts, setFilteredProducts] = useState<ProductGet[]>([]);
-    const [searchKey, setSearchKey] = useState<string>("");
 
     useEffect(() => {
-        ProductGetAPI(1, PAGE_LIMIT_PRODUCT)
+        ProductGetAPI(1, PAGE_LIMIT_PRODUCT_6)
             .then(res => {
                 if (res?.data) {
                     setPage(res?.data.page)
@@ -27,56 +39,42 @@ const Shop = () => {
             }).catch(error => toast.error(error));
     }, []);
 
+    console.log(filterOption);
+
+
     useEffect(() => {
         const handleSearchProducts = async () => {
             let filteredProducts = products;
 
-            if (searchKey) {
-                const dataSearch: ProductSearchPost = {
-                    key: searchKey,
-                };
-
-                const res = await ProductSearchAPI(dataSearch);
-                if (res?.data) {
-                    filteredProducts = res?.data;
-                }
-            }
-
-            if (selectedValues.length > 0) {
-                filteredProducts = filteredProducts.filter(pro =>
-                    selectedValues.every(svalue => svalue === pro.category?.categoryId)
-                );
+            const res = await ProductFilterAPI(filterOption);
+            if (res?.data) {
+                filteredProducts = res?.data.items;
+                setPage(res?.data.page)
             }
 
             setFilteredProducts(filteredProducts);
         };
 
         handleSearchProducts();
-    }, [selectedValues, searchKey, products]);
+    }, [JSON.stringify(filterOption), products]);
 
     const handlePageChange = (pageNumber: number) => {
-        ProductGetAPI(pageNumber, 1)
-            .then(res => {
-                if (res?.data) {
-                    setPage(res?.data.page)
-                    setProducts(res?.data.items)
-                    setFilteredProducts(res?.data.items)
-                }
-            }).catch(error => toast.error(error))
+        setFilterOption(prev => ({ ...prev, page: pageNumber }))
     }
 
     const handleStopTyping = (key: string) => {
-        setSearchKey(key)
+        setFilterOption(prev =>
+            ({ ...prev, searchKey: key })
+        )
     }
 
+    console.log(filterOption.selectedValue);
+
+
     const handleFilterValues = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedValues(prev => {
-            if (!e.target.checked) {
-                return prev.filter(item => (item !== Number(e.target.value)));
-            } else {
-                return [...prev, Number(e.target.value)];
-            }
-        });
+        setFilterOption(prev =>
+            ({ ...prev, selectedValue: Number(e.target.value) })
+        )
     };
 
     return (
@@ -93,19 +91,81 @@ const Shop = () => {
                     </div>
                     <div className='d-flex justify-content-center mb-4' >
                         <Search handleStopTyping={handleStopTyping} />
+                        <div className="btn-group">
+                            <button
+                                type="button"
+                                className="btn btn-sm btn-light dropdown-toggle"
+                                data-toggle="dropdown"
+                            >
+                                Sorting
+                            </button>
+                            <div className="dropdown-menu dropdown-menu-right">
+                                <a
+                                    className="dropdown-item"
+                                    onClick={() => setFilterOption((prev) => ({ ...prev, priceAcs: true, priceDes: false }))}
+                                >
+                                    Increased Price
+                                </a>
+                                <a
+                                    className="dropdown-item"
+                                    onClick={() => setFilterOption((prev) => ({ ...prev, priceAcs: false, priceDes: true }))}
+                                >
+                                    Decreased Price
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div className="btn-group ml-2">
+                            <button
+                                type="button"
+                                className="btn btn-sm btn-light dropdown-toggle"
+                                data-toggle="dropdown"
+                            >
+                                Showing
+                            </button>
+                            <div className="dropdown-menu dropdown-menu-right">
+                                <a
+                                    className="dropdown-item"
+                                    onClick={() => setFilterOption((prev) => ({ ...prev, limit: 3 }))}
+                                >
+                                    3
+                                </a>
+                                <a
+                                    className="dropdown-item"
+                                    onClick={() => setFilterOption((prev) => ({ ...prev, limit: 6 }))}
+                                >
+                                    6
+                                </a>
+                                <a
+                                    className="dropdown-item"
+                                    onClick={() => setFilterOption((prev) => ({ ...prev, limit: 9 }))}
+                                >
+                                    9
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    {filteredProducts && page &&
-                        <ProductList
-                            col={4}
-                            existedProducts={filteredProducts}
-                        />}
-                    <Pagination
-                        onPageChange={handlePageChange}
-                        pageSize={page?.pageSize!}
-                        currentPage={page?.currentPage!}
-                        totalItems={page?.totalItems!}
-                        totalPages={page?.totalPages!}
-                    />
+                    {filteredProducts && page && filteredProducts.length > 0 ?
+                        <>
+                            <ProductList
+                                col={4}
+                                activePage={false}
+                                existedProducts={filteredProducts}
+                            />
+                            <Pagination
+                                onPageChange={handlePageChange}
+                                pageSize={page?.pageSize!}
+                                currentPage={page?.currentPage!}
+                                totalItems={page?.totalItems!}
+                                totalPages={page?.totalPages!}
+                            />
+                        </>
+                        :
+                        <div className='d-flex justify-content-center' >
+                            <h2>(No Result)</h2>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@ namespace Server.Service
             Cart? existingCart = await _unitOfWork.Cart.GetAsync(c => c.CartId == cartId, includeProperties: "Variant")
                 ?? throw new NotFoundException("Cart is not existed!");
 
-            if (existingCart.Quantity == 0)
+            if (existingCart.Quantity == 1)
                 throw new BadHttpRequestException("Quantity cannot be reduced further as it is already zero.");
 
             await _unitOfWork.Cart.DecreaseQuantityAsync(cartId);

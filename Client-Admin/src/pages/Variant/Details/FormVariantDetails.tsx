@@ -26,7 +26,6 @@ const validationSchema = yup.object().shape({
     .string()
     .required()
     .nullable()
-    .max(500, 'Description is too long'),
 });
 
 const FormVariantDetails = ({ idVariant }: Props) => {

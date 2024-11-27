@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
     const [tabActive, setTabActive] = useState<number>(0)
     const navigate = useNavigate()
+
     return (
         <div className="container-fluid bg-dark mb-30">
             <div className="row px-xl-5">
@@ -47,15 +48,8 @@ const Navbar = () => {
                             <div className="navbar-nav mr-auto py-0">
                                 <a onClick={() => navigate('/')} className="nav-item nav-link">Home</a>
                                 <a onClick={() => navigate('/shop')} className="nav-item nav-link">Shop</a>
-                                <a className="nav-item nav-link">Shop Detail</a>
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i className="fa fa-angle-down mt-1"></i></a>
-                                    <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                        <a href="cart.html" className="dropdown-item">Shopping Cart</a>
-                                        <a href="checkout.html" className="dropdown-item">Checkout</a>
-                                    </div>
-                                </div>
-                                <a href="contact.html" className="nav-item nav-link">Contact</a>
+                                <a onClick={() => navigate('/history')} className="nav-item nav-link">History Order</a>
+                                <a onClick={() => navigate('/profile')} className="nav-item nav-link">Profile</a>
                             </div>
                             <div className="navbar-nav ml-auto py-0 d-none d-lg-block"
                                 onClick={() => navigate('/cart')}
@@ -65,7 +59,7 @@ const Navbar = () => {
                                     <span className="badge text-secondary border border-secondary rounded-circle"
                                         style={{ paddingTop: "2px" }}
                                     >
-                                        0
+                                        .
                                     </span>
                                 </a>
                             </div>

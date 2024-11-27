@@ -8,6 +8,7 @@ using Server.Mapper;
 using Server.Models;
 using Server.Repository.IRepository;
 using Server.Service.IService;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Server.Service
@@ -59,18 +60,11 @@ namespace Server.Service
             return combinations;
         }
 
-        public async Task<QueryObject<ProductDto>> GetProductsAsync(int page, int limit)
-        {
-            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties:
-                                "Variants,Category,ProductOptions.Option.Values");
-            var productQuery = listProduct.Select(p => p.ToProductDTO()).FilterPage(page, limit);
-            return productQuery;
-        }
 
         public async Task<ProductVariantDto> GetProductVariantsAsync(int idProduct)
         {
             var productVariants = await _unitOfWork.Product.GetAsync(
-                    p => p.ProductId == idProduct, includeProperties: 
+                    p => p.ProductId == idProduct, includeProperties:
                 "Category,ProductOptions.Option.Values,Variants.VariantValues" +
                 ".Value,Variants.VariantValues.ProductOption.Option,Variants.Images");
 
@@ -216,6 +210,37 @@ namespace Server.Service
             var option = await _unitOfWork.Option.GetAsync(o =>
             o.Values.Select(v => v.Value1).Contains(optionValue));
             return option?.OptionId ?? 0;
+        }
+
+        public async Task<QueryObject<ProductDto>> searchByKeyAsync(FilterProductUserRequest filterProRequest)
+        {
+            var product = await _unitOfWork.Product.GetAllAsync(includeProperties:
+                                "Variants,Category,ProductOptions.Option.Values");
+
+            var productQuery = product.AsQueryable().AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(filterProRequest.SearchKey)) 
+                productQuery = productQuery.Where(p => p.Name.Contains(filterProRequest.SearchKey));
+
+            if (filterProRequest.SelectedValue > 0)
+                productQuery = productQuery.Where(p => p.Category.CategoryId == filterProRequest.SelectedValue);
+
+            if (filterProRequest.PriceDes)
+                productQuery = productQuery.OrderByDescending(p => p.Saleprice);
+
+            if (filterProRequest.PriceAcs)
+                productQuery = productQuery.OrderBy(p => p.Saleprice);
+
+            var rs = productQuery.Select(p => p.ToProductDTO()).FilterPage(filterProRequest.Page ?? 1, filterProRequest.Limit);
+            return rs;
+        }
+
+        public async Task<QueryObject<ProductDto>> GetProductsAsync(int page, int limit)
+        {
+            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties:
+                                "Variants,Category,ProductOptions.Option.Values");
+            var productQuery = listProduct.Select(p => p.ToProductDTO()).FilterPage(page, limit);
+            return productQuery;
         }
     }
 }

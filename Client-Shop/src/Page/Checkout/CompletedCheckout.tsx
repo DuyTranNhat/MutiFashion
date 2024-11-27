@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { OrderGet } from '../../Model/Order';
 import { CompletedOrderGetAPI } from '../../Service/OrderService';
 
@@ -17,6 +17,8 @@ const CompletedCheckout = () => {
                 });
         }
     }, [idOrder]);
+
+    const navigate = useNavigate()
 
     return (
         <div className="container-fluid">
@@ -78,6 +80,14 @@ const CompletedCheckout = () => {
                                         <h5>Total</h5>
                                         <h5>{order?.totalAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</h5>
                                     </div>
+                                </div>
+
+                                <div className='mt-4 d-flex justify-content-center' > 
+                                    <button
+                                        onClick={() => navigate("/history")}
+                                    className='w-100 btn btn-primary'>
+                                        Back
+                                    </button>
                                 </div>
                             </div>
                         </div>

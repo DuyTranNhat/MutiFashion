@@ -2,6 +2,7 @@ import axios from "axios";
 import { ProductGet, ProductResponse, ProductSearchPost, ProductVariantGet } from "../Model/Product";
 import { handleError } from "../Helpers/ErrorHandler";
 import { PRODUCT_API } from "../Utils/constant";
+import { FilterOption } from "../Page/Shop/Shop";
 
 export const ProductVariantsGetAPI = async (idProduct: number) => {
     try {
@@ -26,9 +27,14 @@ export const ProductGetAPI = async (page: number = 1, limit: number = 12) => {
     }
 }
 
-export const ProductSearchAPI = async (productSearch: ProductSearchPost) => {
+export const ProductFilterAPI = async (filterOption: FilterOption) => {
     try {
-        const data = await axios.post<ProductGet[]>(`${PRODUCT_API}/search/`, productSearch);
+        const data = await axios.post<ProductResponse>(`${PRODUCT_API}/filter/`, filterOption, {
+            params: {
+                page: filterOption.page || 1,
+                limit: filterOption.limit || 4
+            }
+        });
         return data;
     } catch (error) {
         handleError(error)

@@ -20,12 +20,14 @@ export const PAYMENT_METHODS = [
     { id: 2, name: COD },
 ]
 
-export const PAGE_LIMIT_CART = 3
+export const PAGE_LIMIT_CART = 1000
 export const PAGE_LIMIT_SUPPLIER = 4
 export const PAGE_LIMIT_VARIANT = 4
 export const PAGE_LIMIT_ATTRIBUTE = 4
 export const PAGE_LIMIT_CATEGORY = 4
 export const PAGE_LIMIT_PRODUCT = 3
+export const PAGE_LIMIT_PRODUCT_6 = 6
+export const PAGE_LIMIT_PRODUCT_4 = 4
 export const PAGE_LIMIT_BANNER = 12
 
 

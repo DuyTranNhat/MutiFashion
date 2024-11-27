@@ -1,6 +1,6 @@
 import axiosInstance from "../Helpers/axiosInstance"
 import { handleError } from "../Helpers/ErrorHandler"
-import { CreateOrderRequest, OrderGet } from "../Model/Order"
+import { CreateOrderRequest, ListOrderReponse, OrderGet } from "../Model/Order"
 import { ORDER_API } from "../Utils/constant"
 
 export const checkoutAPI = async (customerId: number, order: CreateOrderRequest) => {
@@ -20,3 +20,15 @@ export const CompletedOrderGetAPI = async (orderID: number) => {
         handleError(error)
     }
 }
+
+export const HistoryOrderByCusAPI = async (page: number = 1, limit: number = 4) => {
+    try {
+        const data = await axiosInstance.get<ListOrderReponse>(`${ORDER_API}/getOrdersBycus/`, {
+            params: { page, limit }
+        })
+        return data
+    } catch (error) {
+        handleError(error)
+    }
+}
+

@@ -53,6 +53,7 @@ export const UserProvider = ({ children }: Props) => {
                         customerId: res.data.customerId
                     };
                     setUser(UserObj);
+                    navigate("/")
                     toast.success("Register success!");
                 }
             }).catch(() => toast.warning("Server error occurred"));

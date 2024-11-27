@@ -15,10 +15,10 @@ namespace Server.Controllers
             _productService = productService;
         }
 
-        [HttpPost("search/")]
-        public async Task<IActionResult> SearchByKey([FromBody] ProductSearchDto productSearch)
+        [HttpPost("filter/")]
+        public async Task<IActionResult> SearchAdvance([FromBody] FilterProductUserRequest filterProRequest)
         {
-            var result = await _productService.searchByKeyAsync(productSearch);
+            var result = await _productService.searchByKeyAsync(filterProRequest);
             return Ok(result);
         }
 

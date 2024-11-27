@@ -136,14 +136,6 @@ const Cart = () => {
                     </table>
                 </div>
                 <div className="col-lg-3">
-                    <form className="mb-30" action="">
-                        <div className="input-group">
-                            <input type="text" className="form-control border-0 p-4" placeholder="Coupon Code" />
-                            <div className="input-group-append">
-                                <button className="btn btn-primary">Apply Coupon</button>
-                            </div>
-                        </div>
-                    </form>
                     <h5 className="section-title position-relative text-uppercase mb-3">
                         <span className="bg-secondary pr-3">Cart Summary</span>
                     </h5>

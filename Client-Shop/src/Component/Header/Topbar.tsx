@@ -7,8 +7,6 @@ const Topbar = () => {
     const { isLoggedIn, user, logout } = useAuth()
     const navigate = useNavigate()
 
-    console.log(user?.imageUrl);
-
     return (
         <div className="container-fluid">
             <div className="row bg-secondary py-1 px-xl-5">
@@ -35,8 +33,8 @@ const Topbar = () => {
                                 <div className="btn-group">
                                     <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
                                     <div className="dropdown-menu dropdown-menu-right">
-                                        <button className="dropdown-item" type="button">Sign in</button>
-                                        <button className="dropdown-item" type="button">Sign up</button>
+                                        <button onClick={() => navigate("/login")} className="dropdown-item" type="button">Sign in</button>
+                                        <button onClick={() => navigate("/register")} className="dropdown-item" type="button">Sign up</button>
                                     </div>
                                 </div>
                             )

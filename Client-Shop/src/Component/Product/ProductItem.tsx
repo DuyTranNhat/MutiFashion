@@ -2,6 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../../Utils/constant';
 import { ProductGet } from '../../Model/Product';
+import { useAuth } from '../../Context/UseAuth';
+import { CartPost } from '../../Model/Cart';
 
 export type Props = {
     col: number;
@@ -24,7 +26,7 @@ const ProductItem = ({ col, product }: Props) => {
                     </div>
                 </div>
                 <div className="text-center p-4">
-                    <a className="h6 text-decoration-none multi-line-truncate" style={{minHeight: "38px"}}> {product.name}</a>
+                    <a className="h6 text-decoration-none multi-line-truncate" style={{ minHeight: "38px" }}> {product.name}</a>
                     <div className="d-flex align-items-center justify-content-center mt-2">
                         <h5 className='' >
                             {new Intl.NumberFormat('en-US', {
@@ -36,7 +38,13 @@ const ProductItem = ({ col, product }: Props) => {
                         </h6>
                     </div>
                     <div className="d-flex align-items-center justify-content-center mb-1">
-                        <small className='text-primary' >Total previews ({product.totalPreviews})</small>
+                        <button
+
+                            className="btn btn-primary px-3 hover-effect"
+                            onClick={() => navigate("/")}
+                        >
+                            <i className="fa fa-shopping-cart mr-1"></i> Purchase
+                        </button>
                     </div>
                 </div>
             </div>

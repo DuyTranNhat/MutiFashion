@@ -12,8 +12,8 @@ const Home = () => {
         <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
           <span className="bg-secondary pr-3">Common Products</span>
           </h2>
-        <ProductList col={3} />
-      </div>
+        <ProductList col={3} activePage={true} />
+       </div>
     </div>
   )
 }

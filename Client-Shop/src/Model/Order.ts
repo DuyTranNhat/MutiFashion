@@ -1,3 +1,4 @@
+import { PageObject } from "./Common";
 import { VariantGet } from "./Variant";
 
 export type CreateOrderRequest = {
@@ -8,6 +9,11 @@ export type CreateOrderRequest = {
     paymentMethod: string | null;
     notes: string | null;
 }
+
+export interface ListOrderReponse {
+    page: PageObject
+    items: OrderGet[]
+  }
 
 export type OrderGet = {
     orderId: number;

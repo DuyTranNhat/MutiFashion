@@ -16,7 +16,7 @@ type Props = {
 
 const validateSchema = yup.object().shape({
     name: yup.string().required('Name is required').max(255, 'Name cannot over 255 characters'),
-    description: yup.string().max(1000, 'Description is too long').nullable().default(''),
+    description: yup.string().nullable().default(''),
     categoryId: yup.number().nullable().default(-1),
     supplierId: yup.number().nullable().default(-1),
     status: yup.boolean().default(false),

@@ -8,10 +8,6 @@ const VariantDetaills = () => {
   const { idVariant } = useParams<{ idVariant: string }>();
   const [activeTab, setActiveTab] = useState<string>("tab1")
 
-  useEffect(() => {
-
-  }, [])
-
   const handleActiveTab = (e: React.ChangeEvent<HTMLInputElement>) => {
     setActiveTab(e.target.id)
   }

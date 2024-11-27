@@ -1,6 +1,6 @@
 import axiosInstance from "../Helpers/axiosInstance";
 import { CART_API } from "../Utils/constant";
-import { CartGet, CartPost, CartReponse } from "../Model/Cart";
+import { CartPost, CartReponse } from "../Model/Cart";
 import { handleError } from "../Helpers/ErrorHandler";
 
 

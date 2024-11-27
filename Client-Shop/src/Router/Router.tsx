@@ -10,6 +10,8 @@ import Register from '../Page/Register/Register'
 import Cart from '../Page/Cart/Cart'
 import Checkout from '../Page/Checkout/Checkout'
 import CompletedCheckout from '../Page/Checkout/CompletedCheckout'
+import ProtectedRoute from './ProtectedRoute'
+import HistoryOrder from '../Page/HistoryOrder/HistoryOrder'
 
 const Router = createBrowserRouter([
     {
@@ -30,16 +32,28 @@ const Router = createBrowserRouter([
             },
             {
                 path: "cart/",
-                element: <Cart />
+                element:
+                    <ProtectedRoute>
+                        <Cart />
+                    </ProtectedRoute>
             },
             {
                 path: "checkout/",
-                element: <Checkout />
+                element:
+                    <ProtectedRoute>
+                        <Checkout />
+                    </ProtectedRoute>
             },
             {
                 path: "checkoutSuccess/:idOrder",
                 element: <CompletedCheckout />
-            }
+            },
+            {
+                path: "history/",
+                element: <ProtectedRoute>
+                    <HistoryOrder />
+                </ProtectedRoute>
+            },
         ]
     },
     {
