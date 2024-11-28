@@ -11,8 +11,10 @@ namespace Server.Dtos.Review
         [Required(ErrorMessage = "CustomerId is required.")]
         public int CustomerId { get; set; }
 
+        [Required(ErrorMessage = "Comment is required.")]
+
         [MaxLength(500, ErrorMessage = "Comment cannot exceed 500 characters.")]
-        public string? Comment { get; set; }
+        public string Comment { get; set; }
 
         [Required(ErrorMessage = "ReviewDate is required.")]
         public DateTime ReviewDate { get; set; } = DateTime.Now;

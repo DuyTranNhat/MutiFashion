@@ -16,7 +16,7 @@ export const UploadImageProductAPI = async (image: File, id: number) => {
     try {
         const form = new FormData();
         form.append('ImageFile', image);
-        
+
 
         const imageUploadResponse = await axios
             .post(`${PRODUCT_API}/uploadImage/${id}`, form, {
@@ -33,7 +33,7 @@ export const UploadImageProductAPI = async (image: File, id: number) => {
 export const ProductGetAPI = async (page: number = 1, litmit: number = 12) => {
     try {
         const data = await axios.get<ProductResponse>(`${PRODUCT_API}/getProducts`, {
-            params : {
+            params: {
                 page: page,
                 limit: litmit,
             },
@@ -43,3 +43,13 @@ export const ProductGetAPI = async (page: number = 1, litmit: number = 12) => {
         handleError(error)
     }
 }
+
+export const ProductStatusToggleAPI = async (idPro: number) => {
+    try {
+        const data = await axios.put(`${PRODUCT_API}/toggleStatus/${idPro}`);
+        return data;
+    } catch (error) {
+        handleError(error)
+    }
+}
+

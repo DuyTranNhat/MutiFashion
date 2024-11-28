@@ -20,7 +20,6 @@ const MyPayPalButton = ({ orderPost, idUser, handlePayPalSuccess } : Props) => {
                         if (response.status !== 200) {
                             throw new Error('Failed to create order');
                         }
-                        console.log(response.data.id);
                         return response.data.id;
                     } catch (error: any) {
                         alert(error.message);

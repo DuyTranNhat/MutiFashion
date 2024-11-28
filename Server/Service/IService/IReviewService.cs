@@ -8,6 +8,8 @@ namespace Server.Service.IService
 {
     public interface IReviewService
     {
-        //Task CreateAsync(CreatedReviewDTO createdReview);
+        Task<ProductReviewDTO> CreateAsync(CreatedReviewDTO createdReview);
+        Task<ProductReviewDTO> getByIDAsync(int id);
+        Task<QueryObject<ProductReviewDTO>> GetReviewByProductAsync(int idPro, int page, int limit);
     }
 }

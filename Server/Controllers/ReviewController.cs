@@ -19,44 +19,31 @@ namespace Server.Controllers
             _reviewService = reviewService;
         }
 
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] CreatedReviewDTO createdReview)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var supplierRS = await _reviewService.CreateAsync(createdReview);
+            return Ok(supplierRS);
+        }
 
-        //[HttpGet("GetSuppliers")] 
-        //public async Task<IActionResult> GetSuppliers([FromQuery] int page = 1, [FromQuery] int limit = 12)
-        //{
-        //    var SupplierList = await _supplierService.GetAllAsync(page, limit);
-        //    return Ok(SupplierList);
-        //}
+        [HttpGet("get-review-by-product/{idPro:int}")]
+        public async Task<IActionResult> GetReviewByProductAsync([FromRoute] int idPro, [FromQuery] int page, [FromQuery] int limit)
+        {
+            var result = await _reviewService.GetReviewByProductAsync(idPro, page, limit);
+            if (result == null)
+                return NotFound();
+            return Ok(result);
+        }
 
-        //[HttpPost("create")]
-        //public async Task<IActionResult> Create([FromBody] CreatedReviewDTO createdReview)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    var supplierRS = await _reviewService.CreateAsync(createdReview);
-        //    return Ok(supplierRS);
-        //}
-
-        //[HttpGet("getByID/{id:int}")]
-        //public async Task<IActionResult> GetByID([FromRoute] int id)
-        //{
-        //    SupplierDto? supplierExisting = await _supplierService.getByIDAsync(id);
-        //    if (supplierExisting == null)
-        //        return NotFound();
-        //    return Ok(supplierExisting);
-        //}
-
-
-        
-        //[HttpPut("update/{id:int}")]
-        //public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateSupplierDto supplierUpdateDto)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-
-        //    var categoryRS = await _supplierService.UpdateAsync(id, supplierUpdateDto);
-        //    if (categoryRS == null)
-        //        return NotFound();
-        //    return Ok(categoryRS);
-        //}
+        [HttpGet("get-by-id/{id:int}")]
+        public async Task<IActionResult> GetByID([FromRoute] int id)
+        {
+            var result = await _reviewService.getByIDAsync(id);
+            if (result == null)
+                return NotFound();
+            return Ok(result);
+        }
     }
 }

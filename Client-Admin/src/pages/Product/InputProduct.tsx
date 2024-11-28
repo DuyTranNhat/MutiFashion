@@ -2,9 +2,12 @@ import { ProductPost } from '../../Models/Product'
 import ProductForm from './ProductForm/ProductForm'
 import { productPostAPI, UploadImageProductAPI } from '../../Services/ProductService';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 const InputProduct = () => {
+  const navigate = useNavigate()
+
   const handleSubmitProduct = (dataPost: ProductPost, image: File) => {
     productPostAPI(dataPost)
       .then((res) => {
@@ -15,6 +18,7 @@ const InputProduct = () => {
               .then(res => {
                 if (res?.status === 200) {
                   toast.success("Product created successfully!")
+                  navigate("/product")
                 }
               })
           }

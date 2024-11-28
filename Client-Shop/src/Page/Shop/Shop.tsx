@@ -23,13 +23,13 @@ const Shop = () => {
     const [page, setPage] = useState<PageObject>();
 
     const [filterOption, setFilterOption] = useState<FilterOption>(
-        { searchKey: '', selectedValue: -1, page: 1, limit: PAGE_LIMIT_PRODUCT_4, priceAcs: false, priceDes: false }
+        { searchKey: '', selectedValue: -1, page: 1, limit: 3, priceAcs: false, priceDes: false }
     );
 
     const [filteredProducts, setFilteredProducts] = useState<ProductGet[]>([]);
 
     useEffect(() => {
-        ProductGetAPI(1, PAGE_LIMIT_PRODUCT_6)
+        ProductGetAPI(1, 3)
             .then(res => {
                 if (res?.data) {
                     setPage(res?.data.page)
@@ -38,9 +38,6 @@ const Shop = () => {
                 }
             }).catch(error => toast.error(error));
     }, []);
-
-    console.log(filterOption);
-
 
     useEffect(() => {
         const handleSearchProducts = async () => {
@@ -67,9 +64,6 @@ const Shop = () => {
             ({ ...prev, searchKey: key })
         )
     }
-
-    console.log(filterOption.selectedValue);
-
 
     const handleFilterValues = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilterOption(prev =>

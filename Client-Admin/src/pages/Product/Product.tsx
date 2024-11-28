@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ProductGetAPI } from '../../Services/ProductService'
+import { ProductGetAPI, ProductStatusToggleAPI } from '../../Services/ProductService'
 import Table from '../../Components/Table/Table'
 import { ProductGet } from '../../Models/Product'
 import { FaPen } from "react-icons/fa";
@@ -37,6 +37,19 @@ const Product = () => {
             })
     }, [])
 
+    const handleActiveStatus = (id: number) => {
+        ProductStatusToggleAPI(id)
+            .then(res => {
+                if (res?.status === 204) {
+                    setProducts(prev => prev?.map(pro =>
+                        (pro.productId == id)
+                            ? { ...pro, status: !pro.status }
+                            : pro
+                    ))
+                }
+            })
+    }
+
     const configsTableProduct = [
         {
             label: "#",
@@ -59,31 +72,19 @@ const Product = () => {
             render: (productGet: ProductGet) => productGet.name,
         },
         {
-            label: "Total variant",
-            render: (productGet: ProductGet) => productGet.totalVariant,
+            label: "Action",
+            render: (productGet: ProductGet) =>
+            (
+                <td>
+                    <div className="form-check form-switch">
+                        <input className="form-check-input " type="checkbox" id="flexSwitchCheckDefault"
+                            onChange={() => handleActiveStatus(productGet.productId)}
+                            checked={productGet.status} />
+                    </div>
+                </td>
+            )
+            ,
         },
-        {
-            label: (<button
-                className='btn btn-primary ms-auto'
-                onClick={() => {
-                    navigate("/product/create")
-                    window.location.reload();
-                }}
-            >
-                New
-            </button>),
-            render: (product: ProductAttributePost) => (
-                <div className='d-flex flex-start'>
-                    <button
-                        type="button"
-                        className="btn btn-success d-flex align-items-center me-2"
-                    // onClick={() => navigate(`/admin/banner/edit/${banner.slideId}`)}
-                    >
-                        <FaPen />
-                    </button>
-                </div>
-            ),
-        }
     ]
 
     return (
@@ -92,7 +93,6 @@ const Product = () => {
             <div className="col-12">
                 <div className="rounded-2 border shadow custom-container h-100 " style={{ padding: "18px 58px" }}>
                     <div style={{ height: "100px" }} className='d-flex align-items-center' >
-                        <h6 className="mb-4">(Search/ Filter)</h6>
 
                     </div>
                     {products

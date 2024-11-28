@@ -11,5 +11,6 @@ namespace Server.Service.IService
         Task<ProductVariantDto> GetProductVariantsAsync(int idProduct);
         public List<Dictionary<int, string>> GenerateCombinations(List<List<string>> optionCombinations);
         Task<QueryObject<ProductDto>> searchByKeyAsync(FilterProductUserRequest filterProRequest);
+        Task<bool> ToggleStatusyAsync(int idPro);
     }
 }

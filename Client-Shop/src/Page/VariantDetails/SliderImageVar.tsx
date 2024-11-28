@@ -21,8 +21,6 @@ const SliderImageVar = ({ images, handleSelect }: Props) => {
         return groups;
     }, []);
 
-    console.log("groupedImages", groupedImages);
-    
     return (
         <div className="py-2 bg-white">
             <div className="col-lg-12">

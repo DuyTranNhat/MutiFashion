@@ -10,6 +10,11 @@ import { addCartAPI } from '../../Service/CartService';
 import { CartPost } from '../../Model/Cart';
 import SliderImageVar from './SliderImageVar';
 import DefaultUser from '/img/DefaultUser.png'
+import { ProductReviewGetAPI, ProductReviewPostAPI } from '../../Service/ReviewService';
+import { PageObject } from '../../Model/Common';
+import { ReviewGet, ReviewPost } from '../../Model/Review';
+import { BASE_URL } from '../../Utils/constant';
+import Pagination from '../../Component/Pagination/Pagination';
 
 type AttributeSelected = {
     idValue: number,
@@ -21,20 +26,19 @@ const VariantDetails = () => {
     const [productVariants, setProductVariants] = useState<ProductVariantGet | null>(null);
     const [inavailableError, setInavailableError] = useState<boolean>(false);
     const [selectedValues, setSelectedValues] = useState<AttributeSelected[]>([]);
+    const [pageReview, setPageReview] = useState<PageObject>()
+    const [reviews, setReviews] = useState<ReviewGet[]>([])
     const [variantSelected, setVariantSelected] = useState<VariantGet | undefined>();
+
+    const [reviewForm, setReviewForm] = useState({
+        message: '',
+        name: '',
+        email: '',
+    });
+
     const { idProduct } = useParams<{ idProduct: string }>();
     const { user, isLoggedIn } = useAuth();
     const navigate = useNavigate();
-
-    const getAllImages = () => {
-        return productVariants?.variants.flatMap(variant =>
-            variant.images.map(image => ({
-                imageId: image.imageId,
-                variantId: variant.variantId,
-                imageUrl: image.imageUrl,
-            }))
-        ) || [];
-    };
 
     useEffect(() => {
         if (idProduct) {
@@ -53,16 +57,43 @@ const VariantDetails = () => {
                         });
                     }
                 });
+
+            ProductReviewGetAPI(idProduct, 1, 3)
+                .then(res => {
+                    if (res?.data) {
+                        setPageReview(res.data.page)
+                        setReviews(res.data.items)
+                    }
+                })
+
+            if (isLoggedIn()) {
+                const defaultForm = {
+                    message: '',
+                    name: user?.name ?? '',
+                    email: user?.email ?? '',
+                }
+
+                setReviewForm(defaultForm)
+            }
         }
     }, [idProduct]);
 
-    // Optimized `handleSelectVarByImg`
+    console.log(reviews);
+
+    const getAllImages = () => {
+        return productVariants?.variants.flatMap(variant =>
+            variant.images.map(image => ({
+                imageId: image.imageId,
+                variantId: variant.variantId,
+                imageUrl: image.imageUrl,
+            }))
+        ) || [];
+    };
+
     const handleSelectVarByImg = (idVar: number) => {
-        // Tìm biến thể tương ứng với idVar
         const selectedVar = productVariants?.variants.find(variant => variant.variantId === idVar);
 
         if (selectedVar) {
-            // Cập nhật lại giá trị được chọn
             setVariantSelected(selectedVar);
 
             // Cập nhật lại selectedValues từ variantValues của biến thể
@@ -74,7 +105,6 @@ const VariantDetails = () => {
             setSelectedValues(updatedSelectedValues);
         }
     };
-
 
     useEffect(() => {
         if (productVariants) {
@@ -108,6 +138,44 @@ const VariantDetails = () => {
         });
     };
 
+    const handleReviewSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!isLoggedIn())
+            toast.warning("Please Login To Review")
+
+        if (productVariants?.productId) {
+            const dataPost: ReviewPost = {
+                comment: reviewForm.message,
+                customerId: user?.customerId!,
+                productId: productVariants?.productId
+            }
+
+            ProductReviewPostAPI(dataPost)
+                .then(res => {
+                    if (res?.data) {
+                        ProductReviewGetAPI(idProduct!, pageReview?.totalPages, 3)
+                            .then(res => {
+                                if (res?.data) {
+                                    setPageReview(res.data.page)
+                                    setReviews(res.data.items)
+                                    setProductVariants(prev => {
+                                        if (prev) {
+                                            return {
+                                                ...prev, // Giữ nguyên các giá trị trước đó
+                                                totalPreviews: prev.totalPreviews + 1 // Cập nhật `totalPreviews`
+                                            };
+                                        }
+                                        return prev;
+                                    });
+                                }
+                            })
+                    }
+                })
+        }
+    };
+
+
     const handleAddToCart = () => {
         if (variantSelected && quantity <= variantSelected.quantity && !inavailableError) {
             if (isLoggedIn()) {
@@ -128,6 +196,19 @@ const VariantDetails = () => {
             toast.error('Invalid quantity!');
         }
     };
+
+    const handlePageChange = (pageNumber: number) => {
+        if (idProduct) {
+            ProductReviewGetAPI(idProduct!, pageNumber, 3)
+                .then(res => {
+                    if (res?.data) {
+                        setPageReview(res?.data.page)
+                        setReviews(res?.data.items)
+                    }
+                })
+        }
+    }
+
     return (
         productVariants && variantSelected && selectedValues ? (
             <>
@@ -197,67 +278,106 @@ const VariantDetails = () => {
                                     }
                                 </div>
 
-                                <div className="d-flex pt-2">
-                                    {/*description info*/}
-                                    <div className="row">
-                                        <div className="col">
-                                            <div className="bg-light ">
-                                                <div className="nav nav-tabs mb-4">
-                                                    <a className="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                                                    <a className="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
-                                                </div>
-                                                <div className="tab-content">
-                                                    {/*description info*/}
-                                                    <div className="tab-pane fade show active" id="tab-pane-1">
-                                                        <h4 className="mb-3">Product Description</h4>
-                                                        <p>
-                                                            {productVariants.description}
-                                                        </p>
-                                                    </div>
+                                <div className="row px-xl-5">
+                                    <div className="col">
+                                        <div className="bg-light p-30">
+                                            <div className="d-flex pt-2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/*description info*/}
+                        <div className="row">
+                            <div className="col">
+                                <div className="bg-light p-4">
+                                    <div className="nav nav-tabs mb-4">
+                                        <a className="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                                        <a className="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews ({productVariants.totalPreviews})</a>
+                                    </div>
+                                    <div className="tab-content">
+                                        {/*description info*/}
+                                        <div className="tab-pane fade show active" id="tab-pane-1">
+                                            <h4 className="mb-3">Product Description</h4>
+                                            <p>
+                                                {productVariants.description}
+                                            </p>
+                                        </div>
 
-                                                    <div className="tab-pane fade" id="tab-pane-3">
-                                                        <div className="row">
-                                                            <div className="col-md-6">
-                                                                <h4 className="mb-4">Leave a review</h4>
-                                                                <small>Your email address will not be published. Required fields are marked *</small>
-                                                                <form>
-                                                                    <div className="form-group">
-                                                                        <label htmlFor="message">Your Review *</label>
-                                                                        <textarea id="message" cols={30} rows={5} className="form-control"></textarea>
-                                                                    </div>
-                                                                    <div className="form-group">
-                                                                        <label htmlFor="name">Your Name *</label>
-                                                                        <input type="text" className="form-control" id="name" />
-                                                                    </div>
-                                                                    <div className="form-group">
-                                                                        <label htmlFor="email">Your Email *</label>
-                                                                        <input type="email" className="form-control" id="email" />
-                                                                    </div>
-                                                                    <div className="form-group mb-0">
-                                                                        <input type="submit" value="Leave Your Review" className="btn btn-primary px-3" />
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                            <div className="col-md-6">
-                                                                <h4 className="mb-4">1 review for "Product Name"</h4>
-                                                                <div className="media mb-4">
-                                                                    <img src={DefaultUser} alt="Image" className="img-fluid mr-3 mt-1" style={{ "width": "45px" }} />
-                                                                    <div className="media-body">
-                                                                        <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                                                        <div className="text-primary mb-2">
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star-half-alt"></i>
-                                                                            <i className="far fa-star"></i>
-                                                                        </div>
-                                                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
+                                        <div className="tab-pane fade" id="tab-pane-3">
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <h4 className="mb-4">Leave a review</h4>
+                                                    <small>Your email address will not be published. Required fields are marked *</small>
+                                                    <form onSubmit={(e) => handleReviewSubmit(e)}>
+                                                        <div className="form-group">
+                                                            <label htmlFor="message">Your Review *</label>
+                                                            <textarea
+                                                                id="message"
+                                                                cols={30}
+                                                                rows={5}
+                                                                className="form-control"
+                                                                value={reviewForm.message}
+                                                                onChange={(e) =>
+                                                                    setReviewForm((prev) => ({ ...prev, message: e.target.value }))
+                                                                }
+                                                            ></textarea>
                                                         </div>
-                                                    </div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="name">Your Name *</label>
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
+                                                                id="name"
+                                                                value={reviewForm.name}
+                                                                onChange={(e) =>
+                                                                    setReviewForm((prev) => ({ ...prev, name: e.target.value }))
+                                                                }
+                                                            />
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="email">Your Email *</label>
+                                                            <input
+                                                                type="email"
+                                                                className="form-control"
+                                                                id="email"
+                                                                value={reviewForm.email}
+                                                                onChange={(e) =>
+                                                                    setReviewForm((prev) => ({ ...prev, email: e.target.value }))
+                                                                }
+                                                            />
+                                                        </div>
+                                                        <div className="form-group mb-0">
+                                                            <input
+                                                                type="submit"
+                                                                value="Leave Your Review"
+                                                                className="btn btn-primary px-3"
+                                                            />
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <h4 className="mb-4">{productVariants.totalPreviews} review for {productVariants.name}</h4>
+
+                                                    {reviews?.map(r =>
+                                                        <div className="media mb-4">
+                                                            <img src={r.customer.imageUrl ? BASE_URL + "/" + r.customer.imageUrl : DefaultUser} alt="Image" className="img-fluid mr-3 mt-1" style={{ "width": "45px" }} />
+                                                            <div className="media-body">
+                                                                <h6>{r.customer.name}<small> - <i>{r.reviewDate}</i></small></h6>
+                                                                <p>{r.comment}</p>
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+                                                    <Pagination
+                                                        onPageChange={handlePageChange}
+                                                        pageSize={pageReview?.pageSize!}
+                                                        currentPage={pageReview?.currentPage!}
+                                                        totalItems={pageReview?.totalItems!}
+                                                        totalPages={pageReview?.totalPages!}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -265,7 +385,6 @@ const VariantDetails = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </>

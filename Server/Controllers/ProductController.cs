@@ -22,6 +22,14 @@ namespace Server.Controllers
             return Ok(result);
         }
 
+        [HttpPut("toggleStatus/{idPro:int}")]
+        public async Task<IActionResult> ToggleStatus([FromRoute] int idPro)
+        {
+            var result = await _productService.ToggleStatusyAsync(idPro);
+            if (result == true) return NoContent();
+            return NotFound("Product Not Existed!");
+        }
+
         [HttpPost("uploadImage/{idProduct:int}")]
         public async Task<IActionResult> UploadImageProduct([FromForm]UploadRequestDto uploadDTO, [FromRoute] int idProduct)
         {

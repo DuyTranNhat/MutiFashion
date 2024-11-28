@@ -8,6 +8,7 @@ export const PRODUCT_API = `${BASE_URL}/api/product`
 export const VARIANT_API = `${BASE_URL}/api/variant`
 export const BANNER_API = `${BASE_URL}/api/banner`
 export const CATEGORY_API = `${BASE_URL}/api/category`
+export const REVIEW_API = `${BASE_URL}/api/review`
 export const CART_API = `${BASE_URL}/api/cart`
 export const USER_API = `${BASE_URL}/api/customer`
 export const ORDER_API = `${BASE_URL}/api/order`

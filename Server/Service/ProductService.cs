@@ -66,7 +66,7 @@ namespace Server.Service
             var productVariants = await _unitOfWork.Product.GetAsync(
                     p => p.ProductId == idProduct, includeProperties:
                 "Category,ProductOptions.Option.Values,Variants.VariantValues" +
-                ".Value,Variants.VariantValues.ProductOption.Option,Variants.Images");
+                ".Value,Variants.VariantValues.ProductOption.Option,Variants.Images,ProductReviews");
 
             if (productVariants == null) return null;
 
@@ -237,10 +237,19 @@ namespace Server.Service
 
         public async Task<QueryObject<ProductDto>> GetProductsAsync(int page, int limit)
         {
-            var listProduct = await _unitOfWork.Product.GetAllAsync(includeProperties:
-                                "Variants,Category,ProductOptions.Option.Values");
+            var listProduct = await _unitOfWork.Product.GetAllAsync(p => p.Status == true, includeProperties:
+                                "Variants,Category,ProductOptions.Option.Values,ProductReviews");
             var productQuery = listProduct.Select(p => p.ToProductDTO()).FilterPage(page, limit);
             return productQuery;
+        }
+
+        public async Task<bool> ToggleStatusyAsync(int idPro)
+        {
+            var result = await _unitOfWork.Product.GetAsync(p => p.ProductId == idPro);
+            if (result == null) return false;
+            await _unitOfWork.Product.ToggleStatusyAsync(idPro);
+            await _unitOfWork.SaveAsync();
+            return true;
         }
     }
 }

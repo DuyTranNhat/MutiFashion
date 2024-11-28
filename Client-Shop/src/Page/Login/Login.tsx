@@ -26,7 +26,6 @@ const Login = () => {
 
     const onSubmit = (loginRequest: LoginRequest) => {
         login(loginRequest)
-        console.log(loginRequest);
     }
 
     return (
