@@ -1,4 +1,4 @@
-using Server.Dtos.Order;
+﻿using Server.Dtos.Order;
 using Server.Service.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +8,7 @@ using Server.Models;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 using ecommerce_backend.Dtos.Order;
+using Server.Dtos.Chart;
 
 namespace Server.Controllers
 {
@@ -29,7 +30,7 @@ namespace Server.Controllers
 
         [Authorize]
         [HttpPost("Checkout/customerID/{idCustomer:int}")]
-        public async Task<IActionResult> CheckoutCOD([FromRoute] int idCustomer,[FromBody] CreateOrderDto createOrderDto)
+        public async Task<IActionResult> CheckoutCOD([FromRoute] int idCustomer, [FromBody] CreateOrderDto createOrderDto)
         {
             try
             {
@@ -66,7 +67,7 @@ namespace Server.Controllers
         }
 
         [HttpPost("checkout/capture-paypal-order/{orderId}/user/{idUser:int}")]
-        public async Task<IActionResult> CapturePaypalOrder([FromRoute] int idUser, string orderID, CancellationToken 
+        public async Task<IActionResult> CapturePaypalOrder([FromRoute] int idUser, string orderID, CancellationToken
                 cancellationToken, [FromBody] CreateOrderDto createOrderRequest)
         {
             try
@@ -102,7 +103,7 @@ namespace Server.Controllers
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(userId))
-                return Unauthorized("User ID kh�ng t?n t?i trong token.");
+                return Unauthorized("User ID không t?n t?i trong token.");
 
             var result = await _orderService.GetOrdersByCusAsync(userId, page, limit);
             return Ok(result);
@@ -131,5 +132,70 @@ namespace Server.Controllers
                 return BadRequest(error);
             }
         }
+
+        //chart
+        [HttpGet]
+        [Route("get-top-variant")]
+        public async Task<IActionResult> GetTopVariant([FromQuery] RangeDate request)
+        {
+            try
+            {
+                var result = await _orderService.GetListTopVariant(request.top, request.startDate, request.endDate);
+                return Ok(result);
+            }
+            catch (Exception erorr)
+            {
+                return BadRequest("error: " + erorr);
+            }
+
+
+        }
+
+        [HttpGet]
+        [Route("get-top-variant-in-range")]
+        public async Task<IActionResult> GetVariantInRange([FromQuery] RangeDateNoTop request, [FromQuery] int page, [FromQuery] int limit)
+        {
+            try
+            {
+                var result = await _orderService.GetListVariantInRange(request.startDate, request.endDate, page, limit);
+                return Ok(result);
+            }
+            catch (Exception erorr)
+            {
+                return BadRequest("error: " + erorr);
+            }
+
+
+        }
+        [HttpGet]
+        [Route("get-top-variant-year")]
+        public async Task<IActionResult> GetVariantMonthly([FromQuery] int year)
+        {
+            try
+            {
+                var result = await _orderService.GetListOrderMonthly(year);
+                return Ok(result);
+            }
+            catch (Exception erorr)
+            {
+                return BadRequest("error: " + erorr);
+            }
+        }
+
+        [HttpGet]
+        [Route("get-order-monthly")]
+        public async Task<IActionResult> GetOrderMonthly([FromQuery] int year, int page, int limit)
+        {
+            try
+            {
+                var result = await _orderService.GetListOrderYear(year, page, limit);
+                return Ok(result);
+            }
+            catch (Exception erorr)
+            {
+                return BadRequest("error: " + erorr);
+            }
+        }
     }
+
 }

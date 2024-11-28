@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VXpGvhCqLNiEGX4V+ghOd45qePNy9StoBtch/R6eN6I=",
+  "Hash": "0ixPJ0bLY9FnTn0IBsvecHXq74yQj/IHRr8EYTgIv1U=",
   "Source": "Server",
   "BasePath": "_content/Server",
   "Mode": "Default",
@@ -813,6 +813,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\slides\\d2f93c11-4cdb-484b-9c6e-60bb33423f35_carousel-3.jpg"
+    },
+    {
+      "Identity": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\images\\User\\461197673_3382189652076150_8688007062083057555_n.jpg",
+      "SourceId": "Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Learn_space\\FullStack\\MutiFashion\\Server\\wwwroot\\",
+      "BasePath": "_content/Server",
+      "RelativePath": "images/User/461197673_3382189652076150_8688007062083057555_n.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\User\\461197673_3382189652076150_8688007062083057555_n.jpg"
     }
   ]
 }

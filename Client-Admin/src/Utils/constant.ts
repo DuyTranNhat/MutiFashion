@@ -5,6 +5,7 @@ export const PAGE_LIMIT_CATEGORY = 4
 export const PAGE_LIMIT_PRODUCT = 12
 export const PAGE_LIMIT_BANNER = 12
 export const PAGE_LIMIT_ORDERS = 8
+export const PAGE_LIMIT_CHART_VARIANT = 8
 
 export const PENDING_ORDER = 'pending'
 export const APPROVE_ORDER = 'completed'

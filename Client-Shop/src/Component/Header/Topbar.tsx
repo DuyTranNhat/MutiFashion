@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth } from '../../Context/UseAuth'
 import { useNavigate } from 'react-router-dom'
 import DefaultUser from '/img/DefaultUser.png'
+import { BASE_URL } from '../../Utils/constant'
 
 const Topbar = () => {
     const { isLoggedIn, user, logout } = useAuth()
@@ -41,7 +42,7 @@ const Topbar = () => {
                         }
 
                         <div className="btn-group mx-2">
-                            <img src={user?.imageUrl || DefaultUser} style={{ height: "36px", width: "36px" }} alt="" />
+                            <img src={BASE_URL + "/" + user?.imageUrl || DefaultUser} style={{ height: "36px", width: "36px" }} alt="" />
                         </div>
                     </div>
                     <div className="d-inline-flex align-items-center d-block d-lg-none">

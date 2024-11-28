@@ -17,6 +17,8 @@ import InputCategory from '../pages/Category/InputCategory';
 import Category from '../pages/Category/Category';
 import EditCategory from '../pages/Category/EditCategory';
 import Order from '../pages/Order/Order';
+import ReportChart from '../pages/ReportChart/ReportChart';
+import ReportYear from '../pages/ReportChart/ReportYear';
 
 const Router = createBrowserRouter([
     {
@@ -101,6 +103,15 @@ const Router = createBrowserRouter([
             {
                 path: "order",
                 element: <Order />
+            },{
+                path: "chart",
+                element: < ReportChart/>
+
+            },
+            {
+                path: "year-chart",
+                element: < ReportYear/>
+
             },
         ],
     },

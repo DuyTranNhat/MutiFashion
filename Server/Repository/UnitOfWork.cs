@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Server.Data;
 using Server.DataAccess.Repository;
+using Server.Models;
 using Server.Repository.IRepository;
 
 namespace Server.Repository
@@ -21,11 +22,11 @@ namespace Server.Repository
         public ICustomerRepository Customer { get; }
         public ISupplierRepository Supplier { get; }
         public ICategoryRepository Category { get; }
+        public IReviewRepository ProductReview { get; }
         public IOrderDetailRepository OrderDetail { get; }
         public IVariantValueRepository VariantValue { get; }
         public IProductOptionRepository ProductOption { get; }
         public IRefreshTokenRepository RefreshToken { get; }
-
 
         public UnitOfWork(MutiFashionContext db)
         {
@@ -41,10 +42,11 @@ namespace Server.Repository
             Customer = new CustomerRepository(db);
             Supplier = new SupplierRepository(db);
             Category = new CategoryRepository(db);
+            ProductReview = new ReviewRepository(db);
             OrderDetail = new OrderDetailRepository(db);    
             VariantValue = new VariantValueRepository(db);
-            ProductOption = new ProductOptionRepository(db);
             RefreshToken = new RefreshTokenRepository(db);
+            ProductOption = new ProductOptionRepository(db);
         }
        
         public async Task SaveAsync()

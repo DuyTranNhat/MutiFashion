@@ -1,4 +1,5 @@
 ﻿using ecommerce_backend.Dtos.Order;
+using Server.Dtos.Chart;
 using Server.Dtos.Order;
 using Server.Exceptions;
 using Server.Helper;
@@ -103,6 +104,47 @@ namespace ecommerce_backend.Service
 
             var orderDTO = order.ToOrderDto();
             return orderDTO;
+        }
+
+        public async Task<List<YearReport>> GetListOrderMonthly(int year)
+        {
+            var result  = await _unitOfWork.Order.GetListVaritantMonthlyAsync(year);
+            if (result == null) throw new Exception("No record");
+            var response = result.ToList();
+            return response;
+        }
+
+        public async Task<QueryObject<Order>> GetListOrderYear(int year,int page,int limit)
+        {
+            var result = await _unitOfWork.Order.GetAllAsync(item => item.OrderDate.Year == year);
+            if (result == null) throw new Exception("Không tìm thấy dữ liệu");
+            var response = result.FilterPage(page, limit);
+            
+            return response;
+        }
+
+
+        public async Task<List<TopVariant>> GetListTopVariant(int top, DateTime startDate, DateTime endDate)
+        {
+            
+            var start = startDate.ToString("yyyy-MM-dd ");
+            start += "00:00:01";
+            var end = endDate.ToString("yyyy-MM-dd");
+            end += " 23:59:59";
+            var listTopVariant = await _unitOfWork.Order.ChartTopData(top,start,end);
+            if (listTopVariant == null) throw new Exception("Không có sản phẩm nào được bán");
+            return listTopVariant;
+        }
+
+        public async Task<QueryObject<GetListVariantChart>> GetListVariantInRange(DateTime startDate, DateTime endDate,int page,int limit)
+        {
+            var start = startDate.ToString("yyyy-MM-dd ");
+            start += "00:00:01";
+            var end = endDate.ToString("yyyy-MM-dd");
+            end += " 23:59:59";
+            var listTopVariant = await _unitOfWork.Order.GetListVariantSortByTotalQuantity(start, end);
+            if (listTopVariant == null) throw new Exception("Không có sản phẩm nào được bán");
+            return listTopVariant.FilterPage(page,limit);
         }
 
         public async Task<QueryObject<OrderDto>> GetOrdersAsync(int page, int limit)
