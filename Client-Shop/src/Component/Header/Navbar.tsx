@@ -49,7 +49,6 @@ const Navbar = () => {
                                 <a onClick={() => navigate('/')} className="nav-item nav-link">Home</a>
                                 <a onClick={() => navigate('/shop')} className="nav-item nav-link">Shop</a>
                                 <a onClick={() => navigate('/history')} className="nav-item nav-link">History Order</a>
-                                <a onClick={() => navigate('/profile')} className="nav-item nav-link">Profile</a>
                             </div>
                             <div className="navbar-nav ml-auto py-0 d-none d-lg-block"
                                 onClick={() => navigate('/cart')}

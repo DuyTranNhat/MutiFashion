@@ -51,7 +51,7 @@ namespace Server.Service
 
         public async Task<QueryObject<SlideDto>> GetBannersAsync(int page, int limit)
         {
-            var banners = await _unitOfWork.Banner.GetAllAsync();
+            var banners = await _unitOfWork.Banner.GetAllAsync(b => b.Status == true);
             var bannersDto = banners.Select(b => b.ToBannerDto()).FilterPage(page, limit);
             return bannersDto;
         }

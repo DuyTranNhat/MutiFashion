@@ -1,6 +1,6 @@
 ﻿namespace Server.Helper
 {
-    public class QueryObject<T>
+    public class QueryObject<T> 
     {
         public PageObject Page { get; set; }
         public IEnumerable<T> Items { get; set; } = null!;

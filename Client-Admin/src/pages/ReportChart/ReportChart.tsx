@@ -228,7 +228,7 @@ const ReportChart = () => {
         </div>
       )}
 
-      <div className="container rounded shadow mt-5 bg-light-subtle m-2">
+      <div className="container rounded shadow mt-5 bg-light-subtle p-4 m-2">
         <h2>
           Danh sách thống kê sản phẩm đã bán trong khoảng{" "}
           {getValues("startDate")} đến {getValues("endDate")}{" "}

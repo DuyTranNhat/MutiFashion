@@ -72,7 +72,7 @@ const Product = () => {
             render: (productGet: ProductGet) => productGet.name,
         },
         {
-            label: "Action",
+            label: "status",
             render: (productGet: ProductGet) =>
             (
                 <td>
@@ -89,11 +89,19 @@ const Product = () => {
 
     return (
         <div className='container-fluid pt-4 px-4' >
-            <h1>Product</h1>
             <div className="col-12">
                 <div className="rounded-2 border shadow custom-container h-100 " style={{ padding: "18px 58px" }}>
-                    <div style={{ height: "100px" }} className='d-flex align-items-center' >
-
+                    <div className='d-flex my-2' >
+                        <h1 className='mb-3' >Product</h1>
+                        <button
+                            className='btn btn-primary ms-auto mb-2'
+                            onClick={() => {
+                                navigate("/product/create")
+                                window.location.reload();
+                            }}
+                        >
+                            New
+                        </button>
                     </div>
                     {products
                         ? <Table configs={configsTableProduct} data={products} />

@@ -27,21 +27,20 @@ type FilterForm = {
 
 const ReportYear: React.FC = () => {
   const [data, setData] = useState<YearReport[]>();
-  const [table,setTable] = useState<Order[]>();
-  const [page,setPage] = useState<PageObject>();
-  const [year,setYear] = useState<number>();
+  const [table, setTable] = useState<Order[]>();
+  const [page, setPage] = useState<PageObject>();
+  const [year, setYear] = useState<number>();
 
 
-  const getTable = (year:number,page:number=1,limit:number = PAGE_LIMIT_ORDERS) => {
-    GetListOrderYear(year,page,limit)
-    .then((res)=>{
-      if(res?.data)
-      {
-        setPage(res.data.page);
-        setTable(res.data.items);
-      }
-    })
-    .catch((err)=>{ toast.error(err)})
+  const getTable = (year: number, page: number = 1, limit: number = PAGE_LIMIT_ORDERS) => {
+    GetListOrderYear(year, page, limit)
+      .then((res) => {
+        if (res?.data) {
+          setPage(res.data.page);
+          setTable(res.data.items);
+        }
+      })
+      .catch((err) => { toast.error(err) })
   }
 
 
@@ -83,7 +82,7 @@ const ReportYear: React.FC = () => {
 
 
 
-  
+
   const configs = [
     {
       label: "#",
@@ -109,9 +108,9 @@ const ReportYear: React.FC = () => {
 
 
   const handlePageChange = (pageNumber: number) => {
-    if(year)
-   getTable(year,pageNumber,PAGE_LIMIT_ORDERS)
-  else  getTable(new Date().getFullYear(),pageNumber,PAGE_LIMIT_ORDERS)
+    if (year)
+      getTable(year, pageNumber, PAGE_LIMIT_ORDERS)
+    else getTable(new Date().getFullYear(), pageNumber, PAGE_LIMIT_ORDERS)
   };
   return (
     <div className="container">
@@ -150,32 +149,38 @@ const ReportYear: React.FC = () => {
 
       {/* Biểu đồ */}
       <div className="m-5 bg-light rounded shadow">
-        <h1 className="m-5">
-          Biểu đồ tổng tiền theo từng tháng của năm{" "}
-        </h1>
-        {data && data.length > 0 ? (
-          <YearChart data={data} />
-        ) : (
-          <h1 className="text-center">Không có dữ liệu!</h1>
-        )}
+        <div className="d-flex align-content-center justify-content-center" >
+          <h1 className="m-5">
+            Biểu đồ tổng tiền theo từng tháng của năm{" "}
+          </h1>
+        </div>
+        <div className="ps-4" >
+          {data && data.length > 0 ? (
+            <YearChart data={data} />
+          ) : (
+            <h1 className="text-center">Không có dữ liệu!</h1>
+          )}
+        </div>
 
-       
+
       </div>
       <div className="bg-light rounded shadow">
-          <h1>Danh Sách Hóa Đơn trong năm </h1>
-          {table && table.length > 0 && ( <Table configs={configs} data={table}  />)}
+        <h1 className="p-4" >Danh Sách Hóa Đơn trong năm </h1>
+        <div className="p-4 bg-white">
+          {table && table.length > 0 && (<Table configs={configs} data={table} />)}
           <div>
-          {page && (
-          <Paging
-            currentPage={page?.currentPage!}
-            onPageChange={handlePageChange}
-            pageSize={page?.pageSize!}
-            totalItems={page?.totalItems!}
-            totalPages={page?.totalPages!}
-          />
-        )}
+            {page && (
+              <Paging
+                currentPage={page?.currentPage!}
+                onPageChange={handlePageChange}
+                pageSize={page?.pageSize!}
+                totalItems={page?.totalItems!}
+                totalPages={page?.totalPages!}
+              />
+            )}
           </div>
-          </div>
+        </div>
+      </div>
     </div>
   );
 };
